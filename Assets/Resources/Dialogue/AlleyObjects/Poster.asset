@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bb913068cc784648a353e0eb0533e98, type: 3}
+  m_Name: Poster
+  m_EditorClassIdentifier: 
+  character: 
+  standard: 0
+  identifier: 0
+  lines:
+  - speech: There's a small tattered piece of paper stuck to the wall.
+    icon: {fileID: 0}
+    textSpeed: 0
+    stopMusic: 0
+    stopSound: 0
+    unskippable: 0
+    voice: {fileID: 0}
+  - speech: '"FREE Guitar Lessons by instructor Dave! Write your name below to get
+      registered!"'
+    icon: {fileID: 0}
+    textSpeed: 0
+    stopMusic: 0
+    stopSound: 0
+    unskippable: 0
+    voice: {fileID: 0}
+  - speech: Nobody has signed up.
+    icon: {fileID: 0}
+    textSpeed: 0
+    stopMusic: 0
+    stopSound: 0
+    unskippable: 0
+    voice: {fileID: 0}
+  branch:
+    question: 
+    icon: {fileID: 0}
+    choices: []

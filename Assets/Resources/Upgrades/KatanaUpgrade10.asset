@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c770cc190c1b1f4f8c8a6965dc9d425, type: 3}
+  m_Name: KatanaUpgrade10
+  m_EditorClassIdentifier: 
+  ID: 183
+  pin: 129
+  price:
+    mantissa: 1.2
+    exponent: 43
+  upgradeIcon: {fileID: 21300000, guid: 857ebd12662c64748be7738ad3a377a5, type: 3}
+  upgName: Star-Forged Katana
+  upgDescription: Multiplies hits gained from katanas by 20
+  upgLore: The power of the sun, in the palm of your hand.

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c770cc190c1b1f4f8c8a6965dc9d425, type: 3}
+  m_Name: KatanaUpgrade3
+  m_EditorClassIdentifier: 
+  ID: 185
+  pin: 122
+  price:
+    mantissa: 1.2
+    exponent: 22
+  upgradeIcon: {fileID: 21300000, guid: 3249ba0a8cc9cb7468b88b1c0e99cbe3, type: 3}
+  upgName: Poison-Lined Blade
+  upgDescription: Doubles hits gained from katanas
+  upgLore: '"I''ll touch my point With this contagion, that, if I gall him slightly,
+    It may be death."'

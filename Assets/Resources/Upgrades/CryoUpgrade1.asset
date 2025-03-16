@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c770cc190c1b1f4f8c8a6965dc9d425, type: 3}
+  m_Name: CryoUpgrade1
+  m_EditorClassIdentifier: 
+  ID: 63
+  pin: 60
+  price:
+    mantissa: 3
+    exponent: 8
+  upgradeIcon: {fileID: 21300000, guid: 22db62e34a899b64f9311a8029216a29, type: 3}
+  upgName: Anti-Anti-Freeze
+  upgDescription: Doubles hits gained from cryo cannons
+  upgLore: Take down mechanics with ease.

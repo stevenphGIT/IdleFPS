@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c770cc190c1b1f4f8c8a6965dc9d425, type: 3}
+  m_Name: ClickUpgrade8
+  m_EditorClassIdentifier: 
+  ID: 144
+  pin: 9023
+  price:
+    mantissa: 1
+    exponent: 16
+  upgradeIcon: {fileID: 21300000, guid: baa217259abc4224594c8b246d21bfe2, type: 3}
+  upgName: Diamond Crosshair
+  upgDescription: Clicking gives 22% of HPS
+  upgLore: (It doesn't shine, it looks the exact same. Obviously.)

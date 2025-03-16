@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47787dc693f27114682db4a021af3514, type: 3}
+  m_Name: Nirvana
+  m_EditorClassIdentifier: 
+  ID: 0
+  abilityIcon: {fileID: 21300000, guid: 17a8e97641c28424691022f5d573706f, type: 3}
+  abilityIconActive: {fileID: 21300000, guid: ab82020298efd564db36d6a442b7804e, type: 3}
+  abilityIconUsed: {fileID: 21300000, guid: 011b9590835ea7047babaf905404a8b7, type: 3}
+  abilityName: Nirvana
+  abilityDescription: For the duration of the ability, all weapons produce as much
+    as your highest tier weapon.
+  abilityCooldown: 28800
+  abilityDuration: 10
+  rarity: 4
+  color: {r: 1, g: 1, b: 0, a: 1}

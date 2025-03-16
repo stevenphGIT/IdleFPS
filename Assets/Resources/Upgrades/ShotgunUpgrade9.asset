@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c770cc190c1b1f4f8c8a6965dc9d425, type: 3}
+  m_Name: ShotgunUpgrade9
+  m_EditorClassIdentifier: 
+  ID: 39
+  pin: 38
+  price:
+    mantissa: 6
+    exponent: 21
+  upgradeIcon: {fileID: 21300000, guid: ee6fc5d81372f604ea61332cbf4d2d0d, type: 3}
+  upgName: Radioactive Rounds
+  upgDescription: Doubles hits gained from shotguns
+  upgLore: This product contains chemicals known to the state of california to cause
+    cancer and birth defects or other reproductive harm.

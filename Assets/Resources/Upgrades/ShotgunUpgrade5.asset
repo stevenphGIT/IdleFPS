@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c770cc190c1b1f4f8c8a6965dc9d425, type: 3}
+  m_Name: ShotgunUpgrade5
+  m_EditorClassIdentifier: 
+  ID: 35
+  pin: 34
+  price:
+    mantissa: 6
+    exponent: 10
+  upgradeIcon: {fileID: 21300000, guid: 4ea7b32ee3f0bff448b131c2bcbf4558, type: 3}
+  upgName: Speedy Bullets
+  upgDescription: Doubles hits gained from shotguns
+  upgLore: Speed is key!

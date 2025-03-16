@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c770cc190c1b1f4f8c8a6965dc9d425, type: 3}
+  m_Name: PlaneUpgrade3
+  m_EditorClassIdentifier: 
+  ID: 117
+  pin: 102
+  price:
+    mantissa: 9.5
+    exponent: 14
+  upgradeIcon: {fileID: 21300000, guid: 1ac1fad90a2005d48b25b8778ca6602c, type: 3}
+  upgName: Turbo Flux Capacitor
+  upgDescription: Doubles hits gained from planes
+  upgLore: Where we're going, we don't need roads!

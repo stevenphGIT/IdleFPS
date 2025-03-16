@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c770cc190c1b1f4f8c8a6965dc9d425, type: 3}
+  m_Name: TargetGold3
+  m_EditorClassIdentifier: 
+  ID: 104
+  pin: 9010
+  price:
+    mantissa: 1
+    exponent: 10
+  upgradeIcon: {fileID: 21300000, guid: 602f87891c1e3634399d4183b875555d, type: 3}
+  upgName: Gold+++
+  upgDescription: Increased hits recieved from golden targets
+  upgLore: Richer and richer...

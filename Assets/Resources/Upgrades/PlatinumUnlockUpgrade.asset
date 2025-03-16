@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c770cc190c1b1f4f8c8a6965dc9d425, type: 3}
+  m_Name: PlatinumUnlockUpgrade
+  m_EditorClassIdentifier: 
+  ID: 148
+  pin: 9028
+  price:
+    mantissa: 5
+    exponent: 10
+  upgradeIcon: {fileID: 21300000, guid: 7b7ffe1fd4e621849a72f4bcd66f680f, type: 3}
+  upgName: Platinum Targets
+  upgDescription: Unlocks platinum targets. When clicked, they give 60 seconds of
+    HPS
+  upgLore: '*pling!*'

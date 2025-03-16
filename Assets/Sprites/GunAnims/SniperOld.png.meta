@@ -1,0 +1,602 @@
+fileFormatVersion: 2
+guid: 76f23d39134eba84b808232e994bf0eb
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3329266881116670708
+    second: SniperSprite_0
+  - first:
+      213: 5909007548845905933
+    second: SniperSprite_1
+  - first:
+      213: -4617450401745803223
+    second: SniperSprite_2
+  - first:
+      213: -5573252827142415070
+    second: SniperSprite_3
+  - first:
+      213: 5683987705210924143
+    second: SniperSprite_4
+  - first:
+      213: 5381726643567427229
+    second: SniperSprite_5
+  - first:
+      213: -4855006357879517203
+    second: SniperSprite_6
+  - first:
+      213: -5242533905893918739
+    second: SniperSprite_7
+  - first:
+      213: 4954828573215258543
+    second: SniperSprite_8
+  - first:
+      213: 2755147440926573816
+    second: SniperSprite_9
+  - first:
+      213: 4623438782613975269
+    second: SniperSprite_10
+  - first:
+      213: -2215017416552016350
+    second: SniperSprite_11
+  - first:
+      213: -1048538653297157309
+    second: SniperSprite_12
+  - first:
+      213: 6010609316943829600
+    second: SniperSprite_13
+  - first:
+      213: -6888702535630686392
+    second: SniperSprite_14
+  - first:
+      213: 856099837672700582
+    second: SniperSprite_15
+  - first:
+      213: 3291596359157456492
+    second: SniperSprite_16
+  - first:
+      213: 1006255527232029419
+    second: SniperSprite_17
+  - first:
+      213: 1650177267420217733
+    second: SniperSprite_18
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 1
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SniperSprite_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 288
+        width: 200
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4fa8e63d69ee33e20800000000000000
+      internalID: 3329266881116670708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SniperSprite_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 272
+        width: 200
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d08df04fe03010250800000000000000
+      internalID: 5909007548845905933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SniperSprite_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 200
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 928e4fbe2558befb0800000000000000
+      internalID: -4617450401745803223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SniperSprite_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 240
+        width: 200
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22d1cb20514d7a2b0800000000000000
+      internalID: -5573252827142415070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SniperSprite_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 224
+        width: 200
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6ce8cce3b491ee40800000000000000
+      internalID: 5683987705210924143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SniperSprite_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 208
+        width: 200
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9e77146edbbfaa40800000000000000
+      internalID: 5381726643567427229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SniperSprite_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 200
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: def0450c07d8f9cb0800000000000000
+      internalID: -4855006357879517203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SniperSprite_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 176
+        width: 200
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de770405037ce37b0800000000000000
+      internalID: -5242533905893918739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SniperSprite_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 160
+        width: 200
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa77375e55613c440800000000000000
+      internalID: 4954828573215258543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SniperSprite_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 144
+        width: 200
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f4414800004c3620800000000000000
+      internalID: 2755147440926573816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SniperSprite_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 200
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e07876a311c92040800000000000000
+      internalID: 4623438782613975269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SniperSprite_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 112
+        width: 200
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2261d13356da241e0800000000000000
+      internalID: -2215017416552016350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SniperSprite_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 200
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34bd4f476a7d271f0800000000000000
+      internalID: -1048538653297157309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SniperSprite_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 80
+        width: 200
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06a17140459f96350800000000000000
+      internalID: 6010609316943829600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SniperSprite_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 200
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8477660ba896660a0800000000000000
+      internalID: -6888702535630686392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SniperSprite_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 48
+        width: 200
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6aa30cc344a71eb00800000000000000
+      internalID: 856099837672700582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SniperSprite_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 200
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6e9c83f2791ead20800000000000000
+      internalID: 3291596359157456492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SniperSprite_17
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 16
+        width: 200
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be240f51210f6fd00800000000000000
+      internalID: 1006255527232029419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SniperSprite_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 200
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 581c1015b7b96e610800000000000000
+      internalID: 1650177267420217733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      SniperSprite_0: 3329266881116670708
+      SniperSprite_1: 5909007548845905933
+      SniperSprite_10: 4623438782613975269
+      SniperSprite_11: -2215017416552016350
+      SniperSprite_12: -1048538653297157309
+      SniperSprite_13: 6010609316943829600
+      SniperSprite_14: -6888702535630686392
+      SniperSprite_15: 856099837672700582
+      SniperSprite_16: 3291596359157456492
+      SniperSprite_17: 1006255527232029419
+      SniperSprite_18: 1650177267420217733
+      SniperSprite_2: -4617450401745803223
+      SniperSprite_3: -5573252827142415070
+      SniperSprite_4: 5683987705210924143
+      SniperSprite_5: 5381726643567427229
+      SniperSprite_6: -4855006357879517203
+      SniperSprite_7: -5242533905893918739
+      SniperSprite_8: 4954828573215258543
+      SniperSprite_9: 2755147440926573816
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

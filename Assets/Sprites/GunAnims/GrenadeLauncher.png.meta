@@ -1,0 +1,1711 @@
+fileFormatVersion: 2
+guid: c6a91d0a79a176d4ca77ffd1e8db08d3
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: GrenadeLauncher_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 896
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb1db1c13cf57b54aa8e2fedb1434433
+      internalID: 1772737678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_1
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 896
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c99287a97a071b47bb18989f97ac3e5
+      internalID: -1607936926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_2
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 896
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 184dc1662c40e224f8a91bfa0a0921f2
+      internalID: -1214062404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_3
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 896
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5e0383ca3490e24f97cb25c853092b2
+      internalID: 1851284890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_4
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 896
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a7dc07e777832c45a6ea4efa4fc0687
+      internalID: 2122229017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 832
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79e72940869a2e743922f2602a3bcd46
+      internalID: -1592313274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_6
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 832
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d66327e9e04af7448485352372de10e
+      internalID: -771127383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_7
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 832
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdd31cb53d1cbd34a896d5677efabe2c
+      internalID: -1169629255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_8
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 832
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec59b0fe405552847ae5828d4a6a4c45
+      internalID: -253810003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_9
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 832
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a322244d7666b794b9555a35e6cf81c1
+      internalID: -648084628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 768
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56da8db2a015a114397829be109604f7
+      internalID: 1189391501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_11
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 768
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65c9939b7a017094bab4455189d0e7e9
+      internalID: -39305810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_12
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 768
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f822ff04187931245886ecc1555740d4
+      internalID: 51411590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_13
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 768
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 443404dd671ee04459583fda31a27e8f
+      internalID: -440879920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_14
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 768
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 798b6f25d1a157d498f278e6df996bcc
+      internalID: -330993482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 704
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d295891adbf6bc4eb17a62db1b377d6
+      internalID: 1535256186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_16
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 704
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ca2908fc34d766449635203a19012ad
+      internalID: 1513552278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_17
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 704
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f807713fa67fe041a0501df817997b1
+      internalID: -1677818476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_18
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 704
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c048c6d008a1ab4ca222b23f71c3696
+      internalID: -2291923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_19
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 704
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04b19dbd5d4a89c4daf5d56cbed47d23
+      internalID: 1024731239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 640
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe48ec6295829f84db213a8a968b4e4a
+      internalID: -2015527382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_21
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 640
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56ecd3bc0aea1d34389ec6fdf2dd5be0
+      internalID: 358872217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_22
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 640
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd3b3dc8c784098479adcfb14f28b6ea
+      internalID: -231419473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_23
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 640
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74b9d4ff6ede34f4cb4e4e52c4cd79e8
+      internalID: 306013037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_24
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 640
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b23e3dee5ff88145a96f82ad669e2a8
+      internalID: 100168995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_25
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 576
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33f5e30b9d13f6b4e97f6d1ca5a7c6c4
+      internalID: 1339149970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_26
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 576
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a86c8fa337949ac449ee4b9c50e0963e
+      internalID: -1237046768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_27
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 576
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a441841cb87a924385a5fe21fb29680
+      internalID: 1099825775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_28
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 576
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 736a1646705c67047b2042e5eabe10ae
+      internalID: 902633793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_29
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 576
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7e807fdf3debd149bcb6072f35d04bd
+      internalID: 605648474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 878d3c80b01a36940accd960bd6aa098
+      internalID: -1637194832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_31
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 512
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac02aab65002ec647a71fecf0055da18
+      internalID: -52329844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_32
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 512
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43cd4e9dd11296b4190e72691c4acc32
+      internalID: -971580891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_33
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 512
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 547aded6e4985d743836693b814a74e3
+      internalID: -1247886824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_34
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 512
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9e6bc9ff7ac842449a890dd81916045
+      internalID: 927252127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_35
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 448
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52af2bcf7ab022d4eb1205374d7f188d
+      internalID: 2117725476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_36
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 448
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ccbe52cbcae80604889e740a7e98adc1
+      internalID: -812408641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_37
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 448
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95326af529640fb4aa351d3bd176872e
+      internalID: 153825552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_38
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 448
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 727847356b6f97948b09da05d1483dd2
+      internalID: 770960256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_39
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 448
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfc6e95baa571504eaa4d03625116b07
+      internalID: 2034377825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46643d796b116944994d5e0fc7b88f8a
+      internalID: -305701701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_41
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 384
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d45e70f02d2897459f63c38b0ea25c3
+      internalID: -625616103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_42
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 384
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc45287413708894a8655322ca4eea26
+      internalID: -501507668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_43
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 384
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf678a2bac918a24baf462f0b2fe0980
+      internalID: 865684153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_44
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 384
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d08f3139f009fc1458dd1afb55df185c
+      internalID: 2146761146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_45
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 320
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6fe51a66ae0d72469f46c8d8af0ffbc
+      internalID: -394172839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_46
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 320
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6ed0ea160d768f46a4eb7d8dcd7e617
+      internalID: 1347424598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_47
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 320
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 384822938a0712a458afeece3636f5a7
+      internalID: 29695469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_48
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 320
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 912552eb2cb09a44db516c337ff53a4a
+      internalID: -1456278055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_49
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 320
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5c5e04ced92adb45bcb517babb6eecd
+      internalID: -541396958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_50
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1f02ccb860d71145a5534cd6abb444a
+      internalID: 1830018865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_51
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 256
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d7162a774f24c9439a0fe2a98a2be88
+      internalID: -246245170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_52
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 256
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64f8710c8babe6245b84f51cfcd3c808
+      internalID: 1183936704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_53
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 256
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 017fc755b347a974cbb6b237df2a7cd6
+      internalID: -808193590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_54
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 256
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d95a9a50cf445bd4c8e23d236d1a02fc
+      internalID: 1621232703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_55
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9288b53e298e004b81e8ace01f2848e
+      internalID: -1306026768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_56
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 192
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1cfb5e39b6513664ca68fd840296bca9
+      internalID: 306102394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_57
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 192
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20f60af2fb82d9947a60c546fb6e2e18
+      internalID: 459007281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_58
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 192
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80c55d84a9455874ab283e494f7405b9
+      internalID: -1700694332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_59
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 192
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d86cb88504e3db54f91264bbf21bdda1
+      internalID: 523294317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_60
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9aef0ad101a8484785336b2723937b6
+      internalID: 685711063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_61
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 128
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 885e76cc0db95e646ba684413ee4c9d8
+      internalID: -610320267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_62
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 128
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 938f2418f602fd14b8d7307f045d513b
+      internalID: 1498108597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_63
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 128
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5ef6fe8083a00e46ad8f5e01f103877
+      internalID: -1506206675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_64
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 128
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdaca7148951b9142ba55f83284355cf
+      internalID: -1572731305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_65
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fee9ad53914a06d4783a502a34c773f0
+      internalID: -303799630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_66
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 64
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2e4cfd409575814c92a11dba8eda19b
+      internalID: 712100394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_67
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 64
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10fd1e29fa444764aa470d87fd09599a
+      internalID: 1171052559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_68
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 64
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ac6b65e4faf48247a0c758050f02add
+      internalID: 1397827166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_69
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 64
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f94a3cce5e9a4084fa0df20c8ba6b589
+      internalID: -1908282331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_70
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54d0962be35db5a40879b37cd3693ce6
+      internalID: 715170346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrenadeLauncher_71
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 0
+        width: 200
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16a81e5b2879b2247a3419e949c5dd83
+      internalID: 1365760160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      GrenadeLauncher_0: 1772737678
+      GrenadeLauncher_1: -1607936926
+      GrenadeLauncher_10: 1189391501
+      GrenadeLauncher_11: -39305810
+      GrenadeLauncher_12: 51411590
+      GrenadeLauncher_13: -440879920
+      GrenadeLauncher_14: -330993482
+      GrenadeLauncher_15: 1535256186
+      GrenadeLauncher_16: 1513552278
+      GrenadeLauncher_17: -1677818476
+      GrenadeLauncher_18: -2291923
+      GrenadeLauncher_19: 1024731239
+      GrenadeLauncher_2: -1214062404
+      GrenadeLauncher_20: -2015527382
+      GrenadeLauncher_21: 358872217
+      GrenadeLauncher_22: -231419473
+      GrenadeLauncher_23: 306013037
+      GrenadeLauncher_24: 100168995
+      GrenadeLauncher_25: 1339149970
+      GrenadeLauncher_26: -1237046768
+      GrenadeLauncher_27: 1099825775
+      GrenadeLauncher_28: 902633793
+      GrenadeLauncher_29: 605648474
+      GrenadeLauncher_3: 1851284890
+      GrenadeLauncher_30: -1637194832
+      GrenadeLauncher_31: -52329844
+      GrenadeLauncher_32: -971580891
+      GrenadeLauncher_33: -1247886824
+      GrenadeLauncher_34: 927252127
+      GrenadeLauncher_35: 2117725476
+      GrenadeLauncher_36: -812408641
+      GrenadeLauncher_37: 153825552
+      GrenadeLauncher_38: 770960256
+      GrenadeLauncher_39: 2034377825
+      GrenadeLauncher_4: 2122229017
+      GrenadeLauncher_40: -305701701
+      GrenadeLauncher_41: -625616103
+      GrenadeLauncher_42: -501507668
+      GrenadeLauncher_43: 865684153
+      GrenadeLauncher_44: 2146761146
+      GrenadeLauncher_45: -394172839
+      GrenadeLauncher_46: 1347424598
+      GrenadeLauncher_47: 29695469
+      GrenadeLauncher_48: -1456278055
+      GrenadeLauncher_49: -541396958
+      GrenadeLauncher_5: -1592313274
+      GrenadeLauncher_50: 1830018865
+      GrenadeLauncher_51: -246245170
+      GrenadeLauncher_52: 1183936704
+      GrenadeLauncher_53: -808193590
+      GrenadeLauncher_54: 1621232703
+      GrenadeLauncher_55: -1306026768
+      GrenadeLauncher_56: 306102394
+      GrenadeLauncher_57: 459007281
+      GrenadeLauncher_58: -1700694332
+      GrenadeLauncher_59: 523294317
+      GrenadeLauncher_6: -771127383
+      GrenadeLauncher_60: 685711063
+      GrenadeLauncher_61: -610320267
+      GrenadeLauncher_62: 1498108597
+      GrenadeLauncher_63: -1506206675
+      GrenadeLauncher_64: -1572731305
+      GrenadeLauncher_65: -303799630
+      GrenadeLauncher_66: 712100394
+      GrenadeLauncher_67: 1171052559
+      GrenadeLauncher_68: 1397827166
+      GrenadeLauncher_69: -1908282331
+      GrenadeLauncher_7: -1169629255
+      GrenadeLauncher_70: 715170346
+      GrenadeLauncher_71: 1365760160
+      GrenadeLauncher_8: -253810003
+      GrenadeLauncher_9: -648084628
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

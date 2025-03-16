@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bb913068cc784648a353e0eb0533e98, type: 3}
+  m_Name: introB2
+  m_EditorClassIdentifier: 
+  character: Token Dealer
+  standard: 0
+  identifier: 4
+  lines:
+  - speech: Heh, you think you're a funny guy then huh? Kid, I don't appreciate you
+      questionin' the integrity of my store here. I sell only top-notch <sprite index=2><color=#FF7300>TOKENS</color>.
+      Got it?
+    icon: {fileID: 21300000, guid: 486c19f5c3b99164093c3a6929f4706e, type: 3}
+    textSpeed: 0
+    stopMusic: 0
+    stopSound: 0
+    unskippable: 0
+    voice: {fileID: 8300000, guid: ea83aa149ab69124481d4bd32ad3899f, type: 3}
+  - speech: Regardless of your eh... insensitivity... my offer stands. Do some favors,
+      get some free tokens. Can't get a better deal then that!
+    icon: {fileID: 21300000, guid: 486c19f5c3b99164093c3a6929f4706e, type: 3}
+    textSpeed: 0
+    stopMusic: 0
+    stopSound: 0
+    unskippable: 0
+    voice: {fileID: 8300000, guid: ea83aa149ab69124481d4bd32ad3899f, type: 3}
+  branch:
+    question: 
+    icon: {fileID: 0}
+    choices: []

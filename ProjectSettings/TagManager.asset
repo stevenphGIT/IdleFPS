@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Target
+  - UP
+  - Close
+  - PlatTarget
+  - SilverTarget
+  - OmegaTarget
+  - Ability
+  - Weather
+  - Upgrade
+  - Gun
+  - PrestigeButton
+  - PrestigeUpg
+  - OpaqueDialogueBox
+  - LocationAction
+  - LocationIcon
+  - AbilityCard
+  - Undefined
+  - GoldTarget
+  - TG
+  - Shop
+  - Cheat
+  - Answer
+  - NPC
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Text
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Front
+    uniqueID: 3649122303
+    locked: 0
+  - name: AlwaysInFrontOfEverything
+    uniqueID: 1869405421
+    locked: 0
