@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 0
   abilityIcon: {fileID: 0}
   abilityName: Tax Evasion
-  abilityDescription: Reduces cost of all weapons by 5% for the duration of the ability
+  abilityDescription: Reduce cost of all weapons by 5%
   abilityCooldown: 300
   abilityDuration: 60
   rarity: 0

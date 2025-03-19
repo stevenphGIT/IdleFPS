@@ -4185,6 +4185,7 @@ MonoBehaviour:
   sliderSnap: 1
   leftBorder: {fileID: 1054654712}
   rightBorder: {fileID: 623719867}
+  scrollRect: {fileID: 0}
   vertical: 0
   valUpdated: 0
 --- !u!61 &130356311
@@ -9979,6 +9980,7 @@ RectTransform:
   m_LocalScale: {x: 70.59521, y: 70.59521, z: 70.59521}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 968360991}
   - {fileID: 767758317}
   - {fileID: 214169488}
   - {fileID: 1860892376}
@@ -11061,6 +11063,7 @@ MonoBehaviour:
   sliderSnap: 0
   leftBorder: {fileID: 1358687197}
   rightBorder: {fileID: 1891365543}
+  scrollRect: {fileID: 0}
   vertical: 0
   valUpdated: 0
 --- !u!61 &339698804
@@ -18613,6 +18616,7 @@ MonoBehaviour:
   sliderSnap: 0
   leftBorder: {fileID: 1729561922}
   rightBorder: {fileID: 787615151}
+  scrollRect: {fileID: 0}
   vertical: 0
   valUpdated: 0
 --- !u!61 &528578460
@@ -35559,6 +35563,7 @@ MonoBehaviour:
   sliderSnap: 0
   leftBorder: {fileID: 1129792679}
   rightBorder: {fileID: 2031929447}
+  scrollRect: {fileID: 0}
   vertical: 0
   valUpdated: 0
 --- !u!61 &943529413
@@ -36328,6 +36333,7 @@ MonoBehaviour:
   sliderSnap: 0
   leftBorder: {fileID: 1611021123}
   rightBorder: {fileID: 1731484451}
+  scrollRect: {fileID: 0}
   vertical: 1
   valUpdated: 0
 --- !u!61 &962905664
@@ -36542,6 +36548,83 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &968360990
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 968360991}
+  - component: {fileID: 968360992}
+  m_Layer: 0
+  m_Name: ScrollCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &968360991
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 968360990}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.91000044, y: -3.6480477, z: 859}
+  m_LocalScale: {x: 1.0202979, y: 1.0202979, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 310946611}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &968360992
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 968360990}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.047408342, y: -0.010301113}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.5600715, y: 10.132901}
+  m_EdgeRadius: 0
 --- !u!1 &969210298
 GameObject:
   m_ObjectHideFlags: 0
@@ -42874,15 +42957,15 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &1187315610
-RectTransform:
+--- !u!4 &1187315610
+Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1187315609}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 745.52155}
+  m_LocalPosition: {x: -0.007319629, y: 4.460423, z: 745.52155}
   m_LocalScale: {x: 1.4165262, y: 1.4165258, z: 0.014165254}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -42892,11 +42975,6 @@ RectTransform:
   m_Father: {fileID: 1893601711}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.007319629, y: 4.460423}
-  m_SizeDelta: {x: 2.5, y: 0.9}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!61 &1187315611
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -52780,6 +52858,7 @@ MonoBehaviour:
   sliderSnap: 0
   leftBorder: {fileID: 1683829281}
   rightBorder: {fileID: 2101982679}
+  scrollRect: {fileID: 0}
   vertical: 0
   valUpdated: 0
 --- !u!61 &1500909756
@@ -58428,6 +58507,7 @@ MonoBehaviour:
   sliderSnap: 0
   leftBorder: {fileID: 2081257136}
   rightBorder: {fileID: 392318647}
+  scrollRect: {fileID: 0}
   vertical: 0
   valUpdated: 0
 --- !u!61 &1686054473
@@ -66399,6 +66479,7 @@ MonoBehaviour:
   sliderSnap: 0
   leftBorder: {fileID: 1373785540}
   rightBorder: {fileID: 1598276821}
+  scrollRect: {fileID: 0}
   vertical: 0
   valUpdated: 0
 --- !u!61 &1898726973
@@ -73074,6 +73155,7 @@ MonoBehaviour:
   sliderSnap: 0
   leftBorder: {fileID: 1504293344}
   rightBorder: {fileID: 558852697}
+  scrollRect: {fileID: 0}
   vertical: 0
   valUpdated: 0
 --- !u!61 &2082566525
@@ -73771,6 +73853,7 @@ MonoBehaviour:
   sliderSnap: 0
   leftBorder: {fileID: 1074315589}
   rightBorder: {fileID: 1681048471}
+  scrollRect: {fileID: 968360992}
   vertical: 1
   valUpdated: 0
 --- !u!61 &2100466731
@@ -75942,6 +76025,7 @@ MonoBehaviour:
   sliderSnap: 0
   leftBorder: {fileID: 6257142483762593657}
   rightBorder: {fileID: 4591726897931561359}
+  scrollRect: {fileID: 0}
   vertical: 0
   valUpdated: 0
 --- !u!212 &7613291555791018989

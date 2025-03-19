@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Schema;
@@ -16,6 +17,9 @@ public class InputSlider : MonoBehaviour
 
     public GameObject leftBorder, rightBorder;
 
+    public Collider2D scrollRect;
+    private bool scrollable = false;
+
     private float distance;
 
     bool clickedOn = false;
@@ -25,6 +29,10 @@ public class InputSlider : MonoBehaviour
     public bool valUpdated = true;
     private void Start()
     {
+        if (scrollRect != null)
+        { 
+            scrollable = true;
+        }
         float leftPos;
         float rightPos;
         if (!vertical)
@@ -50,37 +58,25 @@ public class InputSlider : MonoBehaviour
         {
             if (Input.GetMouseButton(0))
             {
+                UpdateSliderPosition(Crosshair.Instance.transform.position);
+            }
+            else
+            {
+                clickedOn = false;
+            }
+        }
+        if (scrollable && scrollRect.OverlapPoint(Crosshair.Instance.transform.position))
+        {
+            float scrollDelta = Input.mouseScrollDelta.y;
+            if (scrollDelta != 0)
+            {
                 float prevSliderVal = sliderValue;
 
-                float tempVal;
+                sliderValue += scrollDelta * (sliderMaxValue - sliderMinValue) * 0.05f;
+                sliderValue = Mathf.Clamp(sliderValue, sliderMinValue, sliderMaxValue);
 
-                float xMax;
-                float xMin;
-                float xVal;
-
-                if (!vertical)
-                {
-                    xMax = rightBorder.transform.position.x;
-                    xMin = leftBorder.transform.position.x;
-                    xVal = Mathf.Clamp(Crosshair.Instance.transform.position.x, xMin, xMax);
-
-                    this.transform.position = new(xVal, this.transform.position.y);
-                }
-                else
-                {
-                    xMax = rightBorder.transform.position.y;
-                    xMin = leftBorder.transform.position.y;
-                    xVal = Mathf.Clamp(Crosshair.Instance.transform.position.y, xMin, xMax);
-
-                    this.transform.position = new(this.transform.position.x, xVal);
-                }
-
-                tempVal = sliderMinValue + (((xVal - xMin) / distance) * (sliderMaxValue - sliderMinValue));
-
-                if(sliderSnap)
-                    tempVal = Mathf.Round(tempVal);
-
-                sliderValue = tempVal;
+                if (sliderSnap)
+                    sliderValue = Mathf.Round(sliderValue);
 
                 UpdateBar();
 
@@ -89,10 +85,40 @@ public class InputSlider : MonoBehaviour
                     valUpdated = true;
                 }
             }
-            else
-            {
-                clickedOn = false;
-            }
+        }
+    }
+    void UpdateSliderPosition(Vector3 crosshairPos)
+    {
+        float prevSliderVal = sliderValue;
+        float tempVal;
+        float xMax, xMin, xVal;
+
+        if (!vertical)
+        {
+            xMax = rightBorder.transform.position.x;
+            xMin = leftBorder.transform.position.x;
+            xVal = Mathf.Clamp(crosshairPos.x, xMin, xMax);
+            this.transform.position = new Vector3(xVal, this.transform.position.y);
+        }
+        else
+        {
+            xMax = rightBorder.transform.position.y;
+            xMin = leftBorder.transform.position.y;
+            xVal = Mathf.Clamp(crosshairPos.y, xMin, xMax);
+            this.transform.position = new Vector3(this.transform.position.x, xVal);
+        }
+
+        tempVal = sliderMinValue + (((xVal - xMin) / distance) * (sliderMaxValue - sliderMinValue));
+
+        if (sliderSnap)
+            tempVal = Mathf.Round(tempVal);
+
+        sliderValue = tempVal;
+        UpdateBar();
+
+        if (sliderValue != prevSliderVal)
+        {
+            valUpdated = true;
         }
     }
     void OnTriggerStay2D(Collider2D collision)
