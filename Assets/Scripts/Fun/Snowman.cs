@@ -12,13 +12,15 @@ public class Snowman : MonoBehaviour
     float shakeTimer = 0f;
     float shakeIntensity = 0.2f;
 
-    float respawnTimer = 0f;
+    float respawnTimer = -50f;
 
     float startX;
     float startY;
 
     [SerializeField]
     Sprite knockedSprite, normalSprite, angrySprite;
+    [SerializeField]
+    TextHolder openingSpeech;
     private void Awake()
     {
         if(Instance == null)
@@ -58,11 +60,11 @@ public class Snowman : MonoBehaviour
                     Music.Instance.StopSounds();
                     knocked = true;
                     this.gameObject.GetComponent<SpriteRenderer>().sprite = angrySprite;
+                    StartCoroutine(AngerCutscene());
                 }
                 else
                 {
                     HitSound.Instance.source.PlayOneShot(HitSound.Instance.snowmanTopple);
-                    Music.Instance.StopSounds();
                     knocked = true;
                     this.gameObject.GetComponent<SpriteRenderer>().sprite = knockedSprite;
                     Vars.Instance.snowmenSlain++;
@@ -99,5 +101,13 @@ public class Snowman : MonoBehaviour
             this.transform.position = new Vector3(startX, startY, 0);
             shakeTimer = -50;
         }
+    }
+
+    private IEnumerator AngerCutscene()
+    {
+        yield return new WaitForSeconds(1f);
+        shakeTimer = 1.2f;
+        yield return new WaitForSeconds(1f);
+        SpeechBox.Instance.Say(openingSpeech, new Color(0.9f, 0.9f, 1f));
     }
 }

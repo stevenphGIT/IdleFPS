@@ -42256,6 +42256,7 @@ MonoBehaviour:
   knockedSprite: {fileID: 21300000, guid: f67ee4788b7b8a446a40ff763c43a4a5, type: 3}
   normalSprite: {fileID: 21300000, guid: 0d88a8cd8d310e7479fd9c0fadcd7452, type: 3}
   angrySprite: {fileID: 21300000, guid: da135ee70d337fa4bb5f6aca9f945596, type: 3}
+  openingSpeech: {fileID: 11400000, guid: 55581e6106ad2734196c43053a2e2d10, type: 2}
 --- !u!1 &1142888845
 GameObject:
   m_ObjectHideFlags: 0
