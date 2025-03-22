@@ -18,8 +18,7 @@ public class Snowman : MonoBehaviour
     float startY;
 
     [SerializeField]
-    Sprite knockedSprite;
-    Sprite normalSprite;
+    Sprite knockedSprite, normalSprite, angrySprite;
     private void Awake()
     {
         if(Instance == null)
@@ -53,11 +52,21 @@ public class Snowman : MonoBehaviour
             }
             else
             {
-                HitSound.Instance.source.PlayOneShot(HitSound.Instance.snowmanTopple);
-                Music.Instance.StopSounds();
-                knocked = true;
-                this.gameObject.GetComponent<SpriteRenderer>().sprite = knockedSprite;
-                Vars.Instance.snowmenSlain++;
+                if (Vars.Instance.snowmenSlain > 2)
+                {
+                    HitSound.Instance.source.PlayOneShot(HitSound.Instance.snowCrunch1);
+                    Music.Instance.StopSounds();
+                    knocked = true;
+                    this.gameObject.GetComponent<SpriteRenderer>().sprite = angrySprite;
+                }
+                else
+                {
+                    HitSound.Instance.source.PlayOneShot(HitSound.Instance.snowmanTopple);
+                    Music.Instance.StopSounds();
+                    knocked = true;
+                    this.gameObject.GetComponent<SpriteRenderer>().sprite = knockedSprite;
+                    Vars.Instance.snowmenSlain++;
+                }
             }
         }
     }
