@@ -115,9 +115,9 @@ public class AvailableUpgrades : MonoBehaviour, IDataPersistence
             Destroy(spawnedObjects.ElementAt(spawnedObjects.Count - 1));
             spawnedObjects.Remove(spawnedObjects.ElementAt(spawnedObjects.Count - 1));
         }
-        for (int i = spawnedObjects.Count; i < 50; i++)
+        for (int i = spawnedObjects.Count; i < 12; i++)
         {
-            if (i > 50)
+            if (i > 12)
             {
                 break;
             }
@@ -336,18 +336,9 @@ public class AvailableUpgrades : MonoBehaviour, IDataPersistence
 
     public void ActivateAllObjects()
     {
-        if (locationBonuses == true)
-        {
-            activatables[0].SetActive(true);
-        }
-        if (abilitiesUnlocked == true)
-        {
-            activatables[1].SetActive(true);
-        }
-        if (nukeUnlocked == true)
-        {
-            activatables[2].SetActive(true);
-        }
+        activatables[0].GetComponent<ToggleableButton>().SetLocked(!locationBonuses);
+        activatables[1].GetComponent<ToggleableButton>().SetLocked(!abilitiesUnlocked);
+        activatables[2].SetActive(nukeUnlocked);
     }
 
     public void ResetAll()
@@ -365,10 +356,10 @@ public class AvailableUpgrades : MonoBehaviour, IDataPersistence
         combosUnlocked = false;
         bought = new List<UpgradeObject> { };
         available = new List<UpgradeObject> { };
-        for(int i = 0; i < activatables.Count; i++)
-        {
-            activatables[i].SetActive(false);
-        }
+
+        activatables[0].GetComponent<ToggleableButton>().SetLocked(true);
+        activatables[1].GetComponent<ToggleableButton>().SetLocked(true);
+        activatables[2].SetActive(nukeUnlocked);
 
         for (int i = 0; i < multipliers.Count; i++)
         {

@@ -22,6 +22,7 @@ public class HitSound : MonoBehaviour
     public AudioClip smallClick;
     public AudioClip snowCrunch1, snowCrunch2, snowCrunch3;
     public AudioClip snowmanTopple;
+    public AudioClip snowmanFurious;
 
     public AudioClip deckOpen;
     public AudioClip deckClose;

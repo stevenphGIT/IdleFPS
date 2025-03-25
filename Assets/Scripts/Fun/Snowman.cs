@@ -54,12 +54,14 @@ public class Snowman : MonoBehaviour
             }
             else
             {
-                if (Vars.Instance.snowmenSlain > 2)
+                if (Vars.Instance.snowmenSlain >= 2)
                 {
                     HitSound.Instance.source.PlayOneShot(HitSound.Instance.snowCrunch1);
                     Music.Instance.StopSounds();
+                    Music.Instance.Pause();
                     knocked = true;
                     this.gameObject.GetComponent<SpriteRenderer>().sprite = angrySprite;
+                    HitSound.Instance.source.PlayOneShot(HitSound.Instance.snowmanFurious);
                     StartCoroutine(AngerCutscene());
                 }
                 else
@@ -68,6 +70,7 @@ public class Snowman : MonoBehaviour
                     knocked = true;
                     this.gameObject.GetComponent<SpriteRenderer>().sprite = knockedSprite;
                     Vars.Instance.snowmenSlain++;
+                    respawnTimer = 10;
                 }
             }
         }
@@ -77,6 +80,10 @@ public class Snowman : MonoBehaviour
         if (respawnTimer > 0)
         {
             respawnTimer -= Time.deltaTime;
+            if (respawnTimer < 0.5f)
+            {
+                shakeTimer = 0.1f;
+            }
         }
         else if (respawnTimer != -50)
         {
@@ -105,7 +112,7 @@ public class Snowman : MonoBehaviour
 
     private IEnumerator AngerCutscene()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         shakeTimer = 1.2f;
         yield return new WaitForSeconds(1f);
         SpeechBox.Instance.Say(openingSpeech, new Color(0.9f, 0.9f, 1f));

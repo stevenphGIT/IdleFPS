@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0bb913068cc784648a353e0eb0533e98, type: 3}
-  m_Name: MouseHole
+  m_Name: _fake2
   m_EditorClassIdentifier: 
   character: 
   standard: 0
   identifier: 0
   lines:
-  - speech: There's a delicately carved hole in between these two bricks.
+  - speech: Unbased...
     icon: {fileID: 0}
     textSpeed: 0
     stopMusic: 0
@@ -24,10 +24,6 @@ MonoBehaviour:
     unskippable: 0
     voice: {fileID: 0}
   branch:
-    question: Inspect it?
+    question: 
     icon: {fileID: 0}
-    choices:
-    - answer: yurr
-      ensuingDialogue: {fileID: 11400000, guid: e62f7835932562d4cbb97fcbcb0d10e8, type: 2}
-    - answer: nahhh
-      ensuingDialogue: {fileID: 11400000, guid: cc30390f8b1cda84d8945639961cab7f, type: 2}
+    choices: []
