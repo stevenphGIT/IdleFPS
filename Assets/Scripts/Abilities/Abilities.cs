@@ -13,14 +13,10 @@ public class Abilities : MonoBehaviour, IDataPersistence
 {
     public static Abilities Instance;
 
-    public List<Ability> slottedAbilities;
+    public Ability[] slottedAbilities;
+    public List<Ability> ownedAbilities;
 
-    public List<Ability> commonAbilities;
-    public List<Ability> uncommonAbilities;
-    public List<Ability> rareAbilities;
-    public List<Ability> epicAbilities;
-    public List<Ability> legendaryAbilities;
-    public List<Ability> mythicAbilities;
+    public Ability[] allAbilities;
 
     public List<Sprite> abilityIconActive;
     public List<Sprite> abilityIconUsed;
@@ -28,7 +24,6 @@ public class Abilities : MonoBehaviour, IDataPersistence
 
     public List<GameObject> abilitySlots;
     public List<SpriteRenderer> abilityRenderers;
-    public List<bool> abilityUnlocked;
     public List<bool> abilityActive;
     public List<bool> abilityOnCD;
     public List<float> abDoneTime;
@@ -52,11 +47,10 @@ public class Abilities : MonoBehaviour, IDataPersistence
     }
     void Start()
     {
-        TestForAbilityUnlock();
         abilityBotAnim.SetBool("botActive", abBotOn);
-        for (int i = 0; i < slottedAbilities.Count; i++)
+        for (int i = 0; i < 5; i++)
         {
-            if (Time.time >= abUpTime[i] && abilityUnlocked[i])
+            if (Time.time >= abUpTime[i] && slottedAbilities[i] != null)
             {
                 EndAbility(i);
             }
@@ -66,9 +60,9 @@ public class Abilities : MonoBehaviour, IDataPersistence
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < slottedAbilities.Count; i++)
+        for (int i = 0; i < 5; i++)
         {
-            if (!abilityUnlocked[i])
+            if (slottedAbilities[i] == null)
                 break;
             if (Time.time >= abUpTime[i])
             {
@@ -89,8 +83,6 @@ public class Abilities : MonoBehaviour, IDataPersistence
                 EndAbility(i);
             }
         }
-        //if (!abilityUnlocked[4])
-        //    TestForAbilityUnlock();
     }
 
     public void ToggleBot()
@@ -113,40 +105,25 @@ public class Abilities : MonoBehaviour, IDataPersistence
         abBotOn = false;
     }
 
-    void TestForAbilityUnlock()
-    {
-        for (int i = 0; i < abilitySlots.Count; i++)
-        {
-            if (UpsAndVars.Instance.permabilities)
-                Unlock(i);
-            else if (Vars.Instance.totalHitCount >= 100000 * BigDouble.Pow(10, i) && !abilityUnlocked[i])
-            {
-                Unlock(i);
-            }
-        }
-    }
-
     public void PopulateList()
     {
+        //Int ID
+        slottedAbilities = new Ability[5];
         //Booleans
-        for (int i = 0; i < slottedAbilities.Count; i++)
-        {
-            abilityUnlocked.Add(false);
-        }
-        for (int i = 0; i < slottedAbilities.Count; i++)
+        for (int i = 0; i < 5; i++)
         {
             abilityActive.Add(false);
         }
-        for (int i = 0; i < slottedAbilities.Count; i++)
+        for (int i = 0; i < 5; i++)
         {
             abilityOnCD.Add(false);
         }
 
-        for (int i = 0; i < slottedAbilities.Count; i++)
+        for (int i = 0; i < 5; i++)
         {
             abUpTime.Add(0);
         }
-        for (int i = 0; i < slottedAbilities.Count; i++)
+        for (int i = 0; i < 5; i++)
         {
             abDoneTime.Add(0);
         }
@@ -154,18 +131,13 @@ public class Abilities : MonoBehaviour, IDataPersistence
 
     public void ReduceAllCooldowns()
     {
-        for (int i = 0; i < slottedAbilities.Count; i++)
+        for (int i = 0; i < 5; i++)
         {
             if (abilityActive[i] || abUpTime[i] < Time.time)
                 return;
             else
                 abUpTime[i] -= 10f;
         }
-    }
-    public void Unlock(int i)
-    {
-        abilitySlots[i].GetComponent<SpriteRenderer>().sprite = slottedAbilities[i].abilityIcon;
-        abilityUnlocked[i] = true;
     }
 
     public void UseSelectedAbility()
@@ -176,11 +148,11 @@ public class Abilities : MonoBehaviour, IDataPersistence
         }
         else
         {
-            for (int i = 0; i < slottedAbilities.Count; i++)
+            for (int i = 0; i < 5; i++)
             {
                 if (abilitySelected == i)
                 {
-                    if (!abilityUnlocked[abilitySelected])
+                    if (slottedAbilities[i] == null)
                     {
                         return;
                     }
@@ -219,40 +191,15 @@ public class Abilities : MonoBehaviour, IDataPersistence
         if (abilityActive.Count > id)
             abilityActive[id] = false;
     }
-    public void SetShow(string name)
+    public void SetShow(int id)
     {
-        if (name == "FocusedAbility")
-        {
-            abilitySelected = 0;
-        }
-        else if (name == "DeadlyAbility")
-        {
-            abilitySelected = 1;
-        }
-        else if (name == "BarrageAbility")
-        {
-            abilitySelected = 2;
-        }
-        else if (name == "ScatterAbility")
-        {
-            abilitySelected = 3;
-        }
-        else if (name == "NirvanaAbility")
-        {
-            abilitySelected = 4;
-        }
-        else
-        {
-            abilitySelected = -1;
-            Textbox.Instance.HideBox();
-            return;
-        }
+        abilitySelected = id;
 
-        if (!abilityUnlocked[abilitySelected])
+        if (slottedAbilities[abilitySelected] == null)
         {
             Textbox.Instance.SetTitleText("Ability Locked!");
             Textbox.Instance.SetTitleColor(Color.red);
-            Textbox.Instance.SetFullDescriptionText("Earn " + (Vars.Instance.TotalAbbr((100000 * Mathf.Pow(10, abilitySelected)) - Vars.Instance.totalHitCount)) + " more total hits to unlock this ability.");
+            Textbox.Instance.SetFullDescriptionText("Buy and equip an ability to this slot in order to use it.");
             Textbox.Instance.SetCostText(" ");
             Textbox.Instance.ShowBox();
         }
@@ -278,6 +225,17 @@ public class Abilities : MonoBehaviour, IDataPersistence
         }
     }
 
+    public Ability GetAbilityOfID(int id) {
+        foreach (Ability ab in allAbilities)
+        {
+            if (ab.id == id)
+            {
+                return ab;
+            }
+        }
+        return null;
+    }
+
     public void ResetAbilities()
     {
         for (int i = 0; i < abUpTime.Count; i++)
@@ -288,14 +246,27 @@ public class Abilities : MonoBehaviour, IDataPersistence
         }
     }
 
+    public void CollectAbility(Ability a)
+    {
+        foreach (Ability ab in ownedAbilities)
+        {
+            if (ab.id == a.id)
+            {
+                return;
+            }
+        }
+        ownedAbilities.Add(a);
+    }
+
     public void LoadData(GameData data)
     {
+        allAbilities = Resources.LoadAll<Ability>("Abilities/");
         PopulateList();
         this.abilityActive = data.abilityActive;
 
         this.abBotOn = data.abBotOn;
 
-        for (int i = 0; i < slottedAbilities.Count; i++)
+        for (int i = 0; i < 5; i++)
         {
             if (data.remainingCooldown[i] > 0)
             {
@@ -306,6 +277,25 @@ public class Abilities : MonoBehaviour, IDataPersistence
                 abDoneTime[i] = Time.time + data.remainingDuration[i];
             }
         }
+            
+        foreach (int id in data.ownedAbilityIDs)
+        {
+            Ability a = GetAbilityOfID(id);
+            if (a != null)
+            {
+                ownedAbilities.Add(a);
+            }
+            else
+            {
+                Debug.LogError("ABILITY LOST DUE TO INVALID ID NUMBER");
+            }
+        }
+
+        for (int i = 0; i < 5; i++)
+        {
+            Ability a = GetAbilityOfID(data.slottedAbilityIDs[i]);
+            slottedAbilities[i] = a;
+        }
     }
 
     public void SaveData(ref GameData data)
@@ -314,7 +304,7 @@ public class Abilities : MonoBehaviour, IDataPersistence
 
         data.abBotOn = this.abBotOn;
 
-        for (int i = 0; i < slottedAbilities.Count; i++)
+        for (int i = 0; i < 5; i++)
         {
             if (abUpTime[i] - Time.time > 0)
             {
@@ -332,6 +322,20 @@ public class Abilities : MonoBehaviour, IDataPersistence
             {
                 data.remainingDuration[i] = 0;
             }
+        }
+
+        data.ownedAbilityIDs = new List<int>();
+        foreach (Ability ab in ownedAbilities)
+        {
+            data.ownedAbilityIDs.Add(ab.id);
+        }
+
+        for (int i = 0; i < 5; i++)
+        {
+            if (slottedAbilities[i] == null)
+                data.slottedAbilityIDs[i] = -1;
+            else
+                data.slottedAbilityIDs[i] = slottedAbilities[i].id;
         }
     }
 }

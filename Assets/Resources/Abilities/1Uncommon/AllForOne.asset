@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47787dc693f27114682db4a021af3514, type: 3}
   m_Name: AllForOne
   m_EditorClassIdentifier: 
+  id: 7
   abilityIcon: {fileID: 21300000, guid: 83fe71472d61e4641aa251ba9b048f56, type: 3}
   abilityName: All For One
   abilityDescription: Sets the maximum target count on the board to 1. Grant 15x

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47787dc693f27114682db4a021af3514, type: 3}
   m_Name: DiscountClicks
   m_EditorClassIdentifier: 
+  id: 11
   abilityIcon: {fileID: 0}
   abilityName: Discount Clicks
   abilityDescription: Each target click makes weapons slightly cheaper, stacking

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47787dc693f27114682db4a021af3514, type: 3}
   m_Name: GildedFloor
   m_EditorClassIdentifier: 
+  id: 15
   abilityIcon: {fileID: 0}
   abilityName: Gilded Floor
   abilityDescription: All red targets are replaced with gold targets for the duration

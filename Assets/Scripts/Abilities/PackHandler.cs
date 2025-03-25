@@ -116,6 +116,12 @@ public class PackHandler : MonoBehaviour
                 }
             }
         }
+        //SUBTRACT TOKENS
+        foreach (Ability a in packContents)
+        {
+            Abilities.Instance.CollectAbility(a);
+        }
+        
         if (packContents.ElementAt(0).rarity >= packContents.ElementAt(1).rarity && packContents.ElementAt(0).rarity >= packContents.ElementAt(2).rarity)
         {
             orb1.color = rarityColors[packContents.ElementAt(2).rarity];

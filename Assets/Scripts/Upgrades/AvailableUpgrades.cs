@@ -339,6 +339,7 @@ public class AvailableUpgrades : MonoBehaviour, IDataPersistence
         activatables[0].GetComponent<ToggleableButton>().SetLocked(!locationBonuses);
         activatables[1].GetComponent<ToggleableButton>().SetLocked(!abilitiesUnlocked);
         activatables[2].SetActive(nukeUnlocked);
+        activatables[3].SetActive(abilitiesUnlocked);
     }
 
     public void ResetAll()
@@ -359,7 +360,8 @@ public class AvailableUpgrades : MonoBehaviour, IDataPersistence
 
         activatables[0].GetComponent<ToggleableButton>().SetLocked(true);
         activatables[1].GetComponent<ToggleableButton>().SetLocked(true);
-        activatables[2].SetActive(nukeUnlocked);
+        activatables[2].SetActive(false);
+        activatables[3].SetActive(false);
 
         for (int i = 0; i < multipliers.Count; i++)
         {

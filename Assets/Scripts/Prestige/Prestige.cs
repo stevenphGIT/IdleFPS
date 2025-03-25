@@ -210,10 +210,6 @@ public class Prestige : MonoBehaviour, IDataPersistence
         {
             AvailableUpgrades.Instance.abilitiesUnlocked = true;
             AvailableUpgrades.Instance.bought.Add(udb.findName(2001));
-            for (int i = 0; i < Abilities.Instance.slottedAbilities.Count; i++)
-            {
-                Abilities.Instance.Unlock(i);
-            }
             AvailableUpgrades.Instance.ActivateAllObjects();
             AvailableUpgrades.Instance.SortAndDisplay();
         }

@@ -93,7 +93,7 @@ public class InputHandler : MonoBehaviour
         {
             if (Textbox.Instance.shouldUpdate)
             {
-                Abilities.Instance.SetShow(mouseOverTest.collider.name);
+                Abilities.Instance.SetShow(mouseOverTest.collider.GetComponent<indexNum>().index);
                 Textbox.Instance.SetUpdated();
             }
         }

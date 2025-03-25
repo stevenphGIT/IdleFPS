@@ -33,6 +33,9 @@ public class GameData
     //Dialogue Tracker
     public List<int> addedDialogueIDs;
     //Abilities
+    public int[] slottedAbilityIDs;
+    public List<int> ownedAbilityIDs;
+
     public List<float> remainingCooldown;
     public List<float> remainingDuration;
     public List<bool> abilityActive;
@@ -104,9 +107,11 @@ public class GameData
         //Guns
         this.targetPowers = new List<BigDouble>() {};
         //Abilities
-        this.remainingCooldown = new List<float>() {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-        this.remainingDuration = new List<float>() {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-        this.abilityActive = new List<bool>() {false, false, false, false, false, false, false, false, false, false};
+        this.remainingCooldown = new List<float>() {0, 0, 0, 0, 0};
+        this.remainingDuration = new List<float>() {0, 0, 0, 0, 0};
+        this.abilityActive = new List<bool>() {false, false, false, false, false};
+        this.ownedAbilityIDs = new List<int>();
+        this.slottedAbilityIDs = new int[5];
         this.abilitiesUsed = 0;
         //Weather
         this.locationCooldown = 0;

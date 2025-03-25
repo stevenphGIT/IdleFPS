@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47787dc693f27114682db4a021af3514, type: 3}
   m_Name: Fours
   m_EditorClassIdentifier: 
-  id: 0
+  id: 14
   abilityIcon: {fileID: 21300000, guid: 5e0cd6af75e967e4b92dd4d2be0738e9, type: 3}
   abilityName: Fours
   abilityDescription: Grants 444444x hits from targets. Only grants this effect if

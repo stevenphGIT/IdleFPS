@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47787dc693f27114682db4a021af3514, type: 3}
   m_Name: DormantEgg
   m_EditorClassIdentifier: 
+  id: 2
   abilityIcon: {fileID: 21300000, guid: e753e4352987cf141ba2e30eb2f3323b, type: 3}
   abilityName: Dormant Egg
   abilityDescription: This jet-black egg seems to be... hatching?

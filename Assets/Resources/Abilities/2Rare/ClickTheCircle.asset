@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47787dc693f27114682db4a021af3514, type: 3}
   m_Name: ClickTheCircle
   m_EditorClassIdentifier: 
-  id: 0
+  id: 9
   abilityIcon: {fileID: 0}
   abilityName: Click The Circles
   abilityDescription: Allows pressing Z or X to hit targets instead of right-clicking.

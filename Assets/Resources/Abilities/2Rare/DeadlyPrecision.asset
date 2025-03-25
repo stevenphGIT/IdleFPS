@@ -12,14 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47787dc693f27114682db4a021af3514, type: 3}
   m_Name: DeadlyPrecision
   m_EditorClassIdentifier: 
-  ID: 0
+  id: 10
   abilityIcon: {fileID: 21300000, guid: f47e04fbfaf5a66409e4035576686265, type: 3}
-  abilityIconActive: {fileID: 21300000, guid: 04e3c926e9e22404caf64ea808b8528b, type: 3}
-  abilityIconUsed: {fileID: 21300000, guid: ea7a8c5d721371c4aa861829a39476e5, type: 3}
   abilityName: Deadly Precision
   abilityDescription: For the duration of the ability, special targets will spawn.
     Clicking the center of a special target awards 10x the hits of a normal target.
   abilityCooldown: 1800
   abilityDuration: 120
   rarity: 2
-  color: {r: 1, g: 0, b: 0, a: 1}

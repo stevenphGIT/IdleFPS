@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47787dc693f27114682db4a021af3514, type: 3}
   m_Name: EndlessBarrage
   m_EditorClassIdentifier: 
+  id: 13
   abilityIcon: {fileID: 21300000, guid: bae3873b5afe12c4b8b4b63376c9e85d, type: 3}
   abilityName: Endless Barrage
   abilityDescription: For the duration of the ability, clicking anywhere on the shooting

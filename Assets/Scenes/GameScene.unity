@@ -15652,8 +15652,9 @@ GameObject:
   - component: {fileID: 485549865}
   - component: {fileID: 485549866}
   - component: {fileID: 485549867}
+  - component: {fileID: 485549868}
   m_Layer: 0
-  m_Name: BarrageAbility
+  m_Name: AbilityThree
   m_TagString: Ability
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15784,6 +15785,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showDuringDialogue: 0
+--- !u!114 &485549868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 485549863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c6204584858fcb41a40c26d90fd2c47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 2
 --- !u!1 &485814516
 GameObject:
   m_ObjectHideFlags: 0
@@ -27207,8 +27221,9 @@ GameObject:
   - component: {fileID: 653078194}
   - component: {fileID: 653078195}
   - component: {fileID: 653078196}
+  - component: {fileID: 653078197}
   m_Layer: 0
-  m_Name: FocusedAbility
+  m_Name: AbilityOne
   m_TagString: Ability
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27339,6 +27354,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showDuringDialogue: 0
+--- !u!114 &653078197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 653078192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c6204584858fcb41a40c26d90fd2c47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &653733880
 GameObject:
   m_ObjectHideFlags: 0
@@ -28955,8 +28983,9 @@ GameObject:
   - component: {fileID: 747955173}
   - component: {fileID: 747955174}
   - component: {fileID: 747955175}
+  - component: {fileID: 747955176}
   m_Layer: 0
-  m_Name: ScatterAbility
+  m_Name: AbilityFour
   m_TagString: Ability
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29087,6 +29116,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showDuringDialogue: 0
+--- !u!114 &747955176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 747955171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c6204584858fcb41a40c26d90fd2c47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 3
 --- !u!1 &748578774
 GameObject:
   m_ObjectHideFlags: 0
@@ -32551,8 +32593,9 @@ GameObject:
   - component: {fileID: 850384643}
   - component: {fileID: 850384644}
   - component: {fileID: 850384645}
+  - component: {fileID: 850384646}
   m_Layer: 0
-  m_Name: DeadlyAbility
+  m_Name: AbilityTwo
   m_TagString: Ability
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32683,6 +32726,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showDuringDialogue: 0
+--- !u!114 &850384646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 850384641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c6204584858fcb41a40c26d90fd2c47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 1
 --- !u!1 &868025224
 GameObject:
   m_ObjectHideFlags: 0
@@ -34669,12 +34725,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slottedAbilities: []
-  commonAbilities: []
-  uncommonAbilities: []
-  rareAbilities: []
-  epicAbilities: []
-  legendaryAbilities: []
-  mythicAbilities: []
+  ownedAbilities: []
+  allAbilities: []
   abilityIconActive: []
   abilityIconUsed: []
   abilityColor: []
@@ -34685,7 +34737,6 @@ MonoBehaviour:
   - {fileID: 747955171}
   - {fileID: 1457013197}
   abilityRenderers: []
-  abilityUnlocked: 
   abilityActive: 
   abilityOnCD: 
   abDoneTime: []
@@ -50754,8 +50805,9 @@ GameObject:
   - component: {fileID: 1457013199}
   - component: {fileID: 1457013200}
   - component: {fileID: 1457013201}
+  - component: {fileID: 1457013202}
   m_Layer: 0
-  m_Name: NirvanaAbility
+  m_Name: AbilityFive
   m_TagString: Ability
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50886,6 +50938,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showDuringDialogue: 0
+--- !u!114 &1457013202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457013197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c6204584858fcb41a40c26d90fd2c47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 4
 --- !u!1 &1472294283
 GameObject:
   m_ObjectHideFlags: 0
@@ -65103,6 +65168,7 @@ MonoBehaviour:
   - {fileID: 1859255356}
   - {fileID: 890118579}
   - {fileID: 1086318228}
+  - {fileID: 1254034365}
   available: []
   bought: []
   availablePins: 

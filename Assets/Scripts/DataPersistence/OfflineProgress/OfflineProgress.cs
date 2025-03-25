@@ -32,7 +32,7 @@ public class OfflineProgress : MonoBehaviour, IDataPersistence
 
         LocationManager.Instance.cooldown -= differenceTime;
 
-        for (int i = 0; i < Abilities.Instance.slottedAbilities.Count; i++)
+        for (int i = 0; i < 5; i++)
         {
             Abilities.Instance.abUpTime[i] -= differenceTime;
             Abilities.Instance.abDoneTime[i] -= differenceTime;
