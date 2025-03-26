@@ -11,11 +11,9 @@ public class LiftableCard : MonoBehaviour
 
     public Image icon;
 
-    public SpriteRenderer front;
-
     public Ability heldAbility;
 
-    public SpriteRenderer cardFront;
+    public Image cardFront;
 
     public CardHolder slot;
 
@@ -35,12 +33,11 @@ public class LiftableCard : MonoBehaviour
             HeldCard.Instance.isHolding = false;
             CardHolder nearestSlot = FindValidCardSlot();
 
-            if (nearestSlot != null && nearestSlot.equippedAbility == null)
+            if (nearestSlot != null)
             {
                 transform.position = nearestSlot.transform.position;
                 nearestSlot.EquipCard(this);
                 returnPos = transform.position;
-                Abilities.Instance.DisplayBinder();
             }
             else
             {
@@ -60,6 +57,7 @@ public class LiftableCard : MonoBehaviour
                     returnPos = transform.position;
                     isHeld = true;
                     HeldCard.Instance.isHolding = true;
+                    transform.SetAsLastSibling();
                     if (slot != null)
                     {
                         slot.Unequip();

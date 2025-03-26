@@ -16,6 +16,7 @@ public class CardHolder : MonoBehaviour
         equippedAbility = card.heldAbility;
         int num = GetComponent<indexNum>().index;
         Abilities.Instance.slottedAbilities[num] = equippedAbility;
+        Abilities.Instance.DisplayBinder();
     }
 
     public void Unequip()
@@ -23,5 +24,6 @@ public class CardHolder : MonoBehaviour
         equippedAbility = null;
         int num = GetComponent<indexNum>().index;
         Abilities.Instance.slottedAbilities[num] = equippedAbility;
+        Abilities.Instance.DisplayBinder();
     }
 }

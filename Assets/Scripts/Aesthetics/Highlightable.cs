@@ -1,25 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Highlightable : MonoBehaviour
 {
-    protected SpriteRenderer rend;
+    protected Material og;
+    private Material mat;
     public bool showDuringDialogue = false;
-
+    public bool useImage = false;
     private void Awake()
     {
-        rend = this.gameObject.GetComponent<SpriteRenderer>();
+        if (useImage)
+            og = this.gameObject.GetComponent<Image>().material;
+        else
+            og = this.gameObject.GetComponent<SpriteRenderer>().material;
+
+        mat = new Material(og);
+
+        if (useImage)
+            this.gameObject.GetComponent<Image>().material = mat;
+        else
+            this.gameObject.GetComponent<SpriteRenderer>().material = mat;
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (Prestige.Instance.inPrestigeAnim) return;
         if (!showDuringDialogue && SpeechBox.Instance.boxShowing) return;
-        rend.material.SetFloat("_OutlineEnabled", 1);
-        rend.material.SetColor("_SolidOutline", Color.white);
+        mat.SetFloat("_OutlineEnabled", 1);
+        mat.SetColor("_SolidOutline", Color.white);
     }
     void OnTriggerExit2D(Collider2D collision)
     {
-        rend.material.SetFloat("_OutlineEnabled", 0);
+        mat.SetFloat("_OutlineEnabled", 0);
     }
 }
