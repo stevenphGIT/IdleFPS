@@ -1,12 +1,6 @@
-using BreakInfinity;
-using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using System.Threading;
-using TMPro;
 using UnityEngine;
-using UnityEngine.Experimental.Animations;
-using UnityEngine.UI;
+using System.Linq;
 
 
 public class Abilities : MonoBehaviour, IDataPersistence
@@ -15,6 +9,8 @@ public class Abilities : MonoBehaviour, IDataPersistence
 
     public Ability[] slottedAbilities;
     public List<Ability> ownedAbilities;
+
+    public CardHolder[] holders = new CardHolder[5];
 
     public Ability[] allAbilities;
 
@@ -34,6 +30,11 @@ public class Abilities : MonoBehaviour, IDataPersistence
     public bool abBotOn;
     public Animator abilityBotAnim;
 
+    public GameObject binder;
+    public GameObject cardPrefab;
+
+    public List<LiftableCard> abilityCards;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -47,6 +48,7 @@ public class Abilities : MonoBehaviour, IDataPersistence
     }
     void Start()
     {
+        DisplayBinder();
         abilityBotAnim.SetBool("botActive", abBotOn);
         for (int i = 0; i < 5; i++)
         {
@@ -256,8 +258,48 @@ public class Abilities : MonoBehaviour, IDataPersistence
             }
         }
         ownedAbilities.Add(a);
+        DisplayBinder();
     }
 
+    public void DisplayBinder()
+    {
+        foreach (LiftableCard x in abilityCards)
+        {
+            Destroy(x.gameObject);
+        }
+        abilityCards.Clear();
+        foreach (Ability ab in ownedAbilities)
+        {
+            GameObject c = Instantiate(cardPrefab, binder.transform);
+            LiftableCard card = c.GetComponent< LiftableCard>();
+            card.SetHeldAbility(ab);
+            abilityCards.Add(card);
+        }
+        List<LiftableCard> toDisplay = abilityCards.OrderByDescending(lCard => lCard.heldAbility.rarity).ThenBy(lCard => lCard.heldAbility.abilityName).ToList();
+        List<LiftableCard> toRemove = new List<LiftableCard>();
+        foreach (LiftableCard d in toDisplay)
+        {
+            int index = System.Array.FindIndex(slottedAbilities, s => s == d.heldAbility);
+
+            if (index != -1)
+            {
+                d.gameObject.transform.position = holders[index].transform.position;
+                toRemove.Add(d);
+            }
+        }
+        foreach (LiftableCard d in toRemove)
+        {
+            toDisplay.Remove(d);
+        }
+        float hOff = binder.transform.position.x, vOff = binder.transform.position.y;
+        float hInc = 2, vInc = 2.6f;
+        int cardCount = 5;
+        for (int i = 0; i < toDisplay.Count; i++)
+        {
+            toDisplay[i].gameObject.transform.position = new Vector2(hOff + ((i % cardCount) * hInc), vOff - Mathf.Floor(i / cardCount) * vInc);
+            toDisplay[i].SetReturnPos(toDisplay[i].gameObject.transform.position);
+        }
+    }
     public void LoadData(GameData data)
     {
         allAbilities = Resources.LoadAll<Ability>("Abilities/");

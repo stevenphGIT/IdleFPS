@@ -23,7 +23,7 @@ public class AbilityCardObject : MonoBehaviour
 
     private bool shouldShake = false;
     private bool isShowing = false;
-    private bool clickedOn = false;
+    private bool counted = false;
 
     private float startX;
     private float startY;
@@ -47,15 +47,17 @@ public class AbilityCardObject : MonoBehaviour
             {
                 if (!isShowing)
                 {
-                    shouldShake = false;
-                    animator.Play("FlipCardToFront");
-                }
-                else if(!clickedOn)
-                {
-                    clickedOn = true;
-                    PackHandler.Instance.CollectCard();
-                    animator.Play("CardCollect");
-                    Destroy(this.gameObject, 1f);
+                    if (shouldShake)
+                    {
+                        shouldShake = false;
+                        this.transform.position = new Vector3(startX, startY, 0);
+                        animator.Play("FlipCardToFront");
+                        if (!counted)
+                        {
+                            PackHandler.Instance.FlipCard();
+                            counted = true;
+                        }
+                    }
                 }
             }
         }

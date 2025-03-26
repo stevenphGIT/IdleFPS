@@ -418,6 +418,10 @@ public class InputHandler : MonoBehaviour
         {
             PackHandler.Instance.OpenPack(2);
         }
+        else if (rayHit.collider.name == "DismissCards")
+        {
+            PackHandler.Instance.CollectCards();
+        }
         //Alley Interactions
         else if (rayHit.collider.name == "AlleyIcon")
         {

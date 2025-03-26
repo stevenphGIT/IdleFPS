@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class CardHolder : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public Ability equippedAbility;
+    private Collider2D slotCollider;
     void Start()
     {
-        
+        slotCollider = GetComponent<Collider2D>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void EquipCard(LiftableCard card)
     {
-        
+        equippedAbility = card.heldAbility;
+        int num = GetComponent<indexNum>().index;
+        Abilities.Instance.slottedAbilities[num] = equippedAbility;
+    }
+
+    public void Unequip()
+    {
+        equippedAbility = null;
+        int num = GetComponent<indexNum>().index;
+        Abilities.Instance.slottedAbilities[num] = equippedAbility;
     }
 }

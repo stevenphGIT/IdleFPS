@@ -15,12 +15,16 @@ public class PackHandler : MonoBehaviour
     public ParticleSystem orbExplosion;
     private ParticleSystem.MainModule orbExplosionMain;
 
+    public AbilityCardObject[] cards = new AbilityCardObject[3];
+
     public GameObject deckScreen;
     public GameObject packScreen;
 
     public GameObject cardPrefab;
 
     public GameObject cardSpawn;
+
+    public GameObject dismissButton;
 
     public Sprite[] cardFronts;
     public Sprite[] cardBacks;
@@ -53,6 +57,8 @@ public class PackHandler : MonoBehaviour
         epicList = Resources.LoadAll<Ability>("Abilities/3Epic/");
         legendaryList = Resources.LoadAll<Ability>("Abilities/4Legendary/");
         mythicList = Resources.LoadAll<Ability>("Abilities/5Mythic/");
+        deckScreen.SetActive(true);
+        packScreen.SetActive(false);
     }
     public void OpenPack(int r)
     {
@@ -155,18 +161,19 @@ public class PackHandler : MonoBehaviour
         GameObject card3 = Instantiate(cardPrefab, cardSpawn.transform);
         card1.transform.position += new Vector3(-5, 0 ,0);
         card3.transform.position += new Vector3(5, 0, 0);
-        AbilityCardObject card1obj = card1.GetComponent<AbilityCardObject>();
-        AbilityCardObject card2obj = card2.GetComponent<AbilityCardObject>();
-        AbilityCardObject card3obj = card3.GetComponent<AbilityCardObject>();
-        card1obj.SetHeldAbility(packContents.ElementAt(0));
-        card2obj.SetHeldAbility(packContents.ElementAt(1));
-        card3obj.SetHeldAbility(packContents.ElementAt(2));
+        cards[0] = card1.GetComponent<AbilityCardObject>();
+        cards[1] = card2.GetComponent<AbilityCardObject>();
+        cards[2] = card3.GetComponent<AbilityCardObject>();
+
+        cards[0].SetHeldAbility(packContents.ElementAt(0));
+        cards[1].SetHeldAbility(packContents.ElementAt(1));
+        cards[2].SetHeldAbility(packContents.ElementAt(2));
         cardParentAnim.Play("CardParentZoom");
 
-        yield return new WaitForSeconds(1f);
-        card1obj.AllowShake();
-        card2obj.AllowShake();
-        card3obj.AllowShake();
+        yield return new WaitForSeconds(0.8f);
+        cards[0].AllowShake();
+        cards[1].AllowShake();
+        cards[2].AllowShake();
         packContents.Clear();
     }
 
@@ -176,20 +183,34 @@ public class PackHandler : MonoBehaviour
         packScreen.SetActive(true);
     }
 
+    public void CollectCards()
+    {
+        dismissButton.SetActive(false);
+        for (int i = 0; i < 3; i++)
+        {
+            cards[i].animator.Play("CardCollect");
+        }
+        StartCoroutine(EndPackScreen());
+    }
+
     IEnumerator EndPackScreen()
     {
         yield return new WaitForSeconds(1f);
         deckScreen.SetActive(true);
         packScreen.SetActive(false);
+        for (int i = 0; i < 3; i++)
+        {
+            cards[i] = null;
+        }
     }
 
-    public void CollectCard()
+    public void FlipCard()
     {
         collectedCards++;
         if (collectedCards >= 3)
         {
             collectedCards = 0;
-            StartCoroutine("EndPackScreen");
+            dismissButton.SetActive(true);
         }
     }
 }
