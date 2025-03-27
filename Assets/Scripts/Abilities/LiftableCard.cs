@@ -31,17 +31,32 @@ public class LiftableCard : MonoBehaviour
         {
             isHeld = false;
             HeldCard.Instance.isHolding = false;
+            
             CardHolder nearestSlot = FindValidCardSlot();
 
             if (nearestSlot != null)
             {
-                transform.position = nearestSlot.transform.position;
+                if (nearestSlot == slot)
+                {
+                    transform.position = returnPos;
+                    return;
+                }
+                if (slot != null)
+                {
+                    slot.EquipCard(nearestSlot.equippedAbility);
+                }
                 nearestSlot.EquipCard(this);
-                returnPos = transform.position;
+                Abilities.Instance.DisplayBinder();
             }
             else
             {
+                if (slot != null)
+                {
+                    slot.Unequip();
+                }
                 transform.position = returnPos;
+                transform.SetParent(Abilities.Instance.binder.transform);
+                Abilities.Instance.DisplayBinder();
             }
         }
     }
@@ -54,15 +69,10 @@ public class LiftableCard : MonoBehaviour
             {
                 if (!HeldCard.Instance.isHolding)
                 {
-                    returnPos = transform.position;
                     isHeld = true;
                     HeldCard.Instance.isHolding = true;
+                    transform.SetParent(Abilities.Instance.topObj.transform);
                     transform.SetAsLastSibling();
-                    if (slot != null)
-                    {
-                        slot.Unequip();
-                        slot = null;
-                    }
                 }
             }
         }

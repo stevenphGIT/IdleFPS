@@ -184,7 +184,7 @@ public class InputHandler : MonoBehaviour
     public void OnClick(InputAction.CallbackContext context)
     {
         if (!context.started) return;
-        
+
         var rayHit = Physics2D.GetRayIntersection(mainCamera.ScreenPointToRay(Crosshair.Instance.crosshairPos));
         if (rayHit.collider && rayHit.collider.CompareTag("Answer"))
         {
@@ -219,17 +219,7 @@ public class InputHandler : MonoBehaviour
                 Application.Quit();
             else if (NoticeBox.Instance.idNum == 2)
             {
-                if (SteamManager.Initialized)
-                    SteamLobbies.Instance.HostLobby();
-                else
-                {
-                    HitSound.Instance.source.PlayOneShot(HitSound.Instance.cantUse, 1f);
-                    NoticeBox.Instance.SetTitleColor(Color.red);
-                    NoticeBox.Instance.SetTitleText("No Connection");
-                    NoticeBox.Instance.SetDescriptionText("Looks like you aren't connected to Steam. Check your Wi-Fi and make sure you're logged into steam, then try again.");
-                    NoticeBox.Instance.SetChoosable(false);
-                    NoticeBox.Instance.ShowBox();
-                }
+                Debug.Log("Removed feature (DUELS) called.");
             }
             else if (NoticeBox.Instance.idNum == 3)
             {
@@ -371,17 +361,6 @@ public class InputHandler : MonoBehaviour
             BoardHandler.Instance.GainHitsFromTarget(rayHit.collider);
             if (AvailableUpgrades.Instance.combosUnlocked)
                 BoardHandler.Instance.IncrementCombo();
-        }
-        //Arrows
-        else if (rayHit.collider.name == "RightArrow")
-        {
-            CameraViewHandler.Instance.MoveCamToPos("shop");
-            HitSound.Instance.source.PlayOneShot(HitSound.Instance.openMenu, 1f);
-        }
-        else if (rayHit.collider.name == "ReturnLeftArrow")
-        {
-            CameraViewHandler.Instance.MoveCamToPos("home");
-            HitSound.Instance.source.PlayOneShot(HitSound.Instance.closeMenu, 1f);
         }
         //World Map Buttons
         else if (rayHit.collider.gameObject.CompareTag("LocationAction"))

@@ -63,6 +63,7 @@ public class InputSlider : MonoBehaviour
             else
             {
                 clickedOn = false;
+                HeldCard.Instance.isHolding = false;
             }
         }
         if (scrollable && scrollRect.OverlapPoint(Crosshair.Instance.transform.position))
@@ -124,9 +125,10 @@ public class InputSlider : MonoBehaviour
     void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.name == "crosshair")
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButton(0) && HeldCard.Instance.isHolding == false)
             {
                 clickedOn = true;
+                HeldCard.Instance.isHolding = true;
             }
     }
     public void UpdateBar()

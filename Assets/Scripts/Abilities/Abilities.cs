@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
 
 
 public class Abilities : MonoBehaviour, IDataPersistence
@@ -14,6 +15,7 @@ public class Abilities : MonoBehaviour, IDataPersistence
 
     public Ability[] allAbilities;
 
+    public Sprite abilityIconLocked;
     public List<Sprite> abilityIconActive;
     public List<Sprite> abilityIconUsed;
     public List<Color> abilityColor;
@@ -31,7 +33,12 @@ public class Abilities : MonoBehaviour, IDataPersistence
     public Animator abilityBotAnim;
 
     public GameObject binder;
+    public GameObject topObj;
+
     public GameObject cardPrefab;
+
+    public GameObject top, bottom;
+    public SliderRect slider; 
 
     public List<LiftableCard> abilityCards;
 
@@ -65,7 +72,10 @@ public class Abilities : MonoBehaviour, IDataPersistence
         for (int i = 0; i < 5; i++)
         {
             if (slottedAbilities[i] == null)
-                break;
+            {
+                abilityRenderers[i].sprite = abilityIconLocked;
+                return;
+            }
             if (Time.time >= abUpTime[i])
             {
                 abilityRenderers[i].sprite = slottedAbilities[i].abilityIcon;
@@ -271,7 +281,7 @@ public class Abilities : MonoBehaviour, IDataPersistence
         foreach (Ability ab in ownedAbilities)
         {
             GameObject c = Instantiate(cardPrefab, binder.transform);
-            LiftableCard card = c.GetComponent< LiftableCard>();
+            LiftableCard card = c.GetComponent<LiftableCard>();
             card.SetHeldAbility(ab);
             abilityCards.Add(card);
         }
@@ -279,11 +289,15 @@ public class Abilities : MonoBehaviour, IDataPersistence
         List<LiftableCard> toRemove = new List<LiftableCard>();
         foreach (LiftableCard d in toDisplay)
         {
-            int index = System.Array.FindIndex(slottedAbilities, s => s == d.heldAbility);
+            int index = Array.FindIndex(slottedAbilities, s => s == d.heldAbility);
 
             if (index != -1)
             {
+                holders[index].EquipCard(d);
+                d.slot = holders[index];
                 d.gameObject.transform.position = holders[index].transform.position;
+                d.SetReturnPos(d.gameObject.transform.position);
+                d.gameObject.transform.SetParent(topObj.transform);
                 toRemove.Add(d);
             }
         }
@@ -296,9 +310,20 @@ public class Abilities : MonoBehaviour, IDataPersistence
         int cardCount = 5;
         for (int i = 0; i < toDisplay.Count; i++)
         {
+            toDisplay[i].slot = null;
             toDisplay[i].gameObject.transform.position = new Vector2(hOff + ((i % cardCount) * hInc), vOff - Mathf.Floor(i / cardCount) * vInc);
             toDisplay[i].SetReturnPos(toDisplay[i].gameObject.transform.position);
+            toDisplay[i].gameObject.transform.SetParent(binder.transform);
+            if (i == 0)
+            {
+                top.transform.position = new Vector3(top.transform.position.x, toDisplay[i].gameObject.transform.position.y + toDisplay[i].gameObject.GetComponent<Collider2D>().bounds.extents.y, 0);
+            }
+            if (i == toDisplay.Count - 1)
+            {
+                bottom.transform.position = new Vector3(bottom.transform.position.x, toDisplay[i].gameObject.transform.position.y - toDisplay[i].gameObject.GetComponent<Collider2D>().bounds.extents.y, 0);
+            }
         }
+        slider.ResetSliderPos();
     }
     public void LoadData(GameData data)
     {
