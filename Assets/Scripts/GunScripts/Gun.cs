@@ -542,11 +542,11 @@ public class Gun : MonoBehaviour, IDataPersistence
         else
             textboxRef.SetFullDescriptionText(targetPowers[i] + " " + gunNames[i] + "s are generating " + varRef.HpsAbbr((PlusCount(i) / targetPowers[i])) + " hits/second each, totaling " + varRef.HpsAbbr(PlusCount(i)) + " hits/second");
         textboxRef.SetFullDescriptionColor(new Color(0.2f,0.2f,0.2f));
-        textboxRef.SetCostText(varRef.PriceAbbr(prices[i]));
-        if(varRef.hits >= prices[i])
-            textboxRef.SetCostColor(Color.green);
+        if (i != 0)
+            textboxRef.SetCostText(BigDouble.Round((PlusCount(i) / Vars.Instance.totalHps * 10000)) / 100.0 + "% of total HPS");
         else
-            textboxRef.SetCostColor(Color.red);
+            textboxRef.SetCostText(BigDouble.Round((HandgunPlusCount() / Vars.Instance.totalHps * 10000)) / 100.0 + "% of total HPS");
+        textboxRef.SetCostColor(Color.white);
         textboxRef.ShowBox();
     }
     public void ResetAll()

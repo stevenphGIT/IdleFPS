@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,6 +26,9 @@ public class LiftableCard : MonoBehaviour
         if (isHeld)
         {
             transform.position = Crosshair.Instance.transform.position;
+            if (Prestige.Instance.inPrestigeAnim) isHeld = false;
+            if (SpeechBox.Instance.boxShowing) isHeld = false;
+            if (NoticeBox.Instance.activeBox) isHeld = false;
         }
 
         if (isHeld && Input.GetMouseButtonUp(0))
@@ -65,6 +69,9 @@ public class LiftableCard : MonoBehaviour
     {
         if (collision.name == "crosshair")
         {
+            if (Prestige.Instance.inPrestigeAnim) return;
+            if (SpeechBox.Instance.boxShowing) return;
+            if (NoticeBox.Instance.activeBox) return;
             if (Input.GetMouseButton(0) && !isHeld)
             {
                 if (!HeldCard.Instance.isHolding)
@@ -73,6 +80,22 @@ public class LiftableCard : MonoBehaviour
                     HeldCard.Instance.isHolding = true;
                     transform.SetParent(Abilities.Instance.topObj.transform);
                     transform.SetAsLastSibling();
+                }
+            }
+            if (Input.GetMouseButton(1))
+            {
+                if (!NoticeBox.Instance.activeBox)
+                {
+                    string hex = ColorUtility.ToHtmlStringRGB(Abilities.Instance.abilityColor[heldAbility.rarity]);
+                    NoticeBox.Instance.SetTitleText("<color=#" + hex + ">Ability: </color>" + heldAbility.abilityName);
+                    NoticeBox.Instance.SetTitleColor(UnityEngine.Color.white);
+                    NoticeBox.Instance.SetDescriptionText("<color=#" + hex + ">Effect: </color>" + heldAbility.abilityDescription
+                        + "\n<color=#" + hex + ">Duration: </color> " + ValToString.Instance.ShortenTime(Abilities.Instance.TrueDuration(heldAbility.abilityDuration))
+                        + "\n<color=#" + hex + ">Cooldown: </color> " + ValToString.Instance.ShortenTime(Abilities.Instance.TrueCooldown(heldAbility.abilityCooldown)));
+                    NoticeBox.Instance.SetDescriptionColor(UnityEngine.Color.white);
+                    NoticeBox.Instance.SetChoosable(false);
+                    NoticeBox.Instance.ShowBox();
+                    HitSound.Instance.source.PlayOneShot(HitSound.Instance.openMenu, 1f);
                 }
             }
         }

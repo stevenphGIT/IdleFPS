@@ -74,7 +74,7 @@ public class Abilities : MonoBehaviour, IDataPersistence
             if (slottedAbilities[i] == null)
             {
                 abilityRenderers[i].sprite = abilityIconLocked;
-                return;
+                continue;
             }
             if (Time.time >= abUpTime[i])
             {
@@ -182,17 +182,29 @@ public class Abilities : MonoBehaviour, IDataPersistence
             }
         }
     }
-    public void UseAbility(int i)
+    public float TrueDuration(float d)
     {
-        HitSound.Instance.source.PlayOneShot(HitSound.Instance.abilitySounds[i]);
-        double durationMult = UpsAndVars.Instance.duration;
+        double durationMult = 1;
         if (LocationManager.Instance.activeLocation == 4 && AvailableUpgrades.Instance.locationBonuses)
         {
             durationMult *= (1 + (LocationManager.Instance.locations[4].GetMult() * UpsAndVars.Instance.locationBonus));
-            durationMult *= UpsAndVars.Instance.duration;
         }
-        abUpTime[i] = Time.time + (float)((slottedAbilities[i].abilityCooldown / UpsAndVars.Instance.cooldown) + (slottedAbilities[i].abilityDuration * durationMult));
-        abDoneTime[i] = Time.time + (float)(slottedAbilities[i].abilityDuration * durationMult);
+        durationMult *= UpsAndVars.Instance.duration;
+
+        d *= (float)durationMult;
+        return d;
+    }
+    public float TrueCooldown(float c)
+    {
+        c = (float)(c / UpsAndVars.Instance.cooldown);
+        return c;
+    }
+    public void UseAbility(int i)
+    {
+        HitSound.Instance.source.PlayOneShot(HitSound.Instance.abilitySounds[i]);
+        
+        abUpTime[i] = Time.time +  + TrueDuration(slottedAbilities[i].abilityDuration) + TrueCooldown(slottedAbilities[i].abilityCooldown);
+        abDoneTime[i] = Time.time + TrueDuration(slottedAbilities[i].abilityDuration);
 
         Gun.Instance.UpdatePrices();
         Vars.Instance.abilitiesUsed++;

@@ -15,6 +15,7 @@ public class BoardHandler : MonoBehaviour
     double platOdds = 0;
     double ultimateOdds = 0;
 
+    public int maxCombo = 50;
     //Targets
     public GameObject redTargetPrefab;
     public GameObject silverTargetPrefab;
@@ -79,14 +80,6 @@ public class BoardHandler : MonoBehaviour
         if (activeTargetCount < TargetsToSpawn())
         {
             SpawnTarget();
-        }
-
-        if (Abilities.Instance.abilityActive[3])
-        {
-            for (int i = activeTargetCount; i < TargetsToSpawn() + 3; i++)
-            {
-                SpawnTarget();
-            }
         }
 
         if (comboTimer > 0)
@@ -249,14 +242,7 @@ public class BoardHandler : MonoBehaviour
     public void RemoveTarget(GameObject target)
     {
         double targetMax;
-        if (Abilities.Instance.abilityActive[3])
-        {
-            targetMax = TargetsToSpawn() + 3;
-        }
-        else
-        {
-            targetMax = TargetsToSpawn();
-        }
+        targetMax = TargetsToSpawn();
 
         if (activeTargetCount - 1 < targetMax)
         {
@@ -269,7 +255,7 @@ public class BoardHandler : MonoBehaviour
 
     public double TargetsToSpawn()
     {
-        return (AvailableUpgrades.Instance.targetLevel + UpsAndVars.Instance.bonusTargets);
+        return (AvailableUpgrades.Instance.targetLevel + UpsAndVars.Instance.bonusTargets + AbilityBonuses.Instance.bonusTargets);
     }
     public BigDouble ClickAmount()
     {
@@ -286,8 +272,7 @@ public class BoardHandler : MonoBehaviour
         BigDouble multiplier = 1;
         if (midHit)
             multiplier *= 10;
-        if (Abilities.Instance.abilityActive[0])
-            multiplier *= 1.5;
+        multiplier *= AbilityBonuses.Instance.clickMultiplier;
         if (comboCount > 1)
         {
             double locationBonus = 1;
@@ -295,10 +280,10 @@ public class BoardHandler : MonoBehaviour
             {
                 locationBonus = 1 + (LocationManager.Instance.locations[5].GetMult() * UpsAndVars.Instance.locationBonus);
             }
-            if (comboCount <= 50)
-                multiplier *= (Math.Pow(1.05, comboCount - 1) * locationBonus);
+            if (comboCount <= maxCombo)
+                multiplier *= Math.Pow(1.05, comboCount - 1) * locationBonus;
             else
-                multiplier *= Math.Pow(1.05, 50);
+                multiplier *= Math.Pow(1.05, maxCombo) * locationBonus;
         }
 
         if (UpsAndVars.Instance.critsUnlocked && IsCrit())
@@ -371,7 +356,7 @@ public class BoardHandler : MonoBehaviour
             recordText.text = "Combo";
             Color streakColor;
 
-            if (comboCount >= 50)
+            if (comboCount >= maxCombo)
             {
                 streakColor = new Color(1, 0 , 1);
                 if (!fire.activeSelf)
