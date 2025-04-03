@@ -1,9 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 using BreakInfinity;
-using Unity.Collections.LowLevel.Unsafe;
-using Org.BouncyCastle.Tls.Crypto;
 
 [System.Serializable]
 public class GameData
@@ -92,7 +88,7 @@ public class GameData
         //Settings Initialize
         this.fs = true;
         this.vs = true;
-        this.targetExplode = false;
+        this.targetExplode = true;
         this.masterV = 1;
         this.musicV = 1; 
         this.effectsV = 1;

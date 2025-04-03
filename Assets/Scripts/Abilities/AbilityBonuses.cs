@@ -7,9 +7,9 @@ public class AbilityBonuses : MonoBehaviour
 {
     public static AbilityBonuses Instance;
 
-    public int bonusTargets = 0;
-    public BigDouble clickMultiplier = 1;
-    public BigDouble idleMultiplier = 1;
+    private int bonusTargets = 0;
+    private BigDouble clickMultiplier = 1;
+    private BigDouble idleMultiplier = 1;
 
     private void Awake()
     {
@@ -19,5 +19,18 @@ public class AbilityBonuses : MonoBehaviour
         }
     }
 
+    public BigDouble GetClickMultiplier() 
+    {
+        return clickMultiplier;
+    }
 
+    public BigDouble GetIdleMultiplier()
+    {
+        return idleMultiplier;
+    }
+
+    public int GetBonusTargets()
+    {
+        return bonusTargets;
+    }
 }

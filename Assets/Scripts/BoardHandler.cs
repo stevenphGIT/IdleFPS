@@ -255,7 +255,7 @@ public class BoardHandler : MonoBehaviour
 
     public double TargetsToSpawn()
     {
-        return (AvailableUpgrades.Instance.targetLevel + UpsAndVars.Instance.bonusTargets + AbilityBonuses.Instance.bonusTargets);
+        return (AvailableUpgrades.Instance.targetLevel + UpsAndVars.Instance.bonusTargets + AbilityBonuses.Instance.GetBonusTargets());
     }
     public BigDouble ClickAmount()
     {
@@ -272,7 +272,7 @@ public class BoardHandler : MonoBehaviour
         BigDouble multiplier = 1;
         if (midHit)
             multiplier *= 10;
-        multiplier *= AbilityBonuses.Instance.clickMultiplier;
+        multiplier *= AbilityBonuses.Instance.GetClickMultiplier();
         if (comboCount > 1)
         {
             double locationBonus = 1;
@@ -365,13 +365,13 @@ public class BoardHandler : MonoBehaviour
                     fire.SetActive(true);
                 }
             }
-            else if (comboCount > 25)
+            else if (comboCount > (maxCombo / 2))
             {
-                streakColor = new Color(1, 1 * (1 - ((comboCount - 25) /25.0f)), 0);
+                streakColor = new Color(1, 1 * (1 - ((comboCount - (maxCombo / 2.0f)) / (maxCombo / 2.0f))), 0);
             }
             else
             {
-                streakColor = new Color(1, 1, 1 * (1 - (comboCount / 25.0f)));
+                streakColor = new Color(1, 1, 1 * (1 - (comboCount / (maxCombo / 2.0f))));
             }
 
             comboText.color = streakColor;

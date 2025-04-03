@@ -11,7 +11,6 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine.InputSystem.Interactions;
 using UnityEngine.EventSystems;
 using Steamworks;
-using Mirror;
 using TMPro.Examples;
 
 public class InputHandler : MonoBehaviour
@@ -467,7 +466,7 @@ public class InputHandler : MonoBehaviour
         //Gun Shop Clicks
         else if (rayHit.collider.gameObject.CompareTag("Gun"))
         {
-            Gun.Instance.shopClick(rayHit.collider.GetComponent<indexNum>().index);
+            Gun.Instance.ShopClick(rayHit.collider.GetComponent<indexNum>().index);
         }
 
         //Upgrade Shop Clicks

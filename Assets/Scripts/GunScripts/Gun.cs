@@ -22,16 +22,10 @@ public class Gun : MonoBehaviour, IDataPersistence
     public List<TMP_Text> hpsTexts;
     public List<bool> bought;
     public List<BigDouble> startingPerSec;
-    public AvailableUpgrades upgradeHandler;
     public UpgradeDatabase db;
     public Sprite buyable;
     public Sprite unbuyable;
     public Sprite locked;
-    public Vars varRef;
-    public Abilities abilities;
-    private HitSound hitSound;
-    private Textbox textboxRef;
-    private UpsAndVars prestigeUpgradeRef;
     //Gun IDs
     //Handgun - 0
     //Sniper - 1
@@ -47,12 +41,6 @@ public class Gun : MonoBehaviour, IDataPersistence
     void Awake()
     {
         if (Instance == null) { Instance = this; }
-        upgradeHandler = GameObject.Find("UpgradeHandler").GetComponent<AvailableUpgrades>();
-        hitSound = GameObject.Find("HitAudio").GetComponent<HitSound>();
-        varRef = GameObject.Find("VarTracker").GetComponent<Vars>();
-        abilities = GameObject.Find("AbilityHandler").GetComponent<Abilities>();
-        textboxRef = GameObject.Find("TextboxHandler").GetComponent<Textbox>();
-        prestigeUpgradeRef = GameObject.Find("PrestigeHandler").GetComponent<UpsAndVars>();
         //GameObjects
         //Guns
         gunVisuals.Add(GameObject.Find("Handgun"));
@@ -231,48 +219,48 @@ public class Gun : MonoBehaviour, IDataPersistence
     }
     public void UpdatePrices()
     {
-        if (varRef.buyMultiplier == 1)
+        if (Vars.Instance.buyMultiplier == 1)
         {
             for (int i = 0; i < gunVisuals.Count; i++)
                 SinglePrice(i);
         }
-        else if (varRef.buyMultiplier == 10)
+        else if (Vars.Instance.buyMultiplier == 10)
         {
             for (int i = 0; i < gunVisuals.Count; i++)
                 TenPrice(i);
         }
-        else if (varRef.buyMultiplier == 100)
+        else if (Vars.Instance.buyMultiplier == 100)
         {
             for (int i = 0; i < gunVisuals.Count; i++)
                 HundPrice(i);
         }
     }
-    public void shopClick(int id)
+    public void ShopClick(int id)
     {
         if (bought[id])
         {
-            if (varRef.hits >= prices[id])
+            if (Vars.Instance.hits >= prices[id])
             {
-                varRef.hits -= prices[id];
-                hitSound.source.PlayOneShot(hitSound.click, 1f);
-                if (varRef.buyMultiplier == 1)
+                Vars.Instance.hits -= prices[id];
+                HitSound.Instance.source.PlayOneShot(HitSound.Instance.click, 1f);
+                if (Vars.Instance.buyMultiplier == 1)
                     targetPowers[id] += 1;
-                else if (varRef.buyMultiplier == 10)
+                else if (Vars.Instance.buyMultiplier == 10)
                     targetPowers[id] += 10;
-                else if (varRef.buyMultiplier == 100)
+                else if (Vars.Instance.buyMultiplier == 100)
                     targetPowers[id] += 100;
             }
         }
-        else if (varRef.hits >= prices[id])
+        else if (Vars.Instance.hits >= prices[id])
         {
-            varRef.hits -= prices[id];
-            hitSound.source.PlayOneShot(hitSound.click, 1f);
+            Vars.Instance.hits -= prices[id];
+            HitSound.Instance.source.PlayOneShot(HitSound.Instance.click, 1f);
             bought[id] = true;
-            if (varRef.buyMultiplier == 1)
+            if (Vars.Instance.buyMultiplier == 1)
                 targetPowers[id] += 1;
-            else if (varRef.buyMultiplier == 10)
+            else if (Vars.Instance.buyMultiplier == 10)
                 targetPowers[id] += 10;
-            else if (varRef.buyMultiplier == 100)
+            else if (Vars.Instance.buyMultiplier == 100)
                 targetPowers[id] += 100;
             gunVisuals[id].SetActive(true);
         }
@@ -284,18 +272,7 @@ public class Gun : MonoBehaviour, IDataPersistence
     }
     public void CheckUnlocked()
     {
-        if (!bought[0])
-        {
-            gunVisuals[0].SetActive(false);
-            hpsTexts[0].text = "";
-        }
-        else
-        {
-            gunVisuals[0].SetActive(true);
-            hpsTexts[0].text = varRef.HpsAbbr(HandgunPlusCount()) + " hits/second";
-            varRef.hps[0] = HandgunPlusCount();
-        }
-        for (int id = 1; id < gunVisuals.Count; id++)
+        for (int id = 0; id < gunVisuals.Count; id++)
         {
             if (!bought[id])
             {
@@ -305,56 +282,42 @@ public class Gun : MonoBehaviour, IDataPersistence
             else
             {
                 gunVisuals[id].SetActive(true);
-                hpsTexts[id].text = varRef.HpsAbbr(PlusCount(id)) + " hits/second";
-                varRef.hps[id] = PlusCount(id);
+                hpsTexts[id].text = Vars.Instance.HpsAbbr(PlusCount(id)) + " hits/second";
+                Vars.Instance.hps[id] = PlusCount(id);
             }
         }
     }
     public BigDouble PlusCount(int id)
     {
+        BigDouble mult = DefaultMultiplier();
         BigDouble amount;
-        amount = targetPowers[id] * (upgradeHandler.bonusMult) * (1 + (varRef.rads * prestigeUpgradeRef.radMult));
-        if (!abilities.abilityActive[4])
+        if (id == 0)
+            amount = (targetPowers[0] + (AvailableUpgrades.Instance.hgCountMult * TotalCount()));
+        else
+            amount = targetPowers[id];
+        amount *= mult;
+        if (!Abilities.Instance.abilityActive[4])
         {
-            amount *= (startingPerSec[id] * upgradeHandler.multipliers[id]);
+            amount *= (startingPerSec[id] * AvailableUpgrades.Instance.multipliers[id]);
         }
         else
         {
             int bestId = bought.LastIndexOf(true);
-            amount *= (startingPerSec[bestId] * upgradeHandler.multipliers[bestId]);
+            amount *= (startingPerSec[bestId] * AvailableUpgrades.Instance.multipliers[bestId]);
         }
-
-        if (LocationManager.Instance.activeLocation == 0 && upgradeHandler.locationBonuses)
-        {
-            amount *= (1 + prestigeUpgradeRef.locationBonus * LocationManager.Instance.locations[0].GetMult());
-        }
-
-        amount *= prestigeUpgradeRef.prestigeIdleMultiplier;
 
         return amount;
     }
-    public BigDouble HandgunPlusCount()
+    private BigDouble DefaultMultiplier() 
     {
-        BigDouble amount;
-        amount = (targetPowers[0] + (upgradeHandler.hgCountMult * TotalCount()) * (upgradeHandler.bonusMult) * (1 + (varRef.rads * 0.01)));
-        if (!abilities.abilityActive[4])
+        BigDouble mult = 1;
+        if (LocationManager.Instance.activeLocation == 0 && AvailableUpgrades.Instance.locationBonuses)
         {
-            amount *= (startingPerSec[0] * upgradeHandler.multipliers[0]);
+            mult *= (1 + UpsAndVars.Instance.locationBonus * LocationManager.Instance.locations[0].GetMult());
         }
-        else
-        {
-            int bestId = bought.LastIndexOf(true);
-            amount *= (startingPerSec[bestId] * upgradeHandler.multipliers[bestId]);
-        }
-
-        if (LocationManager.Instance.activeLocation == 0 && upgradeHandler.locationBonuses)
-        {
-            amount *= (1 + prestigeUpgradeRef.locationBonus * LocationManager.Instance.locations[1].GetMult());
-        }
-
-        amount *= prestigeUpgradeRef.prestigeIdleMultiplier;
-
-        return amount;
+        mult *= AvailableUpgrades.Instance.bonusMult * (1 + (Vars.Instance.rads * UpsAndVars.Instance.radMult));
+        mult *= UpsAndVars.Instance.prestigeIdleMultiplier;
+        return mult;
     }
     public BigDouble TotalCount()
     {
@@ -369,11 +332,11 @@ public class Gun : MonoBehaviour, IDataPersistence
     {
         for (int id = 0; id < gunVisuals.Count; id++)
         {
-            if (varRef.totalHitCount < iPrices[id])
+            if (Vars.Instance.totalHitCount < iPrices[id])
             {
                 buyButtons[id].GetComponent<SpriteRenderer>().sprite = locked;
             }
-            else if (varRef.hits < prices[id])
+            else if (Vars.Instance.hits < prices[id])
             {
                 buyButtons[id].GetComponent<SpriteRenderer>().sprite = unbuyable;
             }
@@ -381,10 +344,10 @@ public class Gun : MonoBehaviour, IDataPersistence
             {
                 buyButtons[id].GetComponent<SpriteRenderer>().sprite = buyable;
             }
-            if (varRef.totalHitCount >= iPrices[id])
+            if (Vars.Instance.totalHitCount >= iPrices[id])
             {
                 nameTexts[id].text = gunNames[id];
-                priceTexts[id].text = varRef.PriceAbbr(prices[id]) + "";
+                priceTexts[id].text = Vars.Instance.PriceAbbr(prices[id]) + "";
                 levelTexts[id].text = targetPowers[id] + "";
             }
             else
@@ -397,14 +360,14 @@ public class Gun : MonoBehaviour, IDataPersistence
     }
     public void SinglePrice(int id)
     {
-        BigDouble priceMult = BigDouble.Pow(1.2, targetPowers[id]) * prestigeUpgradeRef.priceBonus;
+        BigDouble priceMult = BigDouble.Pow(1.2, targetPowers[id]) * UpsAndVars.Instance.priceBonus;
         if (LocationManager.Instance.activeLocation == 3 && AvailableUpgrades.Instance.locationBonuses)
         {
             priceMult *= (1 - (LocationManager.Instance.locations[3].GetMult() * UpsAndVars.Instance.locationBonus));
         }
-        if (prestigeUpgradeRef.priceUpgrades)
+        if (UpsAndVars.Instance.priceUpgrades)
         {
-            priceMult *= (1 - (upgradeHandler.bought.Count * 0.0006));
+            priceMult *= (1 - (AvailableUpgrades.Instance.bought.Count * 0.0006));
         }
 
         prices[id] = iPrices[id] * priceMult;
@@ -414,14 +377,14 @@ public class Gun : MonoBehaviour, IDataPersistence
         prices[id] = 0;
         for (int i = 0; i <= 9; i++)
         {
-            BigDouble priceMult = BigDouble.Pow(1.2, targetPowers[id] + i) * prestigeUpgradeRef.priceBonus;
+            BigDouble priceMult = BigDouble.Pow(1.2, targetPowers[id] + i) * UpsAndVars.Instance.priceBonus;
             if (LocationManager.Instance.activeLocation == 3 && AvailableUpgrades.Instance.locationBonuses)
             {
                 priceMult *= (1 - (LocationManager.Instance.locations[3].GetMult() * UpsAndVars.Instance.locationBonus));
             }
-            if (prestigeUpgradeRef.priceUpgrades)
+            if (UpsAndVars.Instance.priceUpgrades)
             {
-                priceMult *= (1 - (upgradeHandler.bought.Count * 0.0006));
+                priceMult *= (1 - (AvailableUpgrades.Instance.bought.Count * 0.0006));
             }
 
             prices[id] += iPrices[id] * priceMult;
@@ -433,14 +396,14 @@ public class Gun : MonoBehaviour, IDataPersistence
         prices[id] = 0;
         for (int i = 0; i <= 99; i++)
         {
-            BigDouble priceMult = BigDouble.Pow(1.2, targetPowers[id] + i) * prestigeUpgradeRef.priceBonus;
+            BigDouble priceMult = BigDouble.Pow(1.2, targetPowers[id] + i) * UpsAndVars.Instance.priceBonus;
             if (LocationManager.Instance.activeLocation == 3 && AvailableUpgrades.Instance.locationBonuses)
             {
                 priceMult *= (1 - (LocationManager.Instance.locations[3].GetMult() * UpsAndVars.Instance.locationBonus));
             }
-            if (prestigeUpgradeRef.priceUpgrades)
+            if (UpsAndVars.Instance.priceUpgrades)
             {
-                priceMult *= (1 - (upgradeHandler.bought.Count * 0.0006));
+                priceMult *= (1 - (AvailableUpgrades.Instance.bought.Count * 0.0006));
             }
 
             prices[id] += iPrices[id] * priceMult;
@@ -452,102 +415,96 @@ public class Gun : MonoBehaviour, IDataPersistence
         {
             if (targetPowers[id] > 0)
             {
-                upgradeHandler.Unlock(db.findName((id * 10)));
+                AvailableUpgrades.Instance.Unlock(db.findName((id * 10)));
             }
             if (targetPowers[id] >= 5)
             {
-                upgradeHandler.Unlock(db.findName((id * 10) + 1));
+                AvailableUpgrades.Instance.Unlock(db.findName((id * 10) + 1));
             }
             if (targetPowers[id] >= 25)
             {
-                upgradeHandler.Unlock(db.findName((id * 10) + 2));
+                AvailableUpgrades.Instance.Unlock(db.findName((id * 10) + 2));
             }
             if (targetPowers[id] >= 50)
             {
-                upgradeHandler.Unlock(db.findName((id * 10) + 3));
+                AvailableUpgrades.Instance.Unlock(db.findName((id * 10) + 3));
             }
             if (targetPowers[id] >= 100)
             {
-                upgradeHandler.Unlock(db.findName((id * 10) + 4));
+                AvailableUpgrades.Instance.Unlock(db.findName((id * 10) + 4));
             }
             if (targetPowers[id] >= 150)
             {
-                upgradeHandler.Unlock(db.findName((id * 10) + 5));
+                AvailableUpgrades.Instance.Unlock(db.findName((id * 10) + 5));
             }
             if (targetPowers[id] >= 200)
             {
-                upgradeHandler.Unlock(db.findName((id * 10) + 6));
+                AvailableUpgrades.Instance.Unlock(db.findName((id * 10) + 6));
             }
             if (targetPowers[id] >= 250)
             {
-                upgradeHandler.Unlock(db.findName((id * 10) + 7));
+                AvailableUpgrades.Instance.Unlock(db.findName((id * 10) + 7));
             }
             if (targetPowers[id] >= 300)
             {
-                upgradeHandler.Unlock(db.findName((id * 10) + 8));
+                AvailableUpgrades.Instance.Unlock(db.findName((id * 10) + 8));
             }
             if (targetPowers[id] >= 350)
             {
-                upgradeHandler.Unlock(db.findName((id * 10) + 9));
+                AvailableUpgrades.Instance.Unlock(db.findName((id * 10) + 9));
             }
         }
         else
         {
             if (targetPowers[id] > 0)
             {
-                upgradeHandler.Unlock(db.findName((id * 10)));
-                upgradeHandler.Unlock(db.findName((id * 10) + 1));
+                AvailableUpgrades.Instance.Unlock(db.findName((id * 10)));
+                AvailableUpgrades.Instance.Unlock(db.findName((id * 10) + 1));
             }
             if (targetPowers[id] >= 10)
             {
-                upgradeHandler.Unlock(db.findName((id * 10) + 2));
+                AvailableUpgrades.Instance.Unlock(db.findName((id * 10) + 2));
             }
             if (targetPowers[id] >= 25)
             {
-                upgradeHandler.Unlock(db.findName((id * 10) + 3));
+                AvailableUpgrades.Instance.Unlock(db.findName((id * 10) + 3));
             }
             if (targetPowers[id] >= 50)
             {
-                upgradeHandler.Unlock(db.findName((id * 10) + 4));
+                AvailableUpgrades.Instance.Unlock(db.findName((id * 10) + 4));
             }
             if (targetPowers[id] >= 100)
             {
-                upgradeHandler.Unlock(db.findName((id * 10) + 5));
+                AvailableUpgrades.Instance.Unlock(db.findName((id * 10) + 5));
             }
             if (targetPowers[id] >= 150)
             {
-                upgradeHandler.Unlock(db.findName((id * 10) + 6));
+                AvailableUpgrades.Instance.Unlock(db.findName((id * 10) + 6));
             }
             if (targetPowers[id] >= 200)
             {
-                upgradeHandler.Unlock(db.findName((id * 10) + 7));
+                AvailableUpgrades.Instance.Unlock(db.findName((id * 10) + 7));
             }
             if (targetPowers[id] >= 250)
             {
-                upgradeHandler.Unlock(db.findName((id * 10) + 8));
+                AvailableUpgrades.Instance.Unlock(db.findName((id * 10) + 8));
             }
             if (targetPowers[id] >= 300)
             {
-                upgradeHandler.Unlock(db.findName((id * 10) + 9));
+                AvailableUpgrades.Instance.Unlock(db.findName((id * 10) + 9));
             }
         }
     }
     public void SetShow(int i)
     {
-        textboxRef.SetTitleText(gunNames[i]);
-        textboxRef.SetTitleColor(Color.white);
+        Textbox.Instance.SetTitleText(gunNames[i]);
+        Textbox.Instance.SetTitleColor(Color.white);
         
-        if(i == 0)
-            textboxRef.SetFullDescriptionText(targetPowers[i] + " handguns are generating " + varRef.HpsAbbr((HandgunPlusCount() / targetPowers[i])) + " hits/second each, totaling " + varRef.HpsAbbr(HandgunPlusCount()) + " hits/second");
-        else
-            textboxRef.SetFullDescriptionText(targetPowers[i] + " " + gunNames[i] + "s are generating " + varRef.HpsAbbr((PlusCount(i) / targetPowers[i])) + " hits/second each, totaling " + varRef.HpsAbbr(PlusCount(i)) + " hits/second");
-        textboxRef.SetFullDescriptionColor(new Color(0.2f,0.2f,0.2f));
-        if (i != 0)
-            textboxRef.SetCostText(BigDouble.Round((PlusCount(i) / Vars.Instance.totalHps * 10000)) / 100.0 + "% of total HPS");
-        else
-            textboxRef.SetCostText(BigDouble.Round((HandgunPlusCount() / Vars.Instance.totalHps * 10000)) / 100.0 + "% of total HPS");
-        textboxRef.SetCostColor(Color.white);
-        textboxRef.ShowBox();
+        Textbox.Instance.SetFullDescriptionText(targetPowers[i] + " " + gunNames[i] + "s are generating " + Vars.Instance.HpsAbbr((PlusCount(i) / targetPowers[i])) + " hits/second each, totaling " + Vars.Instance.HpsAbbr(PlusCount(i)) + " hits/second");
+        Textbox.Instance.SetFullDescriptionColor(new Color(0.2f,0.2f,0.2f));
+        Textbox.Instance.SetCostText(BigDouble.Round((PlusCount(i) / Vars.Instance.totalHps * 10000)) / 100.0 + "% of total HPS");
+        Textbox.Instance.SetCostColor(Color.white);
+        Textbox.Instance.ShowBox();
     }
     public void ResetAll()
     {

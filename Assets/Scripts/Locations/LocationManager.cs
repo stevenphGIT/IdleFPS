@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using static ColorFunctions;
 
 public class LocationManager : MonoBehaviour, IDataPersistence
 {
@@ -424,12 +425,7 @@ public class LocationManager : MonoBehaviour, IDataPersistence
             sc.color = DarkenColor(locations[activeLocation].GetSecondColor());
         }
     }
-    private Color DarkenColor(Color c)
-    {
-        Color bgColor = c / 3;
-        bgColor.a = 1;
-        return bgColor;
-    }
+
     public void LoadData(GameData data)
     {
         this.activeLocation = data.activeLocation;

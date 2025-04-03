@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 47787dc693f27114682db4a021af3514, type: 3}
-  m_Name: ShoppingSpree
+  m_Name: SpaceLaser
   m_EditorClassIdentifier: 
-  id: 20
+  id: 21
   abilityIcon: {fileID: 0}
-  abilityName: Shopping Spree
-  abilityDescription: All weapons are free for the duration of the ability.
-  abilityCooldown: 14400
-  abilityDuration: 5
+  abilityName: Dragon's Breath
+  abilityDescription: Press Space to obliterate any target you hover over!
+  abilityCooldown: 600
+  abilityDuration: 60
   rarity: 5

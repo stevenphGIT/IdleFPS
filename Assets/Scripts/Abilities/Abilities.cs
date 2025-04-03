@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System;
-
+using static ColorFunctions;
 
 public class Abilities : MonoBehaviour, IDataPersistence
 {
@@ -15,6 +15,7 @@ public class Abilities : MonoBehaviour, IDataPersistence
 
     public Ability[] allAbilities;
 
+    public Sprite defaultHolderSprite;
     public Sprite abilityIconLocked;
     public List<Sprite> abilityIconActive;
     public List<Sprite> abilityIconUsed;
@@ -22,6 +23,7 @@ public class Abilities : MonoBehaviour, IDataPersistence
 
     public List<GameObject> abilitySlots;
     public List<SpriteRenderer> abilityRenderers;
+    public List<SpriteRenderer> abilityHolderRenderers;
     public List<bool> abilityActive;
     public List<bool> abilityOnCD;
     public List<float> abDoneTime;
@@ -73,25 +75,34 @@ public class Abilities : MonoBehaviour, IDataPersistence
         {
             if (slottedAbilities[i] == null)
             {
-                abilityRenderers[i].sprite = abilityIconLocked;
+                abilityHolderRenderers[i].sprite = abilityIconLocked;
+                abilityHolderRenderers[i].color = Color.white;
+                abilityRenderers[i].sprite = null;
                 continue;
+            }
+            else
+            {
+                abilityHolderRenderers[i].sprite = defaultHolderSprite;
             }
             if (Time.time >= abUpTime[i])
             {
+                abilityHolderRenderers[i].color = abilityColor[slottedAbilities[i].rarity];
                 abilityRenderers[i].sprite = slottedAbilities[i].abilityIcon;
+                abilityRenderers[i].color = Color.white;
                 if (abBotOn)
                 {
-                    abilityActive[i] = true;
                     UseAbility(i);
                 }
             }
             else if (Time.time <= abDoneTime[i])
             {
-                abilityRenderers[i].sprite = abilityIconActive[slottedAbilities[i].rarity];
+                abilityHolderRenderers[i].color = DarkenColor(abilityColor[slottedAbilities[i].rarity], 2);
+                abilityRenderers[i].color = DarkenColor(abilityRenderers[i].color, 2);
             }
             else
             {
-                abilityRenderers[i].sprite = abilityIconUsed[slottedAbilities[i].rarity];
+                abilityHolderRenderers[i].color = DarkenColor(abilityColor[slottedAbilities[i].rarity], 4);
+                abilityRenderers[i].color = DarkenColor(abilityRenderers[i].color, 4);
                 EndAbility(i);
             }
         }
@@ -166,6 +177,8 @@ public class Abilities : MonoBehaviour, IDataPersistence
                 {
                     if (slottedAbilities[i] == null)
                     {
+                        FloatingText.Instance.PopText("No ability equipped in this slot!", new Color32(255, 0, 0, 255), 0);
+                        HitSound.Instance.source.PlayOneShot(HitSound.Instance.cantUse);
                         return;
                     }
                     if (Time.time > abUpTime[i])
@@ -203,7 +216,7 @@ public class Abilities : MonoBehaviour, IDataPersistence
     {
         HitSound.Instance.source.PlayOneShot(HitSound.Instance.abilitySounds[i]);
         
-        abUpTime[i] = Time.time +  + TrueDuration(slottedAbilities[i].abilityDuration) + TrueCooldown(slottedAbilities[i].abilityCooldown);
+        abUpTime[i] = Time.time + TrueDuration(slottedAbilities[i].abilityDuration) + TrueCooldown(slottedAbilities[i].abilityCooldown);
         abDoneTime[i] = Time.time + TrueDuration(slottedAbilities[i].abilityDuration);
 
         Gun.Instance.UpdatePrices();
@@ -212,8 +225,7 @@ public class Abilities : MonoBehaviour, IDataPersistence
     }
     public void EndAbility(int id)
     {
-        if (abilityActive.Count > id)
-            abilityActive[id] = false;
+        abilityActive[id] = false;
     }
     public void SetShow(int id)
     {
@@ -366,7 +378,7 @@ public class Abilities : MonoBehaviour, IDataPersistence
             }
             else
             {
-                Debug.LogError("ABILITY LOST DUE TO INVALID ID NUMBER");
+                Debug.LogError("ABILITY LOST DUE TO INVALID ID NUMBER (DID YOU SET ABILITY ID'S FIRST?)");
             }
         }
 

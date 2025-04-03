@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 47787dc693f27114682db4a021af3514, type: 3}
-  m_Name: ShoppingSpree
+  m_Name: SweetTreat
   m_EditorClassIdentifier: 
-  id: 20
+  id: 28
   abilityIcon: {fileID: 0}
-  abilityName: Shopping Spree
-  abilityDescription: All weapons are free for the duration of the ability.
-  abilityCooldown: 14400
-  abilityDuration: 5
-  rarity: 5
+  abilityName: Sweet Treat
+  abilityDescription: Gain 2 minutes of HPS instantly.
+  abilityCooldown: 120
+  abilityDuration: 0
+  rarity: 0
