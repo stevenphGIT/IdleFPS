@@ -43,8 +43,8 @@ public class InputHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Prestige.Instance.inPrestigeAnim) return;
         if (SpeechBox.Instance.boxShowing) return;
+        if (CutsceneHandler.Instance.inCutscene) return;
         if (Input.GetKey(KeyCode.Escape))
         {
             if (NoticeBox.Instance.activeBox)
@@ -195,6 +195,7 @@ public class InputHandler : MonoBehaviour
             SpeechBox.Instance.NextLine();
             return;
         }
+        if (CutsceneHandler.Instance.inCutscene) return;
         if (!rayHit.collider) return;
         //Alerts
         if (rayHit.collider.name == "SkipCutscene")

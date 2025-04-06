@@ -21,8 +21,15 @@ public class LiftableCard : MonoBehaviour
     public bool isHeld = false;
     private Vector3 returnPos;
 
+    private float textCooldown = 0f;
+
     void Update()
     {
+        if (textCooldown > 0f)
+        {
+            textCooldown -= Time.deltaTime;
+        }
+
         if (isHeld)
         {
             transform.position = Crosshair.Instance.transform.position;
@@ -40,6 +47,23 @@ public class LiftableCard : MonoBehaviour
 
             if (nearestSlot != null)
             {
+                /*if (nearestSlot.equippedAbility != null)
+                {
+                    Debug.Log("Ability Not Null");
+                    int i = nearestSlot.GetComponent<indexNum>().index;
+                    if (!Abilities.Instance.AbilityOffCooldown(i))
+                    {
+                        Debug.Log("Ability On Cooldown");
+                        if (textCooldown <= 0f)
+                        {
+                            FloatingText.Instance.PopText("This ability cannot be moved right now!", new Color32(255, 0, 0, 255), 0);
+                            HitSound.Instance.source.PlayOneShot(HitSound.Instance.cantUse);
+                            textCooldown = 3f;
+                        }
+                        Abilities.Instance.DisplayBinder();
+                        return;
+                    }
+                }*/
                 if (nearestSlot == slot)
                 {
                     transform.position = returnPos;
@@ -49,8 +73,9 @@ public class LiftableCard : MonoBehaviour
                 {
                     slot.EquipCard(nearestSlot.equippedAbility);
                 }
-                nearestSlot.EquipCard(this);
                 Abilities.Instance.DisplayBinder();
+                nearestSlot.EquipCard(this);
+                
             }
             else
             {
@@ -74,6 +99,20 @@ public class LiftableCard : MonoBehaviour
             if (NoticeBox.Instance.activeBox) return;
             if (Input.GetMouseButton(0) && !isHeld)
             {
+                if (slot != null)
+                {
+                    int i = slot.GetComponent<indexNum>().index;
+                    if (!Abilities.Instance.AbilityOffCooldown(i))
+                    {
+                        if (textCooldown <= 0f)
+                        {
+                            FloatingText.Instance.PopText("This ability cannot be moved right now!", new Color32(255, 0, 0, 255), 0);
+                            HitSound.Instance.source.PlayOneShot(HitSound.Instance.cantUse);
+                            textCooldown = 3f;
+                        }
+                        return;
+                    }
+                }
                 if (!HeldCard.Instance.isHolding)
                 {
                     isHeld = true;

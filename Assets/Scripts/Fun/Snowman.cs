@@ -6,6 +6,8 @@ public class Snowman : MonoBehaviour
 {
     public static Snowman Instance;
 
+    public GameObject snowman, snowmanTransition, buffman;
+
     bool knocked = false;
     int clickCount = 10;
 
@@ -27,8 +29,9 @@ public class Snowman : MonoBehaviour
             Instance = this;
         startX = transform.position.x;
         startY = transform.position.y;
-
-        normalSprite = this.gameObject.GetComponent<SpriteRenderer>().sprite;
+        snowman.SetActive(true);
+        snowmanTransition.SetActive(false);
+        buffman.SetActive(false);
     }
     public void Click()
     {
@@ -60,7 +63,7 @@ public class Snowman : MonoBehaviour
                     Music.Instance.StopSounds();
                     Music.Instance.Pause();
                     knocked = true;
-                    this.gameObject.GetComponent<SpriteRenderer>().sprite = angrySprite;
+                    snowman.GetComponent<SpriteRenderer>().sprite = angrySprite;
                     HitSound.Instance.source.PlayOneShot(HitSound.Instance.snowmanFurious);
                     StartCoroutine(AngerCutscene());
                 }
@@ -68,7 +71,7 @@ public class Snowman : MonoBehaviour
                 {
                     HitSound.Instance.source.PlayOneShot(HitSound.Instance.snowmanTopple);
                     knocked = true;
-                    this.gameObject.GetComponent<SpriteRenderer>().sprite = knockedSprite;
+                    snowman.GetComponent<SpriteRenderer>().sprite = knockedSprite;
                     Vars.Instance.snowmenSlain++;
                     respawnTimer = 10;
                 }
@@ -89,8 +92,8 @@ public class Snowman : MonoBehaviour
         {
             knocked = false;
             clickCount = 10;
-            this.gameObject.GetComponent<SpriteRenderer>().sprite = normalSprite;
-            if (this.gameObject.activeSelf)
+            snowman.GetComponent<SpriteRenderer>().sprite = normalSprite;
+            if (snowman.activeSelf)
             {
                 HitSound.Instance.source.PlayOneShot(HitSound.Instance.snowCrunch3);
             }
@@ -112,9 +115,32 @@ public class Snowman : MonoBehaviour
 
     private IEnumerator AngerCutscene()
     {
+        CutsceneHandler.Instance.inCutscene = true;
         yield return new WaitForSeconds(2f);
         shakeTimer = 1.2f;
         yield return new WaitForSeconds(1f);
         SpeechBox.Instance.Say(openingSpeech, new Color(0.9f, 0.9f, 1f));
+        yield return new WaitUntil(() =>
+            !SpeechBox.Instance.isSpeaking && !SpeechBox.Instance.boxShowing);
+        shakeIntensity = 0.1f;
+        shakeTimer = 1.1f;
+        yield return new WaitForSeconds(1f);
+        snowman.SetActive(false);
+        buffman.SetActive(false);
+        snowmanTransition.SetActive(true);
+        snowmanTransition.GetComponent<Animator>().Play("SnowmanEvolve");
+        yield return new WaitForSeconds(2.2f);
+        shakeTimer = 1f;
+        yield return new WaitForSeconds(1.5f);
+        shakeTimer = 0.5f;
+        yield return new WaitForSeconds(1.7f);
+        shakeTimer = 1f;
+        yield return new WaitForSeconds(2f);
+        snowman.SetActive(false);
+        snowmanTransition.SetActive(false);
+        buffman.SetActive(true);
+        buffman.GetComponent<Animator>().Play("SnowmanFightStart");
+        yield return new WaitForSeconds(2f);
+        CutsceneHandler.Instance.inCutscene = false;
     }
 }

@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Linq;
 using System;
 using static ColorFunctions;
+using JetBrains.Annotations;
 
 public class Abilities : MonoBehaviour, IDataPersistence
 {
@@ -25,7 +26,6 @@ public class Abilities : MonoBehaviour, IDataPersistence
     public List<SpriteRenderer> abilityRenderers;
     public List<SpriteRenderer> abilityHolderRenderers;
     public List<bool> abilityActive;
-    public List<bool> abilityOnCD;
     public List<float> abDoneTime;
     public List<float> abUpTime;
 
@@ -48,7 +48,7 @@ public class Abilities : MonoBehaviour, IDataPersistence
     void Awake()
     {
         if (Instance == null) { Instance = this; }
-        PopulateList();
+            PopulateList();
         
         for (int i = 0; i < abilitySlots.Count; i++)
         {
@@ -61,6 +61,17 @@ public class Abilities : MonoBehaviour, IDataPersistence
         abilityBotAnim.SetBool("botActive", abBotOn);
         for (int i = 0; i < 5; i++)
         {
+            if (slottedAbilities[i] != null)
+            {
+                abilityRenderers[i].sprite = slottedAbilities[i].abilityIcon;
+                abilityHolderRenderers[i].sprite = defaultHolderSprite;
+            }
+            else
+            {
+                abilityHolderRenderers[i].sprite = abilityIconLocked;
+                abilityHolderRenderers[i].color = Color.white;
+                abilityRenderers[i].sprite = null;
+            }
             if (Time.time >= abUpTime[i] && slottedAbilities[i] != null)
             {
                 EndAbility(i);
@@ -97,12 +108,12 @@ public class Abilities : MonoBehaviour, IDataPersistence
             else if (Time.time <= abDoneTime[i])
             {
                 abilityHolderRenderers[i].color = DarkenColor(abilityColor[slottedAbilities[i].rarity], 2);
-                abilityRenderers[i].color = DarkenColor(abilityRenderers[i].color, 2);
+                abilityRenderers[i].color = DarkenColor(Color.white, 2);
             }
             else
             {
                 abilityHolderRenderers[i].color = DarkenColor(abilityColor[slottedAbilities[i].rarity], 4);
-                abilityRenderers[i].color = DarkenColor(abilityRenderers[i].color, 4);
+                abilityRenderers[i].color = DarkenColor(Color.white, 4);
                 EndAbility(i);
             }
         }
@@ -135,20 +146,19 @@ public class Abilities : MonoBehaviour, IDataPersistence
         //Booleans
         for (int i = 0; i < 5; i++)
         {
-            abilityActive.Add(false);
-        }
-        for (int i = 0; i < 5; i++)
-        {
-            abilityOnCD.Add(false);
+            if (abilityActive.Count < 5)
+                abilityActive.Add(false);
         }
 
         for (int i = 0; i < 5; i++)
         {
-            abUpTime.Add(0);
+            if (abUpTime.Count < 5)
+                abUpTime.Add(0);
         }
         for (int i = 0; i < 5; i++)
         {
-            abDoneTime.Add(0);
+            if (abDoneTime.Count < 5)
+                abDoneTime.Add(0);
         }
     }
 
@@ -163,6 +173,12 @@ public class Abilities : MonoBehaviour, IDataPersistence
         }
     }
 
+    public bool AbilityOffCooldown(int slot)
+    {
+        return (slottedAbilities[slot] != null 
+            && !abilityActive[slot] 
+            && !(abUpTime[slot] > Time.time));
+    }
     public void UseSelectedAbility()
     {
         if (abilitySelected == -1)

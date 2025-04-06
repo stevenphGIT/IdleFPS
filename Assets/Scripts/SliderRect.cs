@@ -24,13 +24,11 @@ public class SliderRect : MonoBehaviour
         {
             forceUpdate = false;
             float val = Mathf.Lerp(minHeight, maxHeight, slider.sliderValue);
-
             content.transform.position = new Vector3(
                 content.transform.position.x,
                 val,
                 content.transform.position.z
             );
-
             slider.valUpdated = false;
         }
     }
