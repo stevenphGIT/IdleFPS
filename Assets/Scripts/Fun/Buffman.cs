@@ -2,17 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Buffman : MonoBehaviour
+public class Buffman : Boss
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public static Buffman Instance;
 
-    // Update is called once per frame
-    void Update()
+    public Sprite crossed;
+
+    private void Awake()
     {
-        
+        if (Instance == null)
+            Instance = this;
+    }
+    public void StartFight()
+    {
+        rend.sprite = crossed;
+        animator.Play("SnowmanFightSlide");
     }
 }

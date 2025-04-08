@@ -17,6 +17,6 @@ MonoBehaviour:
     mantissa: 3
     exponent: 0
   upgName: Crosshair Customization
-  upgDescription: Unlocks Crosshair Customization
-  upgLore: Self-explanatory, isn't it?
+  upgDescription: Allows rainbow crosshair in your crosshair settings!
+  upgLore: Colorful!
   upgradesUnlocked: 15000000

@@ -23,7 +23,7 @@ public class Highlightable : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (Prestige.Instance.inPrestigeAnim) return;
+        if (!showDuringDialogue && CutsceneHandler.Instance.inCutscene) return;
         if (!showDuringDialogue && SpeechBox.Instance.boxShowing) return;
         mat.SetFloat("_OutlineEnabled", 1);
         mat.SetColor("_SolidOutline", Color.white);

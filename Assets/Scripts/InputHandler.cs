@@ -381,7 +381,7 @@ public class InputHandler : MonoBehaviour
         }
         else if (rayHit.collider.name == "MapIcon")
         {
-            UserInputBox.Instance.ShowBox(4);
+            UserInputBox.Instance.ShowBox(3);
             LocationManager.Instance.SetLocationTexts();
         }
         //Card Buttons
@@ -419,7 +419,7 @@ public class InputHandler : MonoBehaviour
         }
         else if (rayHit.collider.name == "CrosshairButton")
         {
-            UserInputBox.Instance.ShowBox(2);
+            UserInputBox.Instance.CrosshairSettings();
         }
         else if (rayHit.collider.name == "changeIconBox")
         {
@@ -435,6 +435,18 @@ public class InputHandler : MonoBehaviour
         else if (rayHit.collider.name == "SettingsIcon")
         {
             UserInputBox.Instance.ShowBox(0);
+        }
+        else if (rayHit.collider.name == "crosshairOutlineCheck")
+        {
+            HitSound.Instance.source.PlayOneShot(HitSound.Instance.click, 1f);
+            CrosshairCustomize.Instance.outline = !CrosshairCustomize.Instance.outline;
+            CrosshairCustomize.Instance.SetCheckboxSprites();
+        }
+        else if (rayHit.collider.name == "crosshairRainbowCheck")
+        {
+            HitSound.Instance.source.PlayOneShot(HitSound.Instance.click, 1f);
+            CrosshairCustomize.Instance.rainbow = !CrosshairCustomize.Instance.rainbow;
+            CrosshairCustomize.Instance.SetCheckboxSprites();
         }
         else if (rayHit.collider.name == "fullscreenCheck")
         {

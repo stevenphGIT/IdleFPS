@@ -59,6 +59,10 @@ public class GameData
     //Crosshair
     public float redV, blueV, greenV;
     public int crosshairNum;
+    public bool outline;
+    public float outlineWidth;
+    public float crosshairSize;
+    public bool rainbow;
     //AbBot On
     public bool abBotOn;
     //Fun
@@ -98,6 +102,10 @@ public class GameData
         this.blueV = 1;
         this.greenV = 1;
         this.crosshairNum = 0;
+        this.outline = true;
+        this.outlineWidth = 0.005f;
+        this.crosshairSize = 250f;
+        this.rainbow = false;
         //Offline Initialize
         this.timeStartedString = string.Empty;
         //Guns

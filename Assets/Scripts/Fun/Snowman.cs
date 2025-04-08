@@ -8,6 +8,8 @@ public class Snowman : MonoBehaviour
 
     public GameObject snowman, snowmanTransition, buffman;
 
+    public ParticleSystem snowPuff;
+
     bool knocked = false;
     int clickCount = 10;
 
@@ -122,9 +124,11 @@ public class Snowman : MonoBehaviour
         SpeechBox.Instance.Say(openingSpeech, new Color(0.9f, 0.9f, 1f));
         yield return new WaitUntil(() =>
             !SpeechBox.Instance.isSpeaking && !SpeechBox.Instance.boxShowing);
+        CutsceneHandler.Instance.HideShop();
+        yield return new WaitForSeconds(0.6f);
         shakeIntensity = 0.1f;
-        shakeTimer = 1.1f;
-        yield return new WaitForSeconds(1f);
+        shakeTimer = 2.1f;
+        yield return new WaitForSeconds(2f);
         snowman.SetActive(false);
         buffman.SetActive(false);
         snowmanTransition.SetActive(true);
@@ -140,7 +144,9 @@ public class Snowman : MonoBehaviour
         snowmanTransition.SetActive(false);
         buffman.SetActive(true);
         buffman.GetComponent<Animator>().Play("SnowmanFightStart");
+        TextQueue.Instance.AddNotificationToList(new TextQueue.Notification("Fight!", "Snowlympian: The Swole", Color.white, new Color(0.78f, 0.96f, 1f)));
         yield return new WaitForSeconds(2f);
         CutsceneHandler.Instance.inCutscene = false;
+        Buffman.Instance.StartFight();
     }
 }

@@ -55,22 +55,13 @@ public class UserInputBox : MonoBehaviour
 
     }
 
+    public void CrosshairSettings()
+    {
+        ShowText(2);
+        hitSound.source.PlayOneShot(hitSound.openMenu);
+    }
     public bool Active()
     {
         return boxAnim.GetBool("active");
-    }
-
-    public void ShowDuelBoxIfHidden(int index)
-    {
-        if (!Active())
-        {
-            if (notice.activeBox)
-            {
-                notice.HideBox();
-                notice.idNum = -1;
-            }
-            ShowText(index);
-            boxAnim.SetBool("active", true);
-        }
     }
 }

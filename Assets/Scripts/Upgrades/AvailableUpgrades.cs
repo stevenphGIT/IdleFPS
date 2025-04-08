@@ -125,7 +125,7 @@ public class AvailableUpgrades : MonoBehaviour, IDataPersistence
             {
                 break;
             }
-            GameObject obj = Instantiate(upgradePrefab, new Vector3(3.5f + ((i % 2) * 1f), 3f - Mathf.Floor(i / 2.0f), 0f), Quaternion.identity, upgradeObject.transform);
+            GameObject obj = Instantiate(upgradePrefab, new Vector3(upgradeObject.transform.position.x + ((i % 2) * 1f), upgradeObject.transform.position.y - Mathf.Floor(i / 2.0f), 0f), Quaternion.identity, upgradeObject.transform);
             obj.GetComponent<Upgrade>().upgSlotNum = i;
             spawnedObjects.Add(obj);
         }

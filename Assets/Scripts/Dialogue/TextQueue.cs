@@ -27,7 +27,7 @@ public class TextQueue : MonoBehaviour
         notifications.RemoveAt(0);
         activeNotice = Instantiate(slideTextPrefab, Vector3.zero, Quaternion.identity, cameraCanvas.transform);
         activeNotice.GetComponent<SetSlideTexts>().SetAll(notice.GetTitle(), notice.GetSubtitle(), notice.GetTitleColor(), notice.GetSubtitleColor());
-        Destroy(activeNotice, 2.2f);
+        Destroy(activeNotice, 4f);
     }
     public void AddNotificationToList(Notification notice)
     {
