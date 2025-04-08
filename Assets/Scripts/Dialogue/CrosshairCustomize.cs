@@ -102,7 +102,7 @@ public class CrosshairCustomize : MonoBehaviour, IDataPersistence
         green.sliderValueText.text = Mathf.Round(green.sliderValue * 255f) + "";
         blue.sliderValueText.text = Mathf.Round(blue.sliderValue * 255f) + "";
         outlineSlider.sliderValueText.text = Mathf.Round(outlineSlider.sliderValue * 10000f) / 10.0 + "";
-        size.sliderValueText.text = Mathf.Round(size.sliderValue) + "";
+        size.sliderValueText.text = Mathf.Round(size.sliderValue / 10.0f) + "";
     }
     public void SetCheckboxSprites()
     {

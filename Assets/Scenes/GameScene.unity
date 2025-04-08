@@ -3224,7 +3224,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -645844993
   m_SortingLayer: 1
-  m_SortingOrder: 3
+  m_SortingOrder: 2
   m_Sprite: {fileID: 373789660, guid: fd1a4734243aaa84181266eb0131e9f4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -4741,6 +4741,7 @@ MonoBehaviour:
   scrollRect: {fileID: 0}
   vertical: 0
   valUpdated: 0
+  snapInterval: 1
 --- !u!61 &130356311
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11816,6 +11817,7 @@ MonoBehaviour:
   scrollRect: {fileID: 0}
   vertical: 0
   valUpdated: 0
+  snapInterval: 1
 --- !u!61 &339698804
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -19072,6 +19074,7 @@ MonoBehaviour:
   scrollRect: {fileID: 0}
   vertical: 0
   valUpdated: 0
+  snapInterval: 1
 --- !u!61 &528578460
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -25816,7 +25819,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -645844993
   m_SortingLayer: 1
-  m_SortingOrder: 3
+  m_SortingOrder: 2
   m_Sprite: {fileID: -938002290, guid: 21b384d0f1da7104c8482b58afe4db16, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -26025,12 +26028,13 @@ MonoBehaviour:
   sliderMinValue: 0.001
   sliderMaxValue: 0.01
   sliderValue: -1
-  sliderSnap: 0
+  sliderSnap: 1
   leftBorder: {fileID: 1998894299}
   rightBorder: {fileID: 453626669}
   scrollRect: {fileID: 0}
   vertical: 0
   valUpdated: 0
+  snapInterval: 0.0001
 --- !u!61 &577937932
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -29472,6 +29476,7 @@ MonoBehaviour:
   scrollRect: {fileID: 0}
   vertical: 0
   valUpdated: 0
+  snapInterval: 1
 --- !u!61 &722876470
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -36773,6 +36778,7 @@ MonoBehaviour:
   scrollRect: {fileID: 0}
   vertical: 0
   valUpdated: 0
+  snapInterval: 1
 --- !u!61 &943529413
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -37399,6 +37405,7 @@ MonoBehaviour:
   scrollRect: {fileID: 0}
   vertical: 1
   valUpdated: 0
+  snapInterval: 1
 --- !u!61 &962905664
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -42866,7 +42873,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1147129192}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.12, y: -0.21, z: 0}
+  m_LocalPosition: {x: -0.12, y: -0.21, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -59892,6 +59899,7 @@ MonoBehaviour:
   scrollRect: {fileID: 0}
   vertical: 0
   valUpdated: 0
+  snapInterval: 1
 --- !u!61 &1686054473
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -60752,7 +60760,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1706215134}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -65680,7 +65688,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: -645844993
-  m_SortingOrder: 3
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!224 &1828462617
 RectTransform:
@@ -68528,6 +68536,7 @@ MonoBehaviour:
   scrollRect: {fileID: 0}
   vertical: 0
   valUpdated: 0
+  snapInterval: 1
 --- !u!61 &1898726973
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -71793,7 +71802,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -645844993
   m_SortingLayer: 1
-  m_SortingOrder: 4
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: ce31ae861fe09314cb0504d4188172e4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.101960786}
   m_FlipX: 0
@@ -72075,6 +72084,7 @@ MonoBehaviour:
   scrollRect: {fileID: 25400917}
   vertical: 1
   valUpdated: 0
+  snapInterval: 1
 --- !u!61 &1982932937
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -75659,6 +75669,7 @@ MonoBehaviour:
   scrollRect: {fileID: 0}
   vertical: 0
   valUpdated: 0
+  snapInterval: 1
 --- !u!61 &2082566525
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -76365,6 +76376,7 @@ MonoBehaviour:
   scrollRect: {fileID: 968360992}
   vertical: 1
   valUpdated: 0
+  snapInterval: 1
 --- !u!61 &2100466731
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -78516,6 +78528,7 @@ MonoBehaviour:
   scrollRect: {fileID: 0}
   vertical: 0
   valUpdated: 0
+  snapInterval: 1
 --- !u!212 &7613291555791018989
 SpriteRenderer:
   m_ObjectHideFlags: 0

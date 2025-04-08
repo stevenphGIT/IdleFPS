@@ -27,6 +27,8 @@ public class InputSlider : MonoBehaviour
     public bool vertical = false;
 
     public bool valUpdated = true;
+
+    public float snapInterval = 1;
     private void Start()
     {
         if (scrollRect != null)
@@ -112,7 +114,7 @@ public class InputSlider : MonoBehaviour
         tempVal = sliderMinValue + (((xVal - xMin) / distance) * (sliderMaxValue - sliderMinValue));
 
         if (sliderSnap)
-            tempVal = Mathf.Round(tempVal);
+            tempVal = Mathf.Round(tempVal / snapInterval) * snapInterval;
 
         sliderValue = tempVal;
         UpdateBar();
