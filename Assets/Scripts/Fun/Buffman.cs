@@ -6,7 +6,7 @@ public class Buffman : Boss
 
     public Sprite crossed;
 
-    private void Awake()
+    protected void Awake()
     {
         if (Instance == null)
             Instance = this;

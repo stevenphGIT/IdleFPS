@@ -144,9 +144,10 @@ public class Snowman : MonoBehaviour
         snowmanTransition.SetActive(false);
         buffman.SetActive(true);
         buffman.GetComponent<Animator>().Play("SnowmanFightStart");
+        yield return new WaitForSeconds(0.5f);
         BossHandler.Instance.PrepareBoss(Buffman.Instance);
         //TextQueue.Instance.AddNotificationToList(new TextQueue.Notification("Boss Battle!", "The Snowman", Color.white, new Color(0.78f, 0.96f, 1f)));
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
         CutsceneHandler.Instance.inCutscene = false;
         Buffman.Instance.StartFight();
     }

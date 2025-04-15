@@ -13733,6 +13733,38 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 375110680}
   m_CullTransparentMesh: 0
+--- !u!1 &375786426
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 375786427}
+  m_Layer: 0
+  m_Name: ShakeParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &375786427
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 375786426}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 574309195}
+  m_Father: {fileID: 596233709}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &381573487
 GameObject:
   m_ObjectHideFlags: 0
@@ -25887,11 +25919,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 574309194}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.17, y: -0.16, z: 0}
+  m_LocalPosition: {x: 0.17000002, y: -0.16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 596233709}
+  m_Father: {fileID: 375786427}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &574309196
@@ -26622,7 +26654,6 @@ GameObject:
   m_Component:
   - component: {fileID: 596233709}
   - component: {fileID: 596233710}
-  - component: {fileID: 596233711}
   m_Layer: 0
   m_Name: SnowmanParent
   m_TagString: Untagged
@@ -26644,7 +26675,7 @@ Transform:
   m_Children:
   - {fileID: 1142809036}
   - {fileID: 97194208}
-  - {fileID: 574309195}
+  - {fileID: 375786427}
   m_Father: {fileID: 929507234}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -26668,24 +26699,6 @@ MonoBehaviour:
   normalSprite: {fileID: 21300000, guid: fd153d20cc0bdbd4eb53712852958f18, type: 3}
   angrySprite: {fileID: 21300000, guid: fac179bb30b735d40a9d5b7947f6006c, type: 3}
   openingSpeech: {fileID: 11400000, guid: 55581e6106ad2734196c43053a2e2d10, type: 2}
---- !u!114 &596233711
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 596233708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d25e621a9733624cbe9b673d9cf4337, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 574309196}
-  rend: {fileID: 574309197}
-  boss: {fileID: 574309194}
-  bossName: The Snowlypian
-  bossColor: {r: 0.070191, g: 0.72045416, b: 0.8584906, a: 1}
-  crossed: {fileID: 21300000, guid: 9a1b3252742ab5e468c739f6f71c175a, type: 3}
 --- !u!1 &598008818
 GameObject:
   m_ObjectHideFlags: 0
@@ -27175,7 +27188,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &604019174
 Transform:
   m_ObjectHideFlags: 0
@@ -61734,6 +61747,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1726451781}
   - component: {fileID: 1726451782}
+  - component: {fileID: 1726451783}
   m_Layer: 0
   m_Name: BossHandler
   m_TagString: Untagged
@@ -61773,6 +61787,25 @@ MonoBehaviour:
   bossBar: {fileID: 604019173}
   barFilling: {fileID: 1662641042}
   barTitle: {fileID: 39419475}
+--- !u!114 &1726451783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1726451780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d25e621a9733624cbe9b673d9cf4337, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 574309196}
+  rend: {fileID: 574309197}
+  boss: {fileID: 574309194}
+  shakeObj: {fileID: 375786426}
+  bossName: Snowlympian
+  bossColor: {r: 0, g: 0.80022204, b: 0.990566, a: 1}
+  crossed: {fileID: 21300000, guid: 9a1b3252742ab5e468c739f6f71c175a, type: 3}
 --- !u!1 &1726650817
 GameObject:
   m_ObjectHideFlags: 0
