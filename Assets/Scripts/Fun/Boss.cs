@@ -7,4 +7,6 @@ public class Boss : MonoBehaviour
     public Animator animator;
     public SpriteRenderer rend;
     public GameObject boss;
+    public string bossName;
+    public Color bossColor;
 }

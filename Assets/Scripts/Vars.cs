@@ -131,9 +131,17 @@ public class Vars : MonoBehaviour, IDataPersistence
     void Update()
     {
         totalHps = FindHPS();
-        scoreText.text = Abbr(hits);
         nonHgHps = totalHps - hps[0];
-        totalHitsText.text = HpsAbbr(totalHps) + " hits/sec";
+        if (!BossHandler.Instance.activeBoss)
+        {
+            scoreText.text = Abbr(hits);
+            totalHitsText.text = HpsAbbr(totalHps) + " hits/sec";
+        }
+        else
+        {
+            scoreText.text = "";
+            totalHitsText.text = "";
+        }
         radsText.text = TotalAbbr(rads) + " <color=#00FF00><sprite index=0>rads</color>";
 
         timer += Time.deltaTime;

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Buffman : Boss
@@ -17,5 +15,6 @@ public class Buffman : Boss
     {
         rend.sprite = crossed;
         animator.Play("SnowmanFightSlide");
+        BossHandler.Instance.StartFight();
     }
 }
