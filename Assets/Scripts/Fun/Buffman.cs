@@ -13,6 +13,7 @@ public class Buffman : Boss
     }
     public void StartFight()
     {
+        health = maxHealth;
         rend.sprite = crossed;
         animator.Play("SnowmanFightSlide");
         BossHandler.Instance.StartFight();

@@ -10,6 +10,9 @@ public class Boss : MonoBehaviour
     public string bossName;
     public Color bossColor;
 
+    public double maxHealth;
+    public double health;
+
     protected float shakeTimer = -50, shakeIntensity = 0.2f;
     protected float startX;
     protected float startY;
@@ -54,5 +57,7 @@ public class Boss : MonoBehaviour
         shakeTimer = 0.6f;
         boss.GetComponent<SpriteRenderer>().color = new Color(1, 0.4f, 0.4f);
         FloatingText.Instance.PopText("-" + damage + "\n" + source, Color.red, boss.transform.position);
+        health -= damage;
+        BossHandler.Instance.UpdateBossBar();
     }
 }

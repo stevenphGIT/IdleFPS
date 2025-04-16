@@ -8,8 +8,13 @@ public class BossHandler : MonoBehaviour
     public Boss activeBoss;
     public GameObject bossBar;
     public SpriteRenderer barFilling;
+    public GameObject healthBar, damageBar, targetPos;
     public TMP_Text barTitle;
 
+    private void Update()
+    {
+
+    }
     private void Awake()
     {
         if (Instance == null)
@@ -32,5 +37,12 @@ public class BossHandler : MonoBehaviour
     public void StartFight()
     {
         fighting = true;
+    }
+
+    public void UpdateBossBar()
+    {
+        float t = (float)activeBoss.health / (float)activeBoss.maxHealth;
+        targetPos.transform.localPosition = new Vector3(Mathf.Lerp(-2.34f, 0f, t), targetPos.transform.localPosition.y, targetPos.transform.localPosition.z);
+        healthBar.transform.position = targetPos.transform.position;
     }
 }
