@@ -10,35 +10,43 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0bb913068cc784648a353e0eb0533e98, type: 3}
-  m_Name: start
+  m_Name: beg
   m_EditorClassIdentifier: 
-  character: Snowman
+  character: Snowlympian
   standard: 0
   identifier: 0
   lines:
-  - speech: That's <color=#FF0000>ENOUGH</color>!
-    icon: {fileID: 21300000, guid: 34288854d062e4b45b38b1780e5318eb, type: 3}
-    textSpeed: 0.1
+  - speech: ........
+    icon: {fileID: 21300000, guid: 26a121f785484294798e6013c9e8c006, type: 3}
+    textSpeed: 0.05
     stopMusic: 0
     stopSound: 0
     unskippable: 0
     voice: {fileID: 8300000, guid: 1cc096d65933fd44a8dce4874d811d26, type: 3}
-  - speech: You think you can just shove me over again and again without any consequences?
+  - speech: Well, kid. You beat me.
+    icon: {fileID: 21300000, guid: 26a121f785484294798e6013c9e8c006, type: 3}
+    textSpeed: 0
+    stopMusic: 0
+    stopSound: 0
+    unskippable: 0
+    voice: {fileID: 8300000, guid: 1cc096d65933fd44a8dce4874d811d26, type: 3}
+  - speech: You shoved me over again and again, and took me down when I tried to
+      stand up for myself.
+    icon: {fileID: 21300000, guid: 26a121f785484294798e6013c9e8c006, type: 3}
+    textSpeed: 0
+    stopMusic: 0
+    stopSound: 0
+    unskippable: 0
+    voice: {fileID: 8300000, guid: 1cc096d65933fd44a8dce4874d811d26, type: 3}
+  - speech: You win.
     icon: {fileID: 21300000, guid: 34288854d062e4b45b38b1780e5318eb, type: 3}
     textSpeed: 0
     stopMusic: 0
     stopSound: 0
     unskippable: 0
     voice: {fileID: 8300000, guid: 1cc096d65933fd44a8dce4874d811d26, type: 3}
-  - speech: You think I'm a pushover? That I'm WEAK?!
-    icon: {fileID: 21300000, guid: 34288854d062e4b45b38b1780e5318eb, type: 3}
-    textSpeed: 0
-    stopMusic: 0
-    stopSound: 0
-    unskippable: 0
-    voice: {fileID: 8300000, guid: 1cc096d65933fd44a8dce4874d811d26, type: 3}
-  - speech: I'll show you how strong I am!!!
-    icon: {fileID: 21300000, guid: 34288854d062e4b45b38b1780e5318eb, type: 3}
+  - speech: I'll finally see my family again.
+    icon: {fileID: 21300000, guid: cfe54e8968035f647aecd0cac31107d2, type: 3}
     textSpeed: 0
     stopMusic: 0
     stopSound: 0
@@ -46,5 +54,9 @@ MonoBehaviour:
     voice: {fileID: 8300000, guid: 1cc096d65933fd44a8dce4874d811d26, type: 3}
   branch:
     question: 
-    icon: {fileID: 0}
-    choices: []
+    icon: {fileID: 21300000, guid: cfe54e8968035f647aecd0cac31107d2, type: 3}
+    choices:
+    - answer: Yeah, alright!
+      ensuingDialogue: {fileID: 0}
+    - answer: No.
+      ensuingDialogue: {fileID: 0}

@@ -351,9 +351,9 @@ public class BoardHandler : MonoBehaviour
             if (comboCount == 10)
                 BossHandler.Instance.activeBoss.Hurt(1.0, "10 combo!");
             if (comboCount == 25)
-                BossHandler.Instance.activeBoss.Hurt(10.0, "25 combo!");
+                BossHandler.Instance.activeBoss.Hurt(3.0, "25 combo!");
             if (comboCount == 50)
-                BossHandler.Instance.activeBoss.Hurt(100.0, "On FIRE!");
+                BossHandler.Instance.activeBoss.Hurt(7.0, "On FIRE!");
         }
         if (comboDisplayCooldown < 0)
         {

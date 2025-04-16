@@ -13,13 +13,17 @@ public class BossHandler : MonoBehaviour
 
     private void Update()
     {
-
+        damageBar.transform.position = Vector3.MoveTowards(damageBar.transform.position, targetPos.transform.position, 0.005f);
     }
     private void Awake()
     {
         if (Instance == null)
             Instance = this;
 
+        Reset();
+    }
+    public void Reset()
+    {
         activeBoss = null;
         fighting = false;
         bossBar.SetActive(false);

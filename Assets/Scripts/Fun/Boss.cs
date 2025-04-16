@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Boss : MonoBehaviour
+public abstract class Boss : MonoBehaviour
 {
     public Animator animator;
     public SpriteRenderer rend;
@@ -42,6 +40,10 @@ public class Boss : MonoBehaviour
             shakeTimer = -50;
         }
     }
+    public void ShakeForSeconds(float f)
+    {
+        shakeTimer = f;
+    }
     public void SetOrigin()
     {
         startX = shakeObj.transform.position.x;
@@ -58,6 +60,12 @@ public class Boss : MonoBehaviour
         boss.GetComponent<SpriteRenderer>().color = new Color(1, 0.4f, 0.4f);
         FloatingText.Instance.PopText("-" + damage + "\n" + source, Color.red, boss.transform.position);
         health -= damage;
+        if (health <= 0)
+        {
+            health = 0;
+            KillBoss();
+        }
         BossHandler.Instance.UpdateBossBar();
     }
+    public abstract void KillBoss();
 }
