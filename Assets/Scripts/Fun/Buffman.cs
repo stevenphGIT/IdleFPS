@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Buffman : Boss
@@ -13,6 +15,32 @@ public class Buffman : Boss
 
     public TextHolder speech;
 
+    private float targetFreezeTimer;
+
+    [SerializeField]
+    private GameObject shield;
+    public List<GameObject> activeShields;
+    new void Update()
+    {
+        if (!attacking && BossHandler.Instance.fighting && activeShields.Count == 0)
+        {
+            if (targetFreezeTimer > 0)
+                targetFreezeTimer -= Time.deltaTime;
+            else
+            {
+                targetFreezeTimer = 25f;
+                FreezeTargets();
+            }
+        }
+        base.Update();
+    }
+    private void FreezeTargets()
+    {
+        foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Target"))
+        {
+            activeShields.Add(Instantiate(shield, obj.transform.position, Quaternion.identity, obj.transform));
+        }
+    }
     protected void Awake()
     {
         deadman.SetActive(false);
@@ -53,7 +81,7 @@ public class Buffman : Boss
         HitSound.Instance.source.PlayOneShot(HitSound.Instance.snowmanTopple);
         rend.sprite = dead;
         yield return new WaitForSeconds(1f);
-        deadman.transform.position = boss.transform.position;
+        deadman.transform.position = new Vector3(boss.transform.position.x, boss.transform.position.y, 300);
         boss.SetActive(false);
         deadman.SetActive(true);
         yield return new WaitForSeconds(1f);

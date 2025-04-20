@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 3275612024291980341}
   - component: {fileID: 4050454660016752733}
   - component: {fileID: 6893371540988212092}
+  - component: {fileID: 4335798988611231993}
   m_Layer: 0
   m_Name: goldTarget
-  m_TagString: GoldTarget
+  m_TagString: Target
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -143,3 +144,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25066f4a68a07cb4c9cb67c2739366b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4335798988611231993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2672180429698733995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c6204584858fcb41a40c26d90fd2c47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 2

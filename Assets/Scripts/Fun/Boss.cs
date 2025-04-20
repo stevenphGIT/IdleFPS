@@ -17,7 +17,9 @@ public abstract class Boss : MonoBehaviour
 
     protected bool posSet = false;
 
-    private void Update()
+    public bool attacking = false;
+
+    protected void Update()
     {
         DamageTick();
     }

@@ -30457,11 +30457,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 748578774}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.34, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: -0.25312504, z: 0}
+  m_LocalScale: {x: 0.5625001, y: 0.5625001, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1823311150}
+  m_Father: {fileID: 1472729693}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &748578776
@@ -38925,7 +38925,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -645844993
   m_SortingLayer: 1
-  m_SortingOrder: 4
+  m_SortingOrder: 6
   m_Sprite: {fileID: 21300000, guid: cfde2010cecd50842b0622cfbba426d7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -53062,11 +53062,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1472729692}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.11, z: 0}
+  m_LocalPosition: {x: 0.36, y: 0.11, z: 0}
   m_LocalScale: {x: 1.7777774, y: 1.7777774, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1918535311}
+  - {fileID: 748578775}
   m_Father: {fileID: 1823311150}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -62241,14 +62242,16 @@ MonoBehaviour:
   shakeObj: {fileID: 375786426}
   bossName: Snowlympian
   bossColor: {r: 0, g: 0.80022204, b: 0.990566, a: 1}
-  maxHealth: 20
-  health: 20
+  maxHealth: 100
+  health: 100
+  attacking: 0
   crossed: {fileID: 21300000, guid: 9a1b3252742ab5e468c739f6f71c175a, type: 3}
   deadman: {fileID: 1447197329}
   sad: {fileID: 21300000, guid: cbd6cd542a5f8e04da38cfb5a14aaf5e, type: 3}
   hopeful: {fileID: 21300000, guid: c680c5cb1c792a6419695633e1e6562b, type: 3}
   dead: {fileID: 21300000, guid: 02d5265b2e243c6479962ee5d4300f8d, type: 3}
   speech: {fileID: 11400000, guid: a87bdf0d7d0f71c4fb4290f602ceb561, type: 2}
+  shield: {fileID: 889633894289277512, guid: f0e3f6d02d367434a95663030c9e8644, type: 3}
 --- !u!1 &1726650817
 GameObject:
   m_ObjectHideFlags: 0
@@ -66357,7 +66360,6 @@ Transform:
   m_LocalScale: {x: 648.25323, y: 648.25323, z: 72.02814}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 748578775}
   - {fileID: 1472729693}
   - {fileID: 598366444}
   - {fileID: 1814946057}
@@ -70787,7 +70789,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -645844993
   m_SortingLayer: 1
-  m_SortingOrder: 4
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: f0fb340484bc71c45a280c38e5a65d4f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

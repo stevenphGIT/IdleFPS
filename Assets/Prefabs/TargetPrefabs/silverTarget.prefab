@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 9156784513335322837}
   - component: {fileID: 5810315120907097363}
   - component: {fileID: 5517750029825532867}
+  - component: {fileID: 7671147905130903513}
   m_Layer: 0
   m_Name: silverTarget
-  m_TagString: SilverTarget
+  m_TagString: Target
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -143,3 +144,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25066f4a68a07cb4c9cb67c2739366b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7671147905130903513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8641921582427970543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c6204584858fcb41a40c26d90fd2c47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 1

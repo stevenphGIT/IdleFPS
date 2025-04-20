@@ -45,8 +45,8 @@ MonoBehaviour:
     stopSound: 0
     unskippable: 0
     voice: {fileID: 8300000, guid: 1cc096d65933fd44a8dce4874d811d26, type: 3}
-  - speech: I'll finally see my family again.
-    icon: {fileID: 21300000, guid: cfe54e8968035f647aecd0cac31107d2, type: 3}
+  - speech: Bet you feel real good about yourself.
+    icon: {fileID: 21300000, guid: 34288854d062e4b45b38b1780e5318eb, type: 3}
     textSpeed: 0
     stopMusic: 0
     stopSound: 0

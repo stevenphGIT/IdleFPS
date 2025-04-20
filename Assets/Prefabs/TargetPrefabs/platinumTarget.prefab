@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 3781592470426409060}
   - component: {fileID: 3022645012735158810}
   - component: {fileID: 1305691192606052441}
+  - component: {fileID: -5978018234641422825}
   m_Layer: 0
   m_Name: platinumTarget
-  m_TagString: PlatTarget
+  m_TagString: Target
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -143,3 +144,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25066f4a68a07cb4c9cb67c2739366b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-5978018234641422825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8670472480034532928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c6204584858fcb41a40c26d90fd2c47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 3

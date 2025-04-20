@@ -332,31 +332,11 @@ public class InputHandler : MonoBehaviour
             Abilities.Instance.ToggleBot();
         }
         //Target Clicks
+        else if (rayHit.collider.gameObject.CompareTag("Shield"))
+        {
+            rayHit.collider.gameObject.GetComponent<SnowShield>().Click();
+        }
         else if (rayHit.collider.gameObject.CompareTag("Target"))
-        {
-            BoardHandler.Instance.GainHitsFromTarget(rayHit.collider);
-            if (AvailableUpgrades.Instance.combosUnlocked)
-                BoardHandler.Instance.IncrementCombo();
-        }
-        else if (rayHit.collider.gameObject.CompareTag("SilverTarget"))
-        {
-            BoardHandler.Instance.GainHitsFromTarget(rayHit.collider);
-            if (AvailableUpgrades.Instance.combosUnlocked)
-                BoardHandler.Instance.IncrementCombo();
-        }
-        else if (rayHit.collider.gameObject.CompareTag("GoldTarget"))
-        {
-            BoardHandler.Instance.GainHitsFromTarget(rayHit.collider);
-            if (AvailableUpgrades.Instance.combosUnlocked)
-                BoardHandler.Instance.IncrementCombo();
-        }
-        else if (rayHit.collider.gameObject.CompareTag("PlatTarget"))
-        {
-            BoardHandler.Instance.GainHitsFromTarget(rayHit.collider);
-            if (AvailableUpgrades.Instance.combosUnlocked)
-                BoardHandler.Instance.IncrementCombo();
-        }
-        else if (rayHit.collider.gameObject.CompareTag("OmegaTarget"))
         {
             BoardHandler.Instance.GainHitsFromTarget(rayHit.collider);
             if (AvailableUpgrades.Instance.combosUnlocked)

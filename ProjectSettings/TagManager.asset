@@ -28,6 +28,7 @@ TagManager:
   - Answer
   - NPC
   - SnapCard
+  - Shield
   layers:
   - Default
   - TransparentFX

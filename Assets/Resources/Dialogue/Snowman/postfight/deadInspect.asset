@@ -16,15 +16,7 @@ MonoBehaviour:
   standard: 0
   identifier: 0
   lines:
-  - speech: Where a tall, strong, snowman once stood is a small pile of snow and
-      buttons.
-    icon: {fileID: 0}
-    textSpeed: 0
-    stopMusic: 0
-    stopSound: 0
-    unskippable: 0
-    voice: {fileID: 0}
-  - speech: Any magic that was in that old silk hat is thoroughly gone now.
+  - speech: Where that snowman once stood is a small pile of snow and buttons.
     icon: {fileID: 0}
     textSpeed: 0
     stopMusic: 0

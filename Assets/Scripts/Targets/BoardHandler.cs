@@ -350,10 +350,12 @@ public class BoardHandler : MonoBehaviour
         {
             if (comboCount == 10)
                 BossHandler.Instance.activeBoss.Hurt(1.0, "10 combo!");
-            if (comboCount == 25)
+            else if (comboCount == 25)
                 BossHandler.Instance.activeBoss.Hurt(3.0, "25 combo!");
-            if (comboCount == 50)
-                BossHandler.Instance.activeBoss.Hurt(7.0, "On FIRE!");
+            else if (comboCount == 50)
+                BossHandler.Instance.activeBoss.Hurt(7.0, "50 combo!");
+            else if (comboCount > 50 && comboCount % 5 == 0)
+                BossHandler.Instance.activeBoss.Hurt(2.0, "Burning up!");
         }
         if (comboDisplayCooldown < 0)
         {
@@ -391,7 +393,7 @@ public class BoardHandler : MonoBehaviour
 
     public void GainHitsFromTarget(Collider2D tg)
     {
-        if (tg.gameObject.CompareTag("Target"))
+        if (tg.gameObject.GetComponent<indexNum>().index == 0)
         {
             if (tg.name == "rMid")
             {
@@ -411,7 +413,7 @@ public class BoardHandler : MonoBehaviour
             //Vars.Instance.targets *= 10;
             Vars.Instance.clickTracker += 1;
         }
-        else if (tg.gameObject.CompareTag("SilverTarget"))
+        else if (tg.gameObject.GetComponent<indexNum>().index == 1)
         {
             if (tg.name == "sMid")
             {
@@ -431,7 +433,7 @@ public class BoardHandler : MonoBehaviour
             Vars.Instance.clickTracker += 1;
             Vars.Instance.silverClickTracker += 1;
         }
-        else if (tg.gameObject.CompareTag("GoldTarget"))
+        else if (tg.gameObject.GetComponent<indexNum>().index == 2)
         {
             if (tg.name == "gMid")
             {
@@ -451,7 +453,7 @@ public class BoardHandler : MonoBehaviour
             Vars.Instance.clickTracker += 1;
             Vars.Instance.goldClickTracker += 1;
         }
-        else if (tg.gameObject.CompareTag("PlatTarget"))
+        else if (tg.gameObject.GetComponent<indexNum>().index == 3)
         {
             if (tg.name == "pMid")
             {
@@ -468,7 +470,7 @@ public class BoardHandler : MonoBehaviour
             FloatingText.Instance.PopText(amountToGain, new Color32(0, 214, 186, 255), speedMod);
             Vars.Instance.platClickTracker += 1;
         }
-        else if (tg.gameObject.CompareTag("OmegaTarget"))
+        else if (tg.gameObject.GetComponent<indexNum>().index == 4)
         {
             if (tg.name == "uMid")
             {
