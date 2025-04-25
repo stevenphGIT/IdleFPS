@@ -7,9 +7,11 @@ public class FragmentTarget : MonoBehaviour
     private float explosionForce = 0.5f;
     private float fragmentLifetime = 0.2f;
 
+    [SerializeField]
+    private bool toggleable;
     private void OnDestroy()
     {
-        if(Options.Instance.targetExplode)
+        if(!toggleable || Options.Instance.targetExplode)
             SplitAndExplode();
     }
 

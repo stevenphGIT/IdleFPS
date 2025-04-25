@@ -11,6 +11,9 @@ public class Music : MonoBehaviour
 
     public AudioSource source;
 
+    public AudioLowPassFilter filter;
+    public AudioHighPassFilter filter2;
+
     private float timer;
 
     private bool paused;
@@ -26,6 +29,7 @@ public class Music : MonoBehaviour
     {
         source = GetComponent<AudioSource>();
         ChooseSong();
+        Unmuffle();
     }
 
     void Update()
@@ -38,7 +42,16 @@ public class Music : MonoBehaviour
             ChooseSong();
         }
     }
-
+    public void Muffle()
+    {
+        filter.enabled = true;
+        filter2.enabled = true;
+    }
+    public void Unmuffle()
+    {
+        filter.enabled = false;
+        filter2.enabled= false;
+    }
     public void ChooseSong()
     {
         if (Prestige.Instance.inPrestigeAnim || Prestige.Instance.inPrestigeShop)
@@ -69,7 +82,6 @@ public class Music : MonoBehaviour
         source.Stop();
         ChooseSong();
     }
-
     public void StopSounds()
     {
         source.Stop();

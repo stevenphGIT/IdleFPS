@@ -16,19 +16,20 @@ public class Buffman : Boss
     public TextHolder speech;
 
     private float targetFreezeTimer;
+    private float freezeFrequency = 50f;
 
     [SerializeField]
     private GameObject shield;
     public List<GameObject> activeShields;
     new void Update()
     {
-        if (!attacking && BossHandler.Instance.fighting && activeShields.Count == 0)
+        if (!attacking && BossHandler.Instance.fighting)
         {
             if (targetFreezeTimer > 0)
                 targetFreezeTimer -= Time.deltaTime;
             else
             {
-                targetFreezeTimer = 25f;
+                targetFreezeTimer = freezeFrequency;
                 FreezeTargets();
             }
         }
@@ -36,6 +37,11 @@ public class Buffman : Boss
     }
     private void FreezeTargets()
     {
+        foreach (GameObject obj in activeShields)
+        {
+            Destroy(obj);
+        }
+        activeShields.Clear();
         foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Target"))
         {
             activeShields.Add(Instantiate(shield, obj.transform.position, Quaternion.identity, obj.transform));

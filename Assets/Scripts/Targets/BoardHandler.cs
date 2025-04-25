@@ -4,6 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.UIElements;
 
 public class BoardHandler : MonoBehaviour
 {
@@ -23,6 +25,7 @@ public class BoardHandler : MonoBehaviour
     public GameObject platTargetPrefab;
     public GameObject omegaTargetPrefab;
     //DP Targets
+    public GameObject targetParent;
     public GameObject redDP;
     public GameObject silverDP;
     public GameObject goldDP;
@@ -45,7 +48,8 @@ public class BoardHandler : MonoBehaviour
     private float comboDisplayCooldown = -1f;
     //Target Variables
     public int activeTargetCount;
-    public List<Vector3> posList;
+    public List<Vector3> posList = new();
+    public GameObject[] targets;
 
     float speedMod = 1f;
     void Awake()
@@ -55,6 +59,15 @@ public class BoardHandler : MonoBehaviour
 
         targetSpawnPos = visualHolder.transform.position;
         activeTargetCount = 0;
+
+        float targetSpacing = 0.75f;
+        for (int i = -2; i < 3; i++)
+        {
+            for (int j = -2; j < 3; j++)
+            {
+                posList.Add(new Vector3(targetSpawnPos.x + (i * targetSpacing), targetSpawnPos.y + (j * targetSpacing), 0));
+            }
+        }
     }
 
     void Start()
@@ -96,17 +109,6 @@ public class BoardHandler : MonoBehaviour
                 EndCombo();
             }
         }
-    }
-    public bool PosUsed(Vector3 testPos)
-    {
-        foreach (var p in posList)
-        {
-            if (p == testPos)
-            {
-                return true;
-            }
-        }
-        return false;
     }
     public void SetTargetOddsDisplay()
     {
@@ -178,13 +180,10 @@ public class BoardHandler : MonoBehaviour
     }
     public void SpawnTarget()
     {
-        Vector3 targetPos = GetTargetPos();
-        while (PosUsed(targetPos))
-        {
-            targetPos = GetTargetPos();
-        }
-        posList.Add(targetPos);
+        int targetIndex = GetTargetPos();
 
+        if (targetIndex == -1)
+            return;
         //All odds in percentage form
         int selectedTarget = -1;
         SetTargetOddsDisplay();
@@ -202,41 +201,28 @@ public class BoardHandler : MonoBehaviour
             selectedTarget = 3;
         else
             selectedTarget = 4;
+        GameObject targetToSpawn = null;
         if (selectedTarget == 0)
         {
-            if (!Abilities.Instance.abilityActive[1])
-                Instantiate(omegaTargetPrefab, targetPos, Quaternion.identity);
-            else
-                Instantiate(omegaDP, targetPos, Quaternion.identity);
+            targetToSpawn = omegaTargetPrefab;
         }
         else if (selectedTarget == 1)
         {
-            if (!Abilities.Instance.abilityActive[1])
-                Instantiate(platTargetPrefab, targetPos, Quaternion.identity);
-            else
-                Instantiate(platDP, targetPos, Quaternion.identity);
+            targetToSpawn = platTargetPrefab;
         }
         else if (selectedTarget == 2)
         {
-            if (!Abilities.Instance.abilityActive[1])
-                Instantiate(goldTargetPrefab, targetPos, Quaternion.identity);
-            else
-                Instantiate(goldDP, targetPos, Quaternion.identity);
+            targetToSpawn = goldTargetPrefab;
         }
         else if (selectedTarget == 3)
         {
-            if (!Abilities.Instance.abilityActive[1])
-                Instantiate(silverTargetPrefab, targetPos, Quaternion.identity);
-            else
-                Instantiate(silverDP, targetPos, Quaternion.identity);
+            targetToSpawn = silverTargetPrefab;
         }
         else
         {
-            if (!Abilities.Instance.abilityActive[1])
-                Instantiate(redTargetPrefab, targetPos, Quaternion.identity);
-            else
-                Instantiate(redDP, targetPos, Quaternion.identity);
+            targetToSpawn = redTargetPrefab;
         }
+        targets[targetIndex] = Instantiate(targetToSpawn, posList[targetIndex], Quaternion.identity, targetParent.transform);
         activeTargetCount++;
     }
     public void RemoveTarget(GameObject target)
@@ -249,7 +235,6 @@ public class BoardHandler : MonoBehaviour
             SpawnTarget();
         }
         activeTargetCount--;
-        posList.Remove(target.transform.position);
         Destroy(target);
     }
 
@@ -330,10 +315,20 @@ public class BoardHandler : MonoBehaviour
         return 2 * UpsAndVars.Instance.critAmount;
     }
 
-    public Vector3 GetTargetPos()
+    public int GetTargetPos()
     {
-        float targetSpacing = 0.75f;
-        return new Vector3(targetSpawnPos.x + (Mathf.Round(UnityEngine.Random.Range(-2f, 2f)) * targetSpacing), targetSpawnPos.y + (Mathf.Round(UnityEngine.Random.Range(-2f, 2f)) * targetSpacing), 0);
+        List<int> availablePositions = new();
+        for (int i = 0; i < targets.Length; i++)
+        {
+            if (targets[i] == null)
+                availablePositions.Add(i);
+        }
+        if (availablePositions.Count > 0)
+        {
+            int choice = UnityEngine.Random.Range(0, availablePositions.Count);
+            return availablePositions[choice];
+        }
+        return -1;
     }
     public void PopulateBoard()
     {

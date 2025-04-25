@@ -36,6 +36,7 @@ public class UserInputBox : MonoBehaviour
         hitSound.source.PlayOneShot(hitSound.closeMenu);
         boxAnim.SetBool("active", false);
         vignetteAnim.Play("VignetteFadeOut");
+        Music.Instance.Unmuffle();
     }
     public void ShowBox(int index)
     {
@@ -44,6 +45,7 @@ public class UserInputBox : MonoBehaviour
             boxAnim.SetBool("active", false);
             hitSound.source.PlayOneShot(hitSound.closeMenu);
             vignetteAnim.Play("VignetteFadeOut");
+            Music.Instance.Unmuffle();
         }
         else
         {
@@ -51,6 +53,7 @@ public class UserInputBox : MonoBehaviour
             ShowText(index);
             boxAnim.SetBool("active", true);
             vignetteAnim.Play("VignetteFadeIn");
+            Music.Instance.Muffle();
         }
 
     }

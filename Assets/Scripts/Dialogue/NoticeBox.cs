@@ -63,6 +63,7 @@ public class NoticeBox : MonoBehaviour
     public void HideBox()
     {
         vignetteAnim.Play("VignetteFadeOut");
+        Music.Instance.Unmuffle();
         animator.SetBool("Show", false);
         activeBox = false;
     }
@@ -73,5 +74,6 @@ public class NoticeBox : MonoBehaviour
         activeBox = true;
         animator.SetBool("Show", true);
         vignetteAnim.Play("VignetteFadeIn");
+        Music.Instance.Muffle();
     }
 }
