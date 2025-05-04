@@ -17,10 +17,22 @@ public abstract class Boss : MonoBehaviour
 
     protected bool posSet = false;
 
+    public float defenseTimer = 0;
     public bool attacking = false;
 
     protected void Update()
     {
+        if (BossHandler.Instance.fighting && defenseTimer > 0)
+        {
+            defenseTimer -= Time.deltaTime;
+        }
+        else
+        {
+            defenseTimer = 30;
+            if (BossHandler.Instance.storedDamage > 0)
+                Hurt(BossHandler.Instance.storedDamage, "Bonus Damage!");
+            BossHandler.Instance.storedDamage = 0;
+        }
         DamageTick();
     }
     protected void DamageTick()

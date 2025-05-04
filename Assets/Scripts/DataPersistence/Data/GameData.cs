@@ -29,13 +29,14 @@ public class GameData
     //Dialogue Tracker
     public List<int> addedDialogueIDs;
     //Abilities
-    public int[] slottedAbilityIDs;
-    public List<int> ownedAbilityIDs;
+    public string[] slottedAbilityIDs;
+    public List<string> ownedAbilityIDs;
 
     public List<float> remainingCooldown;
     public List<float> remainingDuration;
-    public List<bool> abilityActive;
     public int abilitiesUsed;
+    public int eggUses;
+    public float autoCursorSpeed;
     //Offline Progress Vars
     public double timeSaved;
     public string timeStartedString;
@@ -113,10 +114,11 @@ public class GameData
         //Abilities
         this.remainingCooldown = new List<float>() {0, 0, 0, 0, 0};
         this.remainingDuration = new List<float>() {0, 0, 0, 0, 0};
-        this.abilityActive = new List<bool>() {false, false, false, false, false};
-        this.ownedAbilityIDs = new List<int>();
-        this.slottedAbilityIDs = new int[5];
+        this.ownedAbilityIDs = new List<string>();
+        this.slottedAbilityIDs = new string[5];
         this.abilitiesUsed = 0;
+        this.eggUses = 0;
+        this.autoCursorSpeed = 1f;
         //Weather
         this.locationCooldown = 0;
         this.activeLocation = 0;

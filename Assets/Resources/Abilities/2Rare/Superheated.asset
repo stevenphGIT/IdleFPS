@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47787dc693f27114682db4a021af3514, type: 3}
   m_Name: Superheated
   m_EditorClassIdentifier: 
-  id: 0
+  id: spr
   abilityIcon: {fileID: 0}
   abilityName: Superheated
   abilityDescription: At 2x max combo, gain a HUGE hit bonus from targets

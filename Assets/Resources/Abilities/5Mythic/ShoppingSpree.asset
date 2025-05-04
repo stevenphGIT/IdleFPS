@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47787dc693f27114682db4a021af3514, type: 3}
   m_Name: ShoppingSpree
   m_EditorClassIdentifier: 
-  id: 20
+  id: ssp
   abilityIcon: {fileID: 0}
   abilityName: Shopping Spree
   abilityDescription: All weapons are free for the duration of the ability.
   abilityCooldown: 14400
-  abilityDuration: 5
+  abilityDuration: 2
   rarity: 5

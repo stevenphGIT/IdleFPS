@@ -53,6 +53,8 @@ public class Vars : MonoBehaviour, IDataPersistence
 
     public int comboRecord;
     public int abilitiesUsed;
+    public int eggUses;
+    public float autoCursorSpeed;
     //Shop variables
     public InputSlider buyMultSlider;
     public int buyMultiplier;
@@ -302,6 +304,8 @@ public class Vars : MonoBehaviour, IDataPersistence
 
         this.comboRecord = data.comboRecord;
         this.abilitiesUsed = data.abilitiesUsed;
+        this.eggUses = data.eggUses;
+        this.autoCursorSpeed = data.autoCursorSpeed;
 
         this.snowmenSlain = data.snowmenSlain;
 
@@ -336,6 +340,8 @@ public class Vars : MonoBehaviour, IDataPersistence
 
         data.comboRecord = this.comboRecord;
         data.abilitiesUsed = this.abilitiesUsed;
+        data.eggUses = this.eggUses;
+        data.autoCursorSpeed = this.autoCursorSpeed;
 
         data.snowmenSlain = this.snowmenSlain;
 

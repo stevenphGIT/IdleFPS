@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47787dc693f27114682db4a021af3514, type: 3}
   m_Name: EasyMode
   m_EditorClassIdentifier: 
-  id: 31
+  id: esy
   abilityIcon: {fileID: 0}
   abilityName: Easy Mode
-  abilityDescription: Slow the combo timer by 20%
-  abilityCooldown: 7200
+  abilityDescription: Slow the combo timer by 30%
+  abilityCooldown: 2400
   abilityDuration: 60
   rarity: 1

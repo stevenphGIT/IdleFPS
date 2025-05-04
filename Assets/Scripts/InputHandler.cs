@@ -45,7 +45,7 @@ public class InputHandler : MonoBehaviour
     {
         if (SpeechBox.Instance.boxShowing) return;
         if (CutsceneHandler.Instance.inCutscene) return;
-        if (Input.GetKey(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (NoticeBox.Instance.activeBox)
             {
@@ -53,10 +53,34 @@ public class InputHandler : MonoBehaviour
                 NoticeBox.Instance.idNum = -1;
                 HitSound.Instance.source.PlayOneShot(HitSound.Instance.closeMenu, 1f);
             }
-            if (UserInputBox.Instance.Active())
+            else if (UserInputBox.Instance.Active())
             {
                 UserInputBox.Instance.HideBox();
             }
+            else
+            {
+                UserInputBox.Instance.ShowBox(0);
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            Abilities.Instance.UseSelectedAbility(0);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            Abilities.Instance.UseSelectedAbility(1);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            Abilities.Instance.UseSelectedAbility(2);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            Abilities.Instance.UseSelectedAbility(3);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            Abilities.Instance.UseSelectedAbility(4);
         }
         var mouseOverTest = Physics2D.GetRayIntersection(mainCamera.ScreenPointToRay(Crosshair.Instance.crosshairPos));
         if (!mouseOverTest.collider || mouseOverTest.collider.CompareTag("OpaqueDialogueBox"))
@@ -65,27 +89,27 @@ public class InputHandler : MonoBehaviour
             textboxGunId = -1;
             return;
         }
-        if (UpsAndVars.Instance.laserActive && Input.GetKey(KeyCode.Space))
+        if (AbilityBonuses.Instance.dragon && Input.GetKey(KeyCode.Space))
         {
             if (mouseOverTest.collider.gameObject.CompareTag("Target"))
             {
-                BoardHandler.Instance.GainHitsFromTarget(mouseOverTest.collider);
+                BoardHandler.Instance.CollectTarget(mouseOverTest.collider);
             }
-            else if (mouseOverTest.collider.gameObject.CompareTag("SilverTarget"))
+        }
+        if (AbilityBonuses.Instance.osuControls && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.X)))
+        {
+            if (mouseOverTest.collider.gameObject.CompareTag("Target"))
             {
-                BoardHandler.Instance.GainHitsFromTarget(mouseOverTest.collider);
+                BoardHandler.Instance.CollectTarget(mouseOverTest.collider);
+                if (AvailableUpgrades.Instance.combosUnlocked)
+                    BoardHandler.Instance.IncrementCombo();
             }
-            else if (mouseOverTest.collider.gameObject.CompareTag("GoldTarget"))
+        }
+        if (Input.GetMouseButtonDown(1))
+        {
+            if (mouseOverTest.collider.gameObject.CompareTag("SnapCard"))
             {
-                BoardHandler.Instance.GainHitsFromTarget(mouseOverTest.collider);
-            }
-            else if (mouseOverTest.collider.gameObject.CompareTag("PlatTarget"))
-            {
-                BoardHandler.Instance.GainHitsFromTarget(mouseOverTest.collider);
-            }
-            else if (mouseOverTest.collider.gameObject.CompareTag("OmegaTarget"))
-            {
-                BoardHandler.Instance.GainHitsFromTarget(mouseOverTest.collider);
+                mouseOverTest.collider.gameObject.GetComponent<LiftableCard>().RightClick();
             }
         }
         else if (mouseOverTest.collider.CompareTag("Ability"))
@@ -179,12 +203,12 @@ public class InputHandler : MonoBehaviour
             textboxGunId = -1;
         }
     }
-
     public void OnClick(InputAction.CallbackContext context)
     {
         if (!context.started) return;
 
         var rayHit = Physics2D.GetRayIntersection(mainCamera.ScreenPointToRay(Crosshair.Instance.crosshairPos));
+        
         if (rayHit.collider && rayHit.collider.CompareTag("Answer"))
         {
             SpeechBox.Instance.ChooseBranch(rayHit.collider.GetComponent<indexNum>().index);
@@ -291,9 +315,12 @@ public class InputHandler : MonoBehaviour
         }
         else if (rayHit.collider.name == "ShootFrame")
         {
-            if (Abilities.Instance.abilityActive[2])
+            if (AbilityBonuses.Instance.boardClickable)
             {
-                HitSound.Instance.source.PlayOneShot(HitSound.Instance.standardHit, 1f);
+                if (AbilityBonuses.Instance.foolery)
+                    HitSound.Instance.source.PlayOneShot(HitSound.Instance.funnyTargets[UnityEngine.Random.Range(0, HitSound.Instance.funnyTargets.Length)], 1f);
+                else
+                    HitSound.Instance.source.PlayOneShot(HitSound.Instance.standardHit, 1f);
                 BoardHandler.Instance.BoardClick();
             }
             if (BoardHandler.Instance.comboCount > 4)
@@ -331,6 +358,10 @@ public class InputHandler : MonoBehaviour
         {
             Abilities.Instance.ToggleBot();
         }
+        else if (rayHit.collider.gameObject.CompareTag("SnapCard"))
+        {
+            rayHit.collider.gameObject.GetComponent<LiftableCard>().LeftClick();
+        }
         //Target Clicks
         else if (rayHit.collider.gameObject.CompareTag("Shield"))
         {
@@ -338,7 +369,7 @@ public class InputHandler : MonoBehaviour
         }
         else if (rayHit.collider.gameObject.CompareTag("Target"))
         {
-            BoardHandler.Instance.GainHitsFromTarget(rayHit.collider);
+            BoardHandler.Instance.CollectTarget(rayHit.collider);
             if (AvailableUpgrades.Instance.combosUnlocked)
                 BoardHandler.Instance.IncrementCombo();
         }
@@ -486,13 +517,14 @@ public class InputHandler : MonoBehaviour
         }
         else if (rayHit.collider.name == "DeckIcon")
         {
-            Music.Instance.Pause();
+            Music.Instance.Muffle();
             HitSound.Instance.source.PlayOneShot(HitSound.Instance.deckOpen);
             CameraViewHandler.Instance.MoveCamToPos("card");
         }
         else if (rayHit.collider.name == "HomeIcon")
         {
             Music.Instance.Resume();
+            Music.Instance.Unmuffle();
             HitSound.Instance.source.PlayOneShot(HitSound.Instance.deckClose);
             CameraViewHandler.Instance.MoveCamToPos("home");
         }

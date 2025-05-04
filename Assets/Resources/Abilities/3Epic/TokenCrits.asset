@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47787dc693f27114682db4a021af3514, type: 3}
   m_Name: TokenCrits
   m_EditorClassIdentifier: 
-  id: 16
+  id: tkc
   abilityIcon: {fileID: 0}
   abilityName: Token Crits
-  abilityDescription: 'Critical Clicks award a small amount of <sprite index=2><color=#FF7300>TOKENS</color> '
+  abilityDescription: Critical Clicks have a 10% chance of awarding a <sprite index=2><color=#FF7300>TOKEN</color>
   abilityCooldown: 1800
   abilityDuration: 120
   rarity: 3

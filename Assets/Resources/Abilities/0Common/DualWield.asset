@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47787dc693f27114682db4a021af3514, type: 3}
   m_Name: DualWield
   m_EditorClassIdentifier: 
-  id: 27
+  id: dwl
   abilityIcon: {fileID: 0}
   abilityName: Dual Wield
   abilityDescription: 1.3x hits from both idle and active hits

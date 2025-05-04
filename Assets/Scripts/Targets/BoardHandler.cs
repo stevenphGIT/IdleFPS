@@ -42,6 +42,7 @@ public class BoardHandler : MonoBehaviour
     public TMP_Text recordText;
     public Animator comboAnim;
     public GameObject fire;
+    public GameObject superFire;
     private float comboTimer;
     private float comboTime = 0.4f;
     public int comboCount = 0;
@@ -81,6 +82,7 @@ public class BoardHandler : MonoBehaviour
         recordText.text = "";
 
         fire.SetActive(false);
+        superFire.SetActive(false);
     }
 
     private void Update()
@@ -94,10 +96,14 @@ public class BoardHandler : MonoBehaviour
         {
             SpawnTarget();
         }
+        if (activeTargetCount > TargetsToSpawn())
+        {
+            RemoveTarget(GameObject.FindGameObjectWithTag("Target"));
+        }
 
         if (comboTimer > 0)
         {
-            comboTimer -= Time.deltaTime;
+            comboTimer -= Time.deltaTime * AbilityBonuses.Instance.easyMode;
             timerBar.transform.localScale = new Vector3(2 * (comboTimer / comboTime), 2, 1);
             if (comboTimer < 0)
             {
@@ -202,25 +208,32 @@ public class BoardHandler : MonoBehaviour
         else
             selectedTarget = 4;
         GameObject targetToSpawn = null;
-        if (selectedTarget == 0)
+        if (AbilityBonuses.Instance.ultFloor)
         {
             targetToSpawn = omegaTargetPrefab;
         }
-        else if (selectedTarget == 1)
+        else if (AbilityBonuses.Instance.goldFloor)
         {
-            targetToSpawn = platTargetPrefab;
+            if (selectedTarget >= 2)
+                targetToSpawn = goldTargetPrefab;
         }
-        else if (selectedTarget == 2)
+        else if (AbilityBonuses.Instance.silverFloor)
         {
-            targetToSpawn = goldTargetPrefab;
+            if (selectedTarget >= 3)
+                targetToSpawn = silverTargetPrefab;
         }
-        else if (selectedTarget == 3)
+        if (targetToSpawn == null)
         {
-            targetToSpawn = silverTargetPrefab;
-        }
-        else
-        {
-            targetToSpawn = redTargetPrefab;
+            if (selectedTarget == 0)
+                targetToSpawn = omegaTargetPrefab;
+            else if (selectedTarget == 1)
+                targetToSpawn = platTargetPrefab;
+            else if (selectedTarget == 2)
+                targetToSpawn = goldTargetPrefab;
+            else if (selectedTarget == 3)
+                targetToSpawn = silverTargetPrefab;
+            else
+                targetToSpawn = redTargetPrefab;
         }
         targets[targetIndex] = Instantiate(targetToSpawn, posList[targetIndex], Quaternion.identity, targetParent.transform);
         activeTargetCount++;
@@ -240,6 +253,8 @@ public class BoardHandler : MonoBehaviour
 
     public double TargetsToSpawn()
     {
+        if (AbilityBonuses.Instance.oneTarget)
+            return 1;
         return (AvailableUpgrades.Instance.targetLevel + UpsAndVars.Instance.bonusTargets + AbilityBonuses.Instance.GetBonusTargets());
     }
     public BigDouble ClickAmount()
@@ -296,7 +311,8 @@ public class BoardHandler : MonoBehaviour
             multiplier *= (1 + ((Vars.Instance.totalClickTracker + Vars.Instance.clickTracker) * 0.005));
         multiplier *= (1 + (Vars.Instance.rads * UpsAndVars.Instance.radMult));
         multiplier *= UpsAndVars.Instance.prestigeTargetMultiplier;
-
+        if (AbilityBonuses.Instance.foursMult && ((DateTime.Now.Minute == 44 && DateTime.Now.Hour == 4) || (DateTime.Now.Minute == 44 && DateTime.Now.Hour == 16)))
+            multiplier *= 444444;
         return multiplier;
     }
     public BigDouble TotalClickAmount()
@@ -340,6 +356,8 @@ public class BoardHandler : MonoBehaviour
 
     public void IncrementCombo()
     {
+        if (AbilityBonuses.Instance.noCombo)
+            return;
         comboCount++;
         if (BossHandler.Instance.activeBoss)
         {
@@ -361,22 +379,33 @@ public class BoardHandler : MonoBehaviour
             recordText.text = "Combo";
             Color streakColor;
 
-            if (comboCount >= maxCombo)
+            if (maxCombo >= 100 && comboCount >= 100)
             {
-                streakColor = new Color(1, 0 , 1);
+                streakColor = new Color(0, 1, 1);
+                if (!superFire.activeSelf)
+                {
+                    HitSound.Instance.source.PlayOneShot(HitSound.Instance.fwoom);
+                    superFire.SetActive(true);
+                    fire.SetActive(false);
+                }
+            }
+            else if (comboCount >= 50)
+            {
+                streakColor = new Color(1, 0, 1);
                 if (!fire.activeSelf)
                 {
                     HitSound.Instance.source.PlayOneShot(HitSound.Instance.fwoom);
                     fire.SetActive(true);
+                    superFire.SetActive(false);
                 }
             }
-            else if (comboCount > (maxCombo / 2))
+            else if (comboCount > 25)
             {
-                streakColor = new Color(1, 1 * (1 - ((comboCount - (maxCombo / 2.0f)) / (maxCombo / 2.0f))), 0);
+                streakColor = new Color(1, 1 * (1 - ((comboCount - (50 / 2.0f)) / (50 / 2.0f))), 0);
             }
             else
             {
-                streakColor = new Color(1, 1, 1 * (1 - (comboCount / (maxCombo / 2.0f))));
+                streakColor = new Color(1, 1, 1 * (1 - (comboCount / (50 / 2.0f))));
             }
 
             comboText.color = streakColor;
@@ -386,22 +415,29 @@ public class BoardHandler : MonoBehaviour
         comboTimer = comboTime;
     }
 
-    public void GainHitsFromTarget(Collider2D tg)
+    public void CollectTarget(Collider2D tg)
     {
+        if (AbilityBonuses.Instance.lightning)
+        {
+            AbilityBonuses.Instance.lightningCount++;
+            if (AbilityBonuses.Instance.lightningCount >= 3)
+            {
+                AbilityBonuses.Instance.Lightning(tg.gameObject);
+                AbilityBonuses.Instance.lightningCount = 0;
+            }
+        }
         if (tg.gameObject.GetComponent<indexNum>().index == 0)
         {
-            if (tg.name == "rMid")
+            if (BossHandler.Instance.fighting)
             {
-                midHit = true;
-                RemoveTarget(tg.gameObject.transform.parent.gameObject);
+                BossHandler.Instance.storedDamage += 0.1;
             }
+            RemoveTarget(tg.gameObject);
+            if (AbilityBonuses.Instance.foolery)
+                HitSound.Instance.source.PlayOneShot(HitSound.Instance.funnyTargets[UnityEngine.Random.Range(0, HitSound.Instance.funnyTargets.Length)], 1f);
             else
-            {
-                midHit = false;
-                RemoveTarget(tg.gameObject);
-            }
-            HitSound.Instance.source.PlayOneShot(HitSound.Instance.standardHit, 1f);
-            BigDouble amountToGain = TotalClickAmount() * GlobalMultiplier();
+                HitSound.Instance.source.PlayOneShot(HitSound.Instance.standardHit, 1f);
+            BigDouble amountToGain = ClickAmount(0);
             FloatingText.Instance.PopText(amountToGain, new Color32(255, 255, 255, 255), speedMod);
             Vars.Instance.hits += amountToGain;
             Vars.Instance.totalHitCount += amountToGain;
@@ -410,18 +446,16 @@ public class BoardHandler : MonoBehaviour
         }
         else if (tg.gameObject.GetComponent<indexNum>().index == 1)
         {
-            if (tg.name == "sMid")
+            if (BossHandler.Instance.fighting)
             {
-                midHit = true;
-                RemoveTarget(tg.gameObject.transform.parent.gameObject);
+                BossHandler.Instance.storedDamage += 0.2;
             }
+            RemoveTarget(tg.gameObject);
+            if (AbilityBonuses.Instance.foolery)
+                HitSound.Instance.source.PlayOneShot(HitSound.Instance.funnyTargets[UnityEngine.Random.Range(0, HitSound.Instance.funnyTargets.Length)], 1f);
             else
-            {
-                midHit = false;
-                RemoveTarget(tg.gameObject);
-            }
-            HitSound.Instance.source.PlayOneShot(HitSound.Instance.silverHit, 1f);
-            BigDouble amountToGain = (Vars.Instance.totalHps * Vars.Instance.silverHpsSecs + TotalClickAmount()) * GlobalMultiplier();
+                HitSound.Instance.source.PlayOneShot(HitSound.Instance.silverHit, 1f);
+            BigDouble amountToGain = ClickAmount(1);
             FloatingText.Instance.PopText(amountToGain, new Color32(200, 200, 200, 255), speedMod);
             Vars.Instance.hits += amountToGain;
             Vars.Instance.totalHitCount += amountToGain;
@@ -430,18 +464,16 @@ public class BoardHandler : MonoBehaviour
         }
         else if (tg.gameObject.GetComponent<indexNum>().index == 2)
         {
-            if (tg.name == "gMid")
+            if (BossHandler.Instance.fighting)
             {
-                midHit = true;
-                RemoveTarget(tg.gameObject.transform.parent.gameObject);
+                BossHandler.Instance.storedDamage += 0.3;
             }
+            RemoveTarget(tg.gameObject);
+            if (AbilityBonuses.Instance.foolery)
+                HitSound.Instance.source.PlayOneShot(HitSound.Instance.funnyTargets[UnityEngine.Random.Range(0, HitSound.Instance.funnyTargets.Length)], 1f);
             else
-            {
-                midHit = false;
-                RemoveTarget(tg.gameObject);
-            }
-            HitSound.Instance.source.PlayOneShot(HitSound.Instance.goldHit, 1f);
-            BigDouble amountToGain = (Vars.Instance.totalHps * Vars.Instance.goldHpsSecs + TotalClickAmount()) * GlobalMultiplier();
+                HitSound.Instance.source.PlayOneShot(HitSound.Instance.goldHit, 1f);
+            BigDouble amountToGain = ClickAmount(2);
             FloatingText.Instance.PopText(amountToGain, new Color32(255, 255, 0, 255), speedMod);
             Vars.Instance.hits += amountToGain;
             Vars.Instance.totalHitCount += amountToGain;
@@ -450,35 +482,31 @@ public class BoardHandler : MonoBehaviour
         }
         else if (tg.gameObject.GetComponent<indexNum>().index == 3)
         {
-            if (tg.name == "pMid")
+            if (BossHandler.Instance.fighting)
             {
-                midHit = true;
-                RemoveTarget(tg.gameObject.transform.parent.gameObject);
+                BossHandler.Instance.storedDamage += 0.4;
             }
+            RemoveTarget(tg.gameObject);
+            if (AbilityBonuses.Instance.foolery)
+                HitSound.Instance.source.PlayOneShot(HitSound.Instance.funnyTargets[UnityEngine.Random.Range(0, HitSound.Instance.funnyTargets.Length)], 1f);
             else
-            {
-                midHit = false;
-                RemoveTarget(tg.gameObject);
-            }
-            HitSound.Instance.source.PlayOneShot(HitSound.Instance.platHit, 1f);
-            BigDouble amountToGain = (Vars.Instance.totalHps * Vars.Instance.platHpsSecs + TotalClickAmount()) * GlobalMultiplier();
+                HitSound.Instance.source.PlayOneShot(HitSound.Instance.platHit, 1f);
+            BigDouble amountToGain = ClickAmount(3);
             FloatingText.Instance.PopText(amountToGain, new Color32(0, 214, 186, 255), speedMod);
             Vars.Instance.platClickTracker += 1;
         }
         else if (tg.gameObject.GetComponent<indexNum>().index == 4)
         {
-            if (tg.name == "uMid")
+            if (BossHandler.Instance.fighting)
             {
-                midHit = true;
-                RemoveTarget(tg.gameObject.transform.parent.gameObject);
+                BossHandler.Instance.storedDamage += 1;
             }
+            RemoveTarget(tg.gameObject);
+            if (AbilityBonuses.Instance.foolery)
+                HitSound.Instance.source.PlayOneShot(HitSound.Instance.funnyTargets[UnityEngine.Random.Range(0, HitSound.Instance.funnyTargets.Length)], 1f);
             else
-            {
-                midHit = false;
-                RemoveTarget(tg.gameObject);
-            }
-            HitSound.Instance.source.PlayOneShot(HitSound.Instance.omegaHit, 0.5f);
-            BigDouble amountToGain = (Vars.Instance.totalHps * 3600 + TotalClickAmount()) * GlobalMultiplier();
+                HitSound.Instance.source.PlayOneShot(HitSound.Instance.omegaHit, 0.5f);
+            BigDouble amountToGain = ClickAmount(4);
             FloatingText.Instance.PopText(amountToGain, new Color32(255, 0, 0, 255), speedMod);
             Vars.Instance.hits += amountToGain;
             Vars.Instance.totalHitCount += amountToGain;
@@ -487,6 +515,28 @@ public class BoardHandler : MonoBehaviour
         }
     }
 
+    public BigDouble ClickAmount(int index)
+    {
+        BigDouble amountToGain = 0;
+        switch (index) {
+            case 0:
+                amountToGain = TotalClickAmount() * GlobalMultiplier();
+                break;
+            case 1:
+                amountToGain = (Vars.Instance.totalHps * Vars.Instance.silverHpsSecs + TotalClickAmount()) * GlobalMultiplier();
+                break;
+            case 2:
+                amountToGain = (Vars.Instance.totalHps * Vars.Instance.goldHpsSecs + TotalClickAmount()) * GlobalMultiplier();
+                break;
+            case 3:
+                amountToGain = (Vars.Instance.totalHps * Vars.Instance.platHpsSecs + TotalClickAmount()) * GlobalMultiplier();
+                break;
+            case 4:
+                amountToGain = (Vars.Instance.totalHps * 3600 + TotalClickAmount()) * GlobalMultiplier();
+                break;
+        }
+        return amountToGain;
+    }
     public void BoardClick()
     {
         BigDouble amount = TotalClickAmount() * GlobalMultiplier();
@@ -501,7 +551,7 @@ public class BoardHandler : MonoBehaviour
         timerBarBG.SetActive(false);
         timerBar.transform.localScale = new Vector3(0, 2, 1);
         fire.SetActive(false);
-
+        superFire.SetActive(false);
         if (comboCount != 0)
         {
             if (comboCount >= 35)

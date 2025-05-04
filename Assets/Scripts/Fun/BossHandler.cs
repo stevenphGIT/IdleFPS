@@ -11,6 +11,7 @@ public class BossHandler : MonoBehaviour
     public GameObject healthBar, damageBar, targetPos;
     public TMP_Text barTitle;
 
+    public double storedDamage = 0;
     private void Update()
     {
         damageBar.transform.position = Vector3.MoveTowards(damageBar.transform.position, targetPos.transform.position, 0.005f);
@@ -29,6 +30,7 @@ public class BossHandler : MonoBehaviour
         bossBar.SetActive(false);
         barTitle.text = string.Empty;
         barFilling.color = Color.white;
+        storedDamage = 0;
     }
     public void PrepareBoss(Boss boss)
     {
@@ -37,6 +39,7 @@ public class BossHandler : MonoBehaviour
         bossBar.GetComponent<Animator>().Play("BossBarUnfold");
         barTitle.text = boss.bossName;
         barFilling.color = boss.bossColor;
+        storedDamage = 0;
     }
     public void StartFight()
     {

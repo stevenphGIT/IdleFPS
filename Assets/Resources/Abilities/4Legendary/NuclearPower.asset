@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47787dc693f27114682db4a021af3514, type: 3}
   m_Name: NuclearPower
   m_EditorClassIdentifier: 
-  id: 33
+  id: nuc
   abilityIcon: {fileID: 0}
   abilityName: Nuclear Power
   abilityDescription: 100x bonus hits from thorium

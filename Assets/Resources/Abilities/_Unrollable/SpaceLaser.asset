@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47787dc693f27114682db4a021af3514, type: 3}
   m_Name: SpaceLaser
   m_EditorClassIdentifier: 
-  id: 21
+  id: dra
   abilityIcon: {fileID: 0}
-  abilityName: Dragon's Breath
-  abilityDescription: Press Space to obliterate any target you hover over!
+  abilityName: Dragon!!!
+  abilityDescription: Hatched from the egg! Press [Space] to obliterate any target
+    you hover over!
   abilityCooldown: 600
   abilityDuration: 60
   rarity: 5

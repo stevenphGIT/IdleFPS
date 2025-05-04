@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47787dc693f27114682db4a021af3514, type: 3}
   m_Name: Relax
   m_EditorClassIdentifier: 
-  id: 4
+  id: rlx
   abilityIcon: {fileID: 0}
   abilityName: Relax
   abilityDescription: No longer gain COMBO stacks. Grant 5x hits from targets.

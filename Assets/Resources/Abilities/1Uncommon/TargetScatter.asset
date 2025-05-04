@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47787dc693f27114682db4a021af3514, type: 3}
   m_Name: TargetScatter
   m_EditorClassIdentifier: 
-  id: 8
+  id: sca
   abilityIcon: {fileID: 21300000, guid: 43b2539ca80f98444813982cfad00059, type: 3}
   abilityName: Target Scatter
   abilityDescription: For the duration of the ability, 3 extra targets spawn on the

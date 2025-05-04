@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47787dc693f27114682db4a021af3514, type: 3}
   m_Name: SummonCursor
   m_EditorClassIdentifier: 
-  id: 26
+  id: scr
   abilityIcon: {fileID: 0}
   abilityName: 'Summon: Cursor'
   abilityDescription: Summons a cursor that clicks targets for you.
-  abilityCooldown: 7200
-  abilityDuration: 60
+  abilityCooldown: 1200
+  abilityDuration: 30
   rarity: 5

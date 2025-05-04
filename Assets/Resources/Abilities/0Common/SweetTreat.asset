@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47787dc693f27114682db4a021af3514, type: 3}
   m_Name: SweetTreat
   m_EditorClassIdentifier: 
-  id: 28
+  id: swt
   abilityIcon: {fileID: 0}
   abilityName: Sweet Treat
-  abilityDescription: Gain 2 minutes of HPS instantly.
-  abilityCooldown: 120
+  abilityDescription: Gain 20 minutes of HPS instantly.
+  abilityCooldown: 7200
   abilityDuration: 0
   rarity: 0

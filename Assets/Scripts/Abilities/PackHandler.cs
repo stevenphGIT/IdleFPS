@@ -39,7 +39,6 @@ public class PackHandler : MonoBehaviour
     Ability[] mythicList;
 
     List<Ability> packContents = new List<Ability>();
-    
 
     Color[] rarityColors = {new Color(0.74f, 0.74f, 0.74f), new Color(0f, 0.73f, 0.03f), new Color(0f, 0.38f, 0.81f), new Color(0.67f, 0f, 0.83f), new Color(1f, 0.89f, 0f), new Color(1f, 0f, 0f)};
     void Awake()
@@ -108,11 +107,15 @@ public class PackHandler : MonoBehaviour
             //Legendary Pack Odds
             if (r == 2)
             {
-                if (randNum <= 60)
+                if (randNum <= 10)
+                {
+                    packContents.Add(epicList[Random.Range(0, rareList.Length)]);
+                }
+                else if (randNum <= 60)
                 {
                     packContents.Add(epicList[Random.Range(0, epicList.Length)]);
                 }
-                else if (randNum <= 85)
+                else if (randNum <= 95)
                 {
                     packContents.Add(legendaryList[Random.Range(0, legendaryList.Length)]);
                 }
@@ -122,7 +125,7 @@ public class PackHandler : MonoBehaviour
                 }
             }
         }
-        //SUBTRACT TOKENS
+        //TODO: SUBTRACT TOKENS
         foreach (Ability a in packContents)
         {
             Abilities.Instance.CollectAbility(a);
@@ -146,7 +149,7 @@ public class PackHandler : MonoBehaviour
             orb2.color = rarityColors[packContents.ElementAt(1).rarity];
             orb3.color = rarityColors[packContents.ElementAt(2).rarity];
         }
-        StartCoroutine("PlayOpeningAnimation");
+        StartCoroutine(PlayOpeningAnimation());
     }
 
     IEnumerator PlayOpeningAnimation()

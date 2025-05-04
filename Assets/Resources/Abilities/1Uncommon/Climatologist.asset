@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47787dc693f27114682db4a021af3514, type: 3}
   m_Name: Climatologist
   m_EditorClassIdentifier: 
-  id: 29
+  id: cli
   abilityIcon: {fileID: 0}
   abilityName: Climatologist
   abilityDescription: 2.5x Location bonuses

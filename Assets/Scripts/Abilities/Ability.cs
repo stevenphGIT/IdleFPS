@@ -7,7 +7,7 @@ using BreakInfinity;
 [CreateAssetMenu]
 public class Ability : ScriptableObject
 {
-    public int id;
+    public string id;
     public Sprite abilityIcon;
     public string abilityName;
     public string abilityDescription;

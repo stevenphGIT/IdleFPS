@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47787dc693f27114682db4a021af3514, type: 3}
   m_Name: Nirvana
   m_EditorClassIdentifier: 
-  id: 18
+  id: nir
   abilityIcon: {fileID: 21300000, guid: 17a8e97641c28424691022f5d573706f, type: 3}
   abilityName: Nirvana
   abilityDescription: For the duration of the ability, all weapons produce as much

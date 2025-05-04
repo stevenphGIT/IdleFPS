@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47787dc693f27114682db4a021af3514, type: 3}
   m_Name: TaxEvasion
   m_EditorClassIdentifier: 
-  id: 5
+  id: tax
   abilityIcon: {fileID: 0}
   abilityName: Tax Evasion
   abilityDescription: Reduce cost of all weapons by 5%

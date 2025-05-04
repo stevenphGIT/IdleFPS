@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47787dc693f27114682db4a021af3514, type: 3}
   m_Name: GildedFloor
   m_EditorClassIdentifier: 
-  id: 15
+  id: gfl
   abilityIcon: {fileID: 21300000, guid: 8b01705672ecc0b48b9c49fe04545eb0, type: 3}
   abilityName: Gilded Floor
   abilityDescription: All red and silver targets are replaced with gold targets for
     the duration of the ability.
   abilityCooldown: 1800
-  abilityDuration: 40
+  abilityDuration: 20
   rarity: 3

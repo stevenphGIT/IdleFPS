@@ -14,11 +14,6 @@ public class OfflineProgress : MonoBehaviour, IDataPersistence
     public int differenceTime;
     public NoticeBox notice;
     public string startTime;
-
-    void Awake()
-    {
-
-    }
     void Start()
     {
         double offlineBonus = UpsAndVars.Instance.offlineYield;
@@ -34,10 +29,13 @@ public class OfflineProgress : MonoBehaviour, IDataPersistence
 
         for (int i = 0; i < 5; i++)
         {
-            Abilities.Instance.abUpTime[i] -= differenceTime;
-            Abilities.Instance.abDoneTime[i] -= differenceTime;
+            if (differenceTime >= 0)
+            { 
+                Abilities.Instance.abUpTime[i] -= differenceTime;
+                Abilities.Instance.abDoneTime[i] -= differenceTime;
+            }
         }
-        if (BigDouble.Round(offlineProd) != 0)
+        if (BigDouble.Round(offlineProd) >= 0)
         {
             Vars.Instance.hits += offlineProd;
             Vars.Instance.totalHitCount += offlineProd;

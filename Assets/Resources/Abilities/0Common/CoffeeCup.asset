@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47787dc693f27114682db4a021af3514, type: 3}
   m_Name: CoffeeCup
   m_EditorClassIdentifier: 
-  id: 1
+  id: cff
   abilityIcon: {fileID: 21300000, guid: e19868065045cfc4594ffe00b00ec766, type: 3}
   abilityName: Cup of Coffee
   abilityDescription: Grant 25% more idle hits.

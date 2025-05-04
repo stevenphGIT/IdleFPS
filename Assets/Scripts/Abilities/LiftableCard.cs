@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class LiftableCard : MonoBehaviour
 {
+    public GameObject cover;
+
     public TMP_Text nameText;
     public TMP_Text descriptionText;
 
@@ -25,6 +27,7 @@ public class LiftableCard : MonoBehaviour
 
     void Update()
     {
+        SetCover();
         if (textCooldown > 0f)
         {
             textCooldown -= Time.deltaTime;
@@ -47,13 +50,11 @@ public class LiftableCard : MonoBehaviour
 
             if (nearestSlot != null)
             {
-                /*if (nearestSlot.equippedAbility != null)
+                if (nearestSlot.equippedAbility != null)
                 {
-                    Debug.Log("Ability Not Null");
                     int i = nearestSlot.GetComponent<indexNum>().index;
-                    if (!Abilities.Instance.AbilityOffCooldown(i))
+                    if (Abilities.Instance.abilityStage[i] != 0)
                     {
-                        Debug.Log("Ability On Cooldown");
                         if (textCooldown <= 0f)
                         {
                             FloatingText.Instance.PopText("This ability cannot be moved right now!", new Color32(255, 0, 0, 255), 0);
@@ -63,7 +64,7 @@ public class LiftableCard : MonoBehaviour
                         Abilities.Instance.DisplayBinder();
                         return;
                     }
-                }*/
+                }
                 if (nearestSlot == slot)
                 {
                     transform.position = returnPos;
@@ -73,9 +74,8 @@ public class LiftableCard : MonoBehaviour
                 {
                     slot.EquipCard(nearestSlot.equippedAbility);
                 }
-                Abilities.Instance.DisplayBinder();
                 nearestSlot.EquipCard(this);
-                
+                Abilities.Instance.DisplayBinder();
             }
             else
             {
@@ -89,53 +89,60 @@ public class LiftableCard : MonoBehaviour
             }
         }
     }
-
-    void OnTriggerStay2D(Collider2D collision)
+    public void SetCover()
     {
-        if (collision.name == "crosshair")
+        if (slot != null && Abilities.Instance.abilityStage[slot.GetComponent<indexNum>().index] != 0)
         {
-            if (Prestige.Instance.inPrestigeAnim) return;
-            if (SpeechBox.Instance.boxShowing) return;
-            if (NoticeBox.Instance.activeBox) return;
-            if (Input.GetMouseButton(0) && !isHeld)
+            cover.SetActive(true);
+        }
+        else
+        {
+            cover.SetActive(false);
+        }
+    }
+    public void LeftClick()
+    {
+        if (!isHeld && !HeldCard.Instance.isHolding)
+        {
+            if (slot != null)
             {
-                if (slot != null)
+                int i = slot.GetComponent<indexNum>().index;
+                if (Abilities.Instance.abilityStage[i] != 0)
                 {
-                    int i = slot.GetComponent<indexNum>().index;
-                    if (!Abilities.Instance.AbilityOffCooldown(i))
+                    if (textCooldown <= 0f)
                     {
-                        if (textCooldown <= 0f)
-                        {
-                            FloatingText.Instance.PopText("This ability cannot be moved right now!", new Color32(255, 0, 0, 255), 0);
-                            HitSound.Instance.source.PlayOneShot(HitSound.Instance.cantUse);
-                            textCooldown = 3f;
-                        }
-                        return;
+                        FloatingText.Instance.PopText("This ability cannot be moved right now!", new Color32(255, 0, 0, 255), 0);
+                        HitSound.Instance.source.PlayOneShot(HitSound.Instance.cantUse);
+                        textCooldown = 3f;
                     }
-                }
-                if (!HeldCard.Instance.isHolding)
-                {
-                    isHeld = true;
-                    HeldCard.Instance.isHolding = true;
-                    transform.SetParent(Abilities.Instance.topObj.transform);
-                    transform.SetAsLastSibling();
+                    return;
                 }
             }
-            if (Input.GetMouseButton(1))
+            if (!HeldCard.Instance.isHolding)
             {
-                if (!NoticeBox.Instance.activeBox)
-                {
-                    string hex = ColorUtility.ToHtmlStringRGB(Abilities.Instance.abilityColor[heldAbility.rarity]);
-                    NoticeBox.Instance.SetTitleText("<color=#" + hex + ">Ability: </color>" + heldAbility.abilityName);
-                    NoticeBox.Instance.SetTitleColor(UnityEngine.Color.white);
-                    NoticeBox.Instance.SetDescriptionText("<color=#" + hex + ">Effect: </color>" + heldAbility.abilityDescription
-                        + "\n<color=#" + hex + ">Duration: </color> " + ValToString.Instance.ShortenTime(Abilities.Instance.TrueDuration(heldAbility.abilityDuration))
-                        + "\n<color=#" + hex + ">Cooldown: </color> " + ValToString.Instance.ShortenTime(Abilities.Instance.TrueCooldown(heldAbility.abilityCooldown)));
-                    NoticeBox.Instance.SetDescriptionColor(UnityEngine.Color.white);
-                    NoticeBox.Instance.SetChoosable(false);
-                    NoticeBox.Instance.ShowBox();
-                    HitSound.Instance.source.PlayOneShot(HitSound.Instance.openMenu, 1f);
-                }
+                isHeld = true;
+                HeldCard.Instance.isHolding = true;
+                transform.SetParent(Abilities.Instance.topObj.transform);
+                transform.SetAsLastSibling();
+            }
+        }
+    }
+    public void RightClick()
+    {
+        if (Input.GetMouseButton(1))
+        {
+            if (!NoticeBox.Instance.activeBox)
+            {
+                string hex = ColorUtility.ToHtmlStringRGB(Abilities.Instance.abilityColor[heldAbility.rarity]);
+                NoticeBox.Instance.SetTitleText("<color=#" + hex + ">Ability: </color>" + heldAbility.abilityName);
+                NoticeBox.Instance.SetTitleColor(UnityEngine.Color.white);
+                NoticeBox.Instance.SetDescriptionText("<color=#" + hex + ">Effect: </color>" + heldAbility.abilityDescription
+                    + "\n<color=#" + hex + ">Duration: </color> " + ValToString.Instance.ShortenTime(Abilities.Instance.TrueDuration(heldAbility.abilityDuration))
+                    + "\n<color=#" + hex + ">Cooldown: </color> " + ValToString.Instance.ShortenTime(Abilities.Instance.TrueCooldown(heldAbility.abilityCooldown)));
+                NoticeBox.Instance.SetDescriptionColor(UnityEngine.Color.white);
+                NoticeBox.Instance.SetChoosable(false);
+                NoticeBox.Instance.ShowBox();
+                HitSound.Instance.source.PlayOneShot(HitSound.Instance.openMenu, 1f);
             }
         }
     }
@@ -153,9 +160,13 @@ public class LiftableCard : MonoBehaviour
         }
         return null;
     }
-    public void SetReturnPos(Vector3 r)
+    public void SetReturnPos(Vector3 r, bool move = true)
     {
-        returnPos = r;
+        int offset = 0;
+        if (move)
+            offset = 1;
+        returnPos = new Vector3(r.x, r.y, r.z - offset);
+        this.transform.position = returnPos;
     }
     public void SetDisplay()
     {

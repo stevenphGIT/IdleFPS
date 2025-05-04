@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47787dc693f27114682db4a021af3514, type: 3}
   m_Name: ComBonus
   m_EditorClassIdentifier: 
-  id: 30
+  id: cmb
   abilityIcon: {fileID: 0}
   abilityName: ComBonus
   abilityDescription: 1.2x bonus multiplier from combos

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47787dc693f27114682db4a021af3514, type: 3}
   m_Name: DeadlyPrecision
   m_EditorClassIdentifier: 
-  id: 10
+  id: pre
   abilityIcon: {fileID: 21300000, guid: f47e04fbfaf5a66409e4035576686265, type: 3}
   abilityName: Deadly Precision
   abilityDescription: For the duration of the ability, special targets will spawn.

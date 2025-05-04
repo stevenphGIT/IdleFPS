@@ -24,6 +24,8 @@ public class HitSound : MonoBehaviour
     public AudioClip snowmanTopple;
     public AudioClip snowmanFurious;
 
+    public AudioClip[] funnyTargets;
+
     public AudioClip deckOpen;
     public AudioClip deckClose;
 

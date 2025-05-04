@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47787dc693f27114682db4a021af3514, type: 3}
   m_Name: Tomfoolery
   m_EditorClassIdentifier: 
-  id: 6
+  id: tom
   abilityIcon: {fileID: 21300000, guid: 8547dff88c6c629448cd65201baf556d, type: 3}
   abilityName: Tomfoolery
   abilityDescription: Grant 2x more hits from targets. May have additional effects?

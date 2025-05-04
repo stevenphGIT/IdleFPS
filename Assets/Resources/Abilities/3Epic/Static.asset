@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47787dc693f27114682db4a021af3514, type: 3}
   m_Name: Static
   m_EditorClassIdentifier: 
-  id: 24
+  id: stc
   abilityIcon: {fileID: 0}
   abilityName: Static
-  abilityDescription: When you click a target, lightning strikes all other targets
-    on the board, rewarding 10% of their normal hits. Does not destroy the targets.
+  abilityDescription: Every 3 target clicks, lightning strikes all other targets
+    on the board, rewarding 10% of their normal hits. Lightning cannot destroy targets.
   abilityCooldown: 600
   abilityDuration: 30
   rarity: 3

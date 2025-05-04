@@ -16,8 +16,9 @@ public class Abilities : MonoBehaviour, IDataPersistence
 
     public Ability[] allAbilities;
 
-    public Sprite defaultHolderSprite;
-    public Sprite abilityIconLocked;
+    public Sprite defaultHolder;
+    public Sprite activeHolder;
+    public Sprite lockedHolder;
     public List<Sprite> abilityIconActive;
     public List<Sprite> abilityIconUsed;
     public List<Color> abilityColor;
@@ -25,7 +26,7 @@ public class Abilities : MonoBehaviour, IDataPersistence
     public List<GameObject> abilitySlots;
     public List<SpriteRenderer> abilityRenderers;
     public List<SpriteRenderer> abilityHolderRenderers;
-    public List<bool> abilityActive;
+    public int[] abilityStage;
     public List<float> abDoneTime;
     public List<float> abUpTime;
 
@@ -63,62 +64,79 @@ public class Abilities : MonoBehaviour, IDataPersistence
         {
             if (slottedAbilities[i] != null)
             {
+                abilityHolderRenderers[i].color = abilityColor[slottedAbilities[i].rarity];
                 abilityRenderers[i].sprite = slottedAbilities[i].abilityIcon;
-                abilityHolderRenderers[i].sprite = defaultHolderSprite;
+                abilityRenderers[i].color = Color.white;
+                abilityHolderRenderers[i].sprite = defaultHolder;
             }
             else
             {
-                abilityHolderRenderers[i].sprite = abilityIconLocked;
+                abilityHolderRenderers[i].sprite = lockedHolder;
                 abilityHolderRenderers[i].color = Color.white;
                 abilityRenderers[i].sprite = null;
-            }
-            if (Time.time >= abUpTime[i] && slottedAbilities[i] != null)
-            {
-                EndAbility(i);
-            }
+                abilityStage[i] = -1;
+            }      
         }
+        SetAbilityStages();
     }
 
     // Update is called once per frame
     void Update()
     {
+        SetAbilityStages();
+    }
+    public void SetAbilitySprites()
+    {
         for (int i = 0; i < 5; i++)
         {
             if (slottedAbilities[i] == null)
             {
-                abilityHolderRenderers[i].sprite = abilityIconLocked;
+                abilityHolderRenderers[i].sprite = lockedHolder;
                 abilityHolderRenderers[i].color = Color.white;
                 abilityRenderers[i].sprite = null;
+            }
+        }
+        SetAbilityStages();
+    }
+    void SetAbilityStages(bool forceUpdate = false)
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            if (slottedAbilities[i] == null)
+            {
+                abilityStage[i] = -1;
                 continue;
             }
-            else
-            {
-                abilityHolderRenderers[i].sprite = defaultHolderSprite;
-            }
-            if (Time.time >= abUpTime[i])
+            abilityRenderers[i].sprite = slottedAbilities[i].abilityIcon;
+            if ((forceUpdate ||abilityStage[i] != 0) && Time.time > abUpTime[i])
             {
                 abilityHolderRenderers[i].color = abilityColor[slottedAbilities[i].rarity];
-                abilityRenderers[i].sprite = slottedAbilities[i].abilityIcon;
+                abilityHolderRenderers[i].sprite = defaultHolder;
                 abilityRenderers[i].color = Color.white;
+                abilityStage[i] = 0;
                 if (abBotOn)
                 {
                     UseAbility(i);
                 }
             }
-            else if (Time.time <= abDoneTime[i])
+            else if ((forceUpdate || abilityStage[i] != 1) && abDoneTime[i] > Time.time)
             {
-                abilityHolderRenderers[i].color = DarkenColor(abilityColor[slottedAbilities[i].rarity], 2);
-                abilityRenderers[i].color = DarkenColor(Color.white, 2);
+                abilityHolderRenderers[i].color = abilityColor[slottedAbilities[i].rarity];
+                abilityHolderRenderers[i].sprite = activeHolder;
+                abilityRenderers[i].color = Color.white;
+                AbilityBonuses.Instance.SetAbilityEffects(slottedAbilities[i].id, true, true);
+                abilityStage[i] = 1;
             }
-            else
+            else if ((forceUpdate || abilityStage[i] != 2) && (Time.time > abDoneTime[i])) 
             {
-                abilityHolderRenderers[i].color = DarkenColor(abilityColor[slottedAbilities[i].rarity], 4);
-                abilityRenderers[i].color = DarkenColor(Color.white, 4);
-                EndAbility(i);
+                if (Time.time < abUpTime[i])
+                    EndAbility(i);
+                else
+                    AbilityBonuses.Instance.SetAbilityEffects(slottedAbilities[i].id, false, true);
             }
         }
+        
     }
-
     public void ToggleBot()
     {
         if (abBotOn)
@@ -143,13 +161,8 @@ public class Abilities : MonoBehaviour, IDataPersistence
     {
         //Int ID
         slottedAbilities = new Ability[5];
-        //Booleans
-        for (int i = 0; i < 5; i++)
-        {
-            if (abilityActive.Count < 5)
-                abilityActive.Add(false);
-        }
 
+        abilityStage = new int[]{-1, -1, -1, -1, -1};
         for (int i = 0; i < 5; i++)
         {
             if (abUpTime.Count < 5)
@@ -162,52 +175,55 @@ public class Abilities : MonoBehaviour, IDataPersistence
         }
     }
 
-    public void ReduceAllCooldowns()
+    public void ReduceAllCooldowns(bool toZero = false)
     {
         for (int i = 0; i < 5; i++)
         {
-            if (abilityActive[i] || abUpTime[i] < Time.time)
+            if (abilityStage[i] != 2)
                 return;
             else
-                abUpTime[i] -= 10f;
+            {
+                if (toZero)
+                    abUpTime[i] = 0f;
+                else
+                    abUpTime[i] -= 10f;
+            }
         }
     }
 
     public bool AbilityOffCooldown(int slot)
     {
         return (slottedAbilities[slot] != null 
-            && !abilityActive[slot] 
+            && (abilityStage[slot] != 1)
             && !(abUpTime[slot] > Time.time));
     }
-    public void UseSelectedAbility()
+    public void UseSelectedAbility(int a = -1)
     {
-        if (abilitySelected == -1)
+        int abID = -1;
+        if (a != -1)
+            abID = a;
+        else
+            abID = abilitySelected;
+        if (abID == -1)
         {
             return;
         }
         else
         {
-            for (int i = 0; i < 5; i++)
+            if (slottedAbilities[abID] == null)
             {
-                if (abilitySelected == i)
-                {
-                    if (slottedAbilities[i] == null)
-                    {
-                        FloatingText.Instance.PopText("No ability equipped in this slot!", new Color32(255, 0, 0, 255), 0);
-                        HitSound.Instance.source.PlayOneShot(HitSound.Instance.cantUse);
-                        return;
-                    }
-                    if (Time.time > abUpTime[i])
-                    {
-                        abilityActive[i] = true;
-                        UseAbility(i);
-                    }
-                    else
-                    {
-                        FloatingText.Instance.PopText("You can't use that right now...", new Color32(255, 0, 0, 255), 0);
-                        HitSound.Instance.source.PlayOneShot(HitSound.Instance.cantUse);
-                    }
-                }
+                FloatingText.Instance.PopText("No ability equipped in this slot!", new Color32(255, 0, 0, 255), 0);
+                HitSound.Instance.source.PlayOneShot(HitSound.Instance.cantUse);
+                return;
+            }
+            if (Time.time > abUpTime[abID])
+            {
+                UseAbility(abID);
+            }
+            else
+            {
+                FloatingText.Instance.PopText("You can't use that right now...", new Color32(255, 0, 0, 255), 0);
+                HitSound.Instance.source.PlayOneShot(HitSound.Instance.cantUse);
             }
         }
     }
@@ -230,8 +246,12 @@ public class Abilities : MonoBehaviour, IDataPersistence
     }
     public void UseAbility(int i)
     {
+        AbilityBonuses.Instance.SetAbilityEffects(slottedAbilities[i].id, true);
+        abilityStage[i] = 1;
+        abilityHolderRenderers[i].color = abilityColor[slottedAbilities[i].rarity];
+        abilityHolderRenderers[i].sprite = activeHolder;
         HitSound.Instance.source.PlayOneShot(HitSound.Instance.abilitySounds[i]);
-        
+        abilityRenderers[i].color = Color.white;
         abUpTime[i] = Time.time + TrueDuration(slottedAbilities[i].abilityDuration) + TrueCooldown(slottedAbilities[i].abilityCooldown);
         abDoneTime[i] = Time.time + TrueDuration(slottedAbilities[i].abilityDuration);
 
@@ -239,9 +259,13 @@ public class Abilities : MonoBehaviour, IDataPersistence
         Vars.Instance.abilitiesUsed++;
         LocationManager.Instance.CheckForLocationReveal();
     }
-    public void EndAbility(int id)
+    public void EndAbility(int i)
     {
-        abilityActive[id] = false;
+        abilityHolderRenderers[i].color = DarkenColor(abilityColor[slottedAbilities[i].rarity], 4);
+        abilityHolderRenderers[i].sprite = defaultHolder;
+        abilityRenderers[i].color = DarkenColor(Color.white, 4);
+        abilityStage[i] = 2;
+        AbilityBonuses.Instance.SetAbilityEffects(slottedAbilities[i].id, false);
     }
     public void SetShow(int id)
     {
@@ -277,7 +301,7 @@ public class Abilities : MonoBehaviour, IDataPersistence
         }
     }
 
-    public Ability GetAbilityOfID(int id) {
+    public Ability GetAbilityOfID(string id) {
         foreach (Ability ab in allAbilities)
         {
             if (ab.id == id)
@@ -300,11 +324,19 @@ public class Abilities : MonoBehaviour, IDataPersistence
 
     public void CollectAbility(Ability a)
     {
+        bool egg = false;
+        if (a.id == "egg")
+            egg = true;
         foreach (Ability ab in ownedAbilities)
         {
             if (ab.id == a.id)
             {
                 return;
+            }
+            if (egg)
+            {
+                if (ab.id == "dra")
+                    return;
             }
         }
         ownedAbilities.Add(a);
@@ -326,7 +358,7 @@ public class Abilities : MonoBehaviour, IDataPersistence
             abilityCards.Add(card);
         }
         List<LiftableCard> toDisplay = abilityCards.OrderByDescending(lCard => lCard.heldAbility.rarity).ThenBy(lCard => lCard.heldAbility.abilityName).ToList();
-        List<LiftableCard> toRemove = new List<LiftableCard>();
+        List<LiftableCard> toRemove = new();
         foreach (LiftableCard d in toDisplay)
         {
             int index = Array.FindIndex(slottedAbilities, s => s == d.heldAbility);
@@ -335,9 +367,9 @@ public class Abilities : MonoBehaviour, IDataPersistence
             {
                 holders[index].EquipCard(d);
                 d.slot = holders[index];
-                d.gameObject.transform.position = holders[index].transform.position;
-                d.SetReturnPos(d.gameObject.transform.position);
+                d.SetReturnPos(holders[index].transform.position);
                 d.gameObject.transform.SetParent(topObj.transform);
+                d.SetCover();
                 toRemove.Add(d);
             }
         }
@@ -352,8 +384,9 @@ public class Abilities : MonoBehaviour, IDataPersistence
         {
             toDisplay[i].slot = null;
             toDisplay[i].gameObject.transform.position = new Vector2(hOff + ((i % cardCount) * hInc), vOff - Mathf.Floor(i / cardCount) * vInc);
-            toDisplay[i].SetReturnPos(toDisplay[i].gameObject.transform.position);
+            toDisplay[i].SetReturnPos(toDisplay[i].gameObject.transform.position, false);
             toDisplay[i].gameObject.transform.SetParent(binder.transform);
+            toDisplay[i].SetCover();
             if (i == 0)
             {
                 top.transform.position = new Vector3(top.transform.position.x, toDisplay[i].gameObject.transform.position.y + toDisplay[i].gameObject.GetComponent<Collider2D>().bounds.extents.y, 0);
@@ -364,12 +397,13 @@ public class Abilities : MonoBehaviour, IDataPersistence
             }
         }
         slider.ResetSliderPos();
+        SetAbilitySprites();
+        SetAbilityStages(true);
     }
     public void LoadData(GameData data)
     {
         allAbilities = Resources.LoadAll<Ability>("Abilities/");
         PopulateList();
-        this.abilityActive = data.abilityActive;
 
         this.abBotOn = data.abBotOn;
 
@@ -385,7 +419,7 @@ public class Abilities : MonoBehaviour, IDataPersistence
             }
         }
             
-        foreach (int id in data.ownedAbilityIDs)
+        foreach (string id in data.ownedAbilityIDs)
         {
             Ability a = GetAbilityOfID(id);
             if (a != null)
@@ -407,8 +441,6 @@ public class Abilities : MonoBehaviour, IDataPersistence
 
     public void SaveData(ref GameData data)
     {
-        data.abilityActive = this.abilityActive;
-
         data.abBotOn = this.abBotOn;
 
         for (int i = 0; i < 5; i++)
@@ -431,7 +463,7 @@ public class Abilities : MonoBehaviour, IDataPersistence
             }
         }
 
-        data.ownedAbilityIDs = new List<int>();
+        data.ownedAbilityIDs = new List<string>();
         foreach (Ability ab in ownedAbilities)
         {
             data.ownedAbilityIDs.Add(ab.id);
@@ -440,7 +472,7 @@ public class Abilities : MonoBehaviour, IDataPersistence
         for (int i = 0; i < 5; i++)
         {
             if (slottedAbilities[i] == null)
-                data.slottedAbilityIDs[i] = -1;
+                data.slottedAbilityIDs[i] = null;
             else
                 data.slottedAbilityIDs[i] = slottedAbilities[i].id;
         }

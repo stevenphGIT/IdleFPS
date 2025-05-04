@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47787dc693f27114682db4a021af3514, type: 3}
   m_Name: SilverFloor
   m_EditorClassIdentifier: 
-  id: 12
+  id: sfl
   abilityIcon: {fileID: 21300000, guid: c18238914d29daa4b8af8209a4c23a86, type: 3}
   abilityName: Silver Floor
   abilityDescription: All red targets are replaced with silver targets for the duration
     of the ability.
-  abilityCooldown: 180
+  abilityCooldown: 360
   abilityDuration: 30
   rarity: 2

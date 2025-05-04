@@ -249,6 +249,7 @@ public class Gun : MonoBehaviour, IDataPersistence
                     targetPowers[id] += 10;
                 else if (Vars.Instance.buyMultiplier == 100)
                     targetPowers[id] += 100;
+                Vars.Instance.FindHPS();
             }
         }
         else if (Vars.Instance.hits >= prices[id])
@@ -296,19 +297,19 @@ public class Gun : MonoBehaviour, IDataPersistence
         else
             amount = targetPowers[id];
         amount *= mult;
-        if (!Abilities.Instance.abilityActive[4])
-        {
-            amount *= (startingPerSec[id] * AvailableUpgrades.Instance.multipliers[id]);
-        }
-        else
+        if (AbilityBonuses.Instance.nirvana)
         {
             int bestId = bought.LastIndexOf(true);
             amount *= (startingPerSec[bestId] * AvailableUpgrades.Instance.multipliers[bestId]);
         }
+        else
+        {
+            amount *= (startingPerSec[id] * AvailableUpgrades.Instance.multipliers[id]);
+        }
 
         return amount;
     }
-    private BigDouble DefaultMultiplier() 
+    private BigDouble DefaultMultiplier()
     {
         BigDouble mult = 1;
         if (LocationManager.Instance.activeLocation == 0 && AvailableUpgrades.Instance.locationBonuses)
@@ -317,6 +318,7 @@ public class Gun : MonoBehaviour, IDataPersistence
         }
         mult *= AvailableUpgrades.Instance.bonusMult * (1 + (Vars.Instance.rads * UpsAndVars.Instance.radMult));
         mult *= UpsAndVars.Instance.prestigeIdleMultiplier;
+        mult *= AbilityBonuses.Instance.GetIdleMultiplier();
         return mult;
     }
     public BigDouble TotalCount()
@@ -360,7 +362,35 @@ public class Gun : MonoBehaviour, IDataPersistence
     }
     public void SinglePrice(int id)
     {
-        BigDouble priceMult = BigDouble.Pow(1.2, targetPowers[id]) * UpsAndVars.Instance.priceBonus;
+        BigDouble startingPrice = BigDouble.Pow(1.2, targetPowers[id]);
+        startingPrice *= PriceMult();
+        prices[id] = iPrices[id] * startingPrice;
+    }
+    public void TenPrice(int id)
+    {
+        prices[id] = 0;
+        for (int i = 0; i <= 9; i++)
+        {
+            BigDouble startingPrice = BigDouble.Pow(1.2, targetPowers[id] + i);
+            startingPrice *= PriceMult();
+            prices[id] += iPrices[id] * startingPrice;
+        }
+
+    }
+    public void HundPrice(int id)
+    {
+        prices[id] = 0;
+        for (int i = 0; i <= 99; i++)
+        {
+            BigDouble startingPrice = BigDouble.Pow(1.2, targetPowers[id] + i);
+            startingPrice *= PriceMult();
+            prices[id] += iPrices[id] * startingPrice;
+        }
+    }
+    private BigDouble PriceMult()
+    {
+        BigDouble priceMult = 1 * UpsAndVars.Instance.priceBonus;
+        priceMult *= AbilityBonuses.Instance.GetPriceMultiplier();
         if (LocationManager.Instance.activeLocation == 3 && AvailableUpgrades.Instance.locationBonuses)
         {
             priceMult *= (1 - (LocationManager.Instance.locations[3].GetMult() * UpsAndVars.Instance.locationBonus));
@@ -369,45 +399,7 @@ public class Gun : MonoBehaviour, IDataPersistence
         {
             priceMult *= (1 - (AvailableUpgrades.Instance.bought.Count * 0.0006));
         }
-
-        prices[id] = iPrices[id] * priceMult;
-    }
-    public void TenPrice(int id)
-    {
-        prices[id] = 0;
-        for (int i = 0; i <= 9; i++)
-        {
-            BigDouble priceMult = BigDouble.Pow(1.2, targetPowers[id] + i) * UpsAndVars.Instance.priceBonus;
-            if (LocationManager.Instance.activeLocation == 3 && AvailableUpgrades.Instance.locationBonuses)
-            {
-                priceMult *= (1 - (LocationManager.Instance.locations[3].GetMult() * UpsAndVars.Instance.locationBonus));
-            }
-            if (UpsAndVars.Instance.priceUpgrades)
-            {
-                priceMult *= (1 - (AvailableUpgrades.Instance.bought.Count * 0.0006));
-            }
-
-            prices[id] += iPrices[id] * priceMult;
-        }
-        
-    }
-    public void HundPrice(int id)
-    {
-        prices[id] = 0;
-        for (int i = 0; i <= 99; i++)
-        {
-            BigDouble priceMult = BigDouble.Pow(1.2, targetPowers[id] + i) * UpsAndVars.Instance.priceBonus;
-            if (LocationManager.Instance.activeLocation == 3 && AvailableUpgrades.Instance.locationBonuses)
-            {
-                priceMult *= (1 - (LocationManager.Instance.locations[3].GetMult() * UpsAndVars.Instance.locationBonus));
-            }
-            if (UpsAndVars.Instance.priceUpgrades)
-            {
-                priceMult *= (1 - (AvailableUpgrades.Instance.bought.Count * 0.0006));
-            }
-
-            prices[id] += iPrices[id] * priceMult;
-        }
+        return priceMult;
     }
     public void testForUnlock(int id)
     {

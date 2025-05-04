@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47787dc693f27114682db4a021af3514, type: 3}
   m_Name: TimeWarp
   m_EditorClassIdentifier: 
-  id: 19
+  id: twp
   abilityIcon: {fileID: 0}
   abilityName: Time Warp
   abilityDescription: Skip all active ability cooldowns.

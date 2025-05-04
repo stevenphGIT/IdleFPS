@@ -385,6 +385,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fcf8d73863edba42bc9ba0cf77b5878, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  showDuringDialogue: 0
+  useImage: 0
 --- !u!61 &7923355281497784352
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -447,8 +449,13 @@ MonoBehaviour:
   sliderMinValue: 5
   sliderMaxValue: 100
   sliderValue: 0
+  sliderSnap: 0
   leftBorder: {fileID: 9012762497439166688}
   rightBorder: {fileID: 1476900421190510102}
+  scrollRect: {fileID: 0}
+  vertical: 0
+  valUpdated: 1
+  snapInterval: 1
 --- !u!1 &9012762497439166688
 GameObject:
   m_ObjectHideFlags: 0
