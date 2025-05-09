@@ -1,4 +1,5 @@
 using BreakInfinity;
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -51,6 +52,7 @@ public class BoardHandler : MonoBehaviour
     public int activeTargetCount;
     public List<Vector3> posList = new();
     public GameObject[] targets;
+    public Color[] targetColors;
 
     float speedMod = 1f;
     void Awake()
@@ -426,92 +428,35 @@ public class BoardHandler : MonoBehaviour
                 AbilityBonuses.Instance.lightningCount = 0;
             }
         }
-        if (tg.gameObject.GetComponent<indexNum>().index == 0)
+        int index = tg.gameObject.GetComponent<indexNum>().index;
+        if (BossHandler.Instance.fighting)
         {
-            if (BossHandler.Instance.fighting)
-            {
-                BossHandler.Instance.storedDamage += 0.1;
-            }
-            RemoveTarget(tg.gameObject);
-            if (AbilityBonuses.Instance.foolery)
-                HitSound.Instance.source.PlayOneShot(HitSound.Instance.funnyTargets[UnityEngine.Random.Range(0, HitSound.Instance.funnyTargets.Length)], 1f);
-            else
-                HitSound.Instance.source.PlayOneShot(HitSound.Instance.standardHit, 1f);
-            BigDouble amountToGain = ClickAmount(0);
-            FloatingText.Instance.PopText(amountToGain, new Color32(255, 255, 255, 255), speedMod);
-            Vars.Instance.hits += amountToGain;
-            Vars.Instance.totalHitCount += amountToGain;
-            //Vars.Instance.targets *= 10;
-            Vars.Instance.clickTracker += 1;
+            BossHandler.Instance.storedDamage += 0.2;
         }
-        else if (tg.gameObject.GetComponent<indexNum>().index == 1)
+        BigDouble amountToGain = ClickAmount(index);
+        FloatingText.Instance.TargetText(amountToGain, targetColors[index], tg.gameObject.transform.position);
+        RemoveTarget(tg.gameObject);
+        if (AbilityBonuses.Instance.foolery)
+            HitSound.Instance.source.PlayOneShot(HitSound.Instance.funnyTargets[UnityEngine.Random.Range(0, HitSound.Instance.funnyTargets.Length)], 1f);
+        else
+            HitSound.Instance.source.PlayOneShot(HitSound.Instance.targetHits[index], 1f);
+        Vars.Instance.hits += amountToGain;
+        Vars.Instance.totalHitCount += amountToGain;
+        Vars.Instance.clickTracker += 1;
+        switch (index)
         {
-            if (BossHandler.Instance.fighting)
-            {
-                BossHandler.Instance.storedDamage += 0.2;
-            }
-            RemoveTarget(tg.gameObject);
-            if (AbilityBonuses.Instance.foolery)
-                HitSound.Instance.source.PlayOneShot(HitSound.Instance.funnyTargets[UnityEngine.Random.Range(0, HitSound.Instance.funnyTargets.Length)], 1f);
-            else
-                HitSound.Instance.source.PlayOneShot(HitSound.Instance.silverHit, 1f);
-            BigDouble amountToGain = ClickAmount(1);
-            FloatingText.Instance.PopText(amountToGain, new Color32(200, 200, 200, 255), speedMod);
-            Vars.Instance.hits += amountToGain;
-            Vars.Instance.totalHitCount += amountToGain;
-            Vars.Instance.clickTracker += 1;
-            Vars.Instance.silverClickTracker += 1;
-        }
-        else if (tg.gameObject.GetComponent<indexNum>().index == 2)
-        {
-            if (BossHandler.Instance.fighting)
-            {
-                BossHandler.Instance.storedDamage += 0.3;
-            }
-            RemoveTarget(tg.gameObject);
-            if (AbilityBonuses.Instance.foolery)
-                HitSound.Instance.source.PlayOneShot(HitSound.Instance.funnyTargets[UnityEngine.Random.Range(0, HitSound.Instance.funnyTargets.Length)], 1f);
-            else
-                HitSound.Instance.source.PlayOneShot(HitSound.Instance.goldHit, 1f);
-            BigDouble amountToGain = ClickAmount(2);
-            FloatingText.Instance.PopText(amountToGain, new Color32(255, 255, 0, 255), speedMod);
-            Vars.Instance.hits += amountToGain;
-            Vars.Instance.totalHitCount += amountToGain;
-            Vars.Instance.clickTracker += 1;
-            Vars.Instance.goldClickTracker += 1;
-        }
-        else if (tg.gameObject.GetComponent<indexNum>().index == 3)
-        {
-            if (BossHandler.Instance.fighting)
-            {
-                BossHandler.Instance.storedDamage += 0.4;
-            }
-            RemoveTarget(tg.gameObject);
-            if (AbilityBonuses.Instance.foolery)
-                HitSound.Instance.source.PlayOneShot(HitSound.Instance.funnyTargets[UnityEngine.Random.Range(0, HitSound.Instance.funnyTargets.Length)], 1f);
-            else
-                HitSound.Instance.source.PlayOneShot(HitSound.Instance.platHit, 1f);
-            BigDouble amountToGain = ClickAmount(3);
-            FloatingText.Instance.PopText(amountToGain, new Color32(0, 214, 186, 255), speedMod);
-            Vars.Instance.platClickTracker += 1;
-        }
-        else if (tg.gameObject.GetComponent<indexNum>().index == 4)
-        {
-            if (BossHandler.Instance.fighting)
-            {
-                BossHandler.Instance.storedDamage += 1;
-            }
-            RemoveTarget(tg.gameObject);
-            if (AbilityBonuses.Instance.foolery)
-                HitSound.Instance.source.PlayOneShot(HitSound.Instance.funnyTargets[UnityEngine.Random.Range(0, HitSound.Instance.funnyTargets.Length)], 1f);
-            else
-                HitSound.Instance.source.PlayOneShot(HitSound.Instance.omegaHit, 0.5f);
-            BigDouble amountToGain = ClickAmount(4);
-            FloatingText.Instance.PopText(amountToGain, new Color32(255, 0, 0, 255), speedMod);
-            Vars.Instance.hits += amountToGain;
-            Vars.Instance.totalHitCount += amountToGain;
-            Vars.Instance.clickTracker += 1;
-            Vars.Instance.omegaClickTracker += 1;
+            case 1:
+                Vars.Instance.silverClickTracker += 1;
+                break;
+            case 2:
+                Vars.Instance.goldClickTracker += 1;
+                break;
+            case 3:
+                Vars.Instance.platClickTracker += 1;
+                break;
+            case 4:
+                Vars.Instance.omegaClickTracker += 1;
+                break;
         }
     }
 

@@ -17,7 +17,6 @@ public class Vars : MonoBehaviour, IDataPersistence
     public TMP_Text shopScoreText;
     public TMP_Text totalHitsText;
     public TMP_Text radsText;
-    public int duelWins = 0;
     public BigDouble hits = 0;
     public BigDouble thorium = 0;
     public BigDouble rads = 0;
@@ -25,7 +24,7 @@ public class Vars : MonoBehaviour, IDataPersistence
 
     public List<int> addedDialogueIDs = new List<int>();
 
-    public BigDouble totalHitCount = 0;
+    
 
     public BigDouble totalHps = 0;
     public BigDouble nonHgHps = 0;
@@ -44,6 +43,7 @@ public class Vars : MonoBehaviour, IDataPersistence
     public double luck;
     private float timer;
     //Stat Vars
+    public BigDouble totalHitCount = 0;
     public BigDouble totalTotalHitCount;
     public int totalClickTracker;
     public int totalSilverClickTracker;
@@ -65,6 +65,7 @@ public class Vars : MonoBehaviour, IDataPersistence
     public int snowmenSlain = 0;
 
     private List<string> nFormat = new List<string>();
+    private List<string> sFormat = new List<string>();
 
     void Awake()
     {
@@ -114,6 +115,49 @@ public class Vars : MonoBehaviour, IDataPersistence
         nFormat.Add(" octotrigintillion");
         nFormat.Add(" novemtrigintillion");
         nFormat.Add(" Infinity");
+
+        sFormat.Add("");
+        sFormat.Add("K");
+        sFormat.Add("M");
+        sFormat.Add("B");
+        sFormat.Add("T");
+        sFormat.Add("Qa");
+        sFormat.Add("Qi");
+        sFormat.Add("Sx");
+        sFormat.Add("Sp");
+        sFormat.Add("Oc");
+        sFormat.Add("No");
+        sFormat.Add("Dc");
+        sFormat.Add("Ud");
+        sFormat.Add("Dd");
+        sFormat.Add("Td");
+        sFormat.Add("Qad");
+        sFormat.Add("Qid");
+        sFormat.Add("Sxd");
+        sFormat.Add("Spd");
+        sFormat.Add("Ocd");
+        sFormat.Add("Nod");
+        sFormat.Add("Vg");
+        sFormat.Add("UVg");
+        sFormat.Add("DVg");
+        sFormat.Add("TVg");
+        sFormat.Add("QaVg");
+        sFormat.Add("QiVg");
+        sFormat.Add("SxVg");
+        sFormat.Add("SpVg");
+        sFormat.Add("OcVg");
+        sFormat.Add("NoVg");
+        sFormat.Add("Tg");
+        sFormat.Add("UTg");
+        sFormat.Add("DTg");
+        sFormat.Add("TTg");
+        sFormat.Add("QaTg");
+        sFormat.Add("QiTg");
+        sFormat.Add("SxTg");
+        sFormat.Add("SpTg");
+        sFormat.Add("OcTg");
+        sFormat.Add("NoTg");
+        sFormat.Add("Inf");
     }
 
     void Start()
@@ -130,6 +174,11 @@ public class Vars : MonoBehaviour, IDataPersistence
         UpdateVars();
     }
 
+    public void SetHPS()
+    {
+        totalHps = FindHPS();
+        nonHgHps = totalHps - hps[0];
+    }
     void Update()
     {
         totalHps = FindHPS();
@@ -209,7 +258,7 @@ public class Vars : MonoBehaviour, IDataPersistence
         }
        
 
-        return OneDecimalBigDouble(value, 1) + "\r\n" + nFormat[num] + " hits";
+        return BigDoubleDecimalRound(value, 1) + "\r\n" + nFormat[num] + " hits";
     }
     public string TotalAbbr(BigDouble value)
     {
@@ -221,7 +270,7 @@ public class Vars : MonoBehaviour, IDataPersistence
             num++;
             value /= 1000;
         }
-        return OneDecimalBigDouble(value, 1) + nFormat[num];
+        return BigDoubleDecimalRound(value, 1) + nFormat[num];
     }
     public string HpsAbbr(BigDouble value)
     {
@@ -231,7 +280,7 @@ public class Vars : MonoBehaviour, IDataPersistence
             num++;
             value /= 1000;
         }
-        return OneDecimalBigDouble(value, 1) + nFormat[num];
+        return BigDoubleDecimalRound(value, 1) + nFormat[num];
     }
 
     public string PriceAbbr(BigDouble value)
@@ -244,7 +293,7 @@ public class Vars : MonoBehaviour, IDataPersistence
             num++;
             value /= 1000;
         }
-        return OneDecimalBigDouble(value, 1) + nFormat[num] + " hits";
+        return BigDoubleDecimalRound(value, 1) + nFormat[num] + " hits";
     }
 
     public string PopupAbbr(BigDouble value)
@@ -255,10 +304,21 @@ public class Vars : MonoBehaviour, IDataPersistence
             num++;
             value /= 1000;
         }
-        return OneDecimalBigDouble(value, 1) + "\n" + nFormat[num];
+        return BigDoubleDecimalRound(value, 1) + "\n" + nFormat[num];
     }
 
-    public string OneDecimalBigDouble(BigDouble val, int decimalCount)
+    public string TargetAbbr(BigDouble value)
+    {
+        int num = 0;
+        while (value >= 1000)
+        {
+            num++;
+            value /= 1000;
+        }
+        return value.Floor() + sFormat[num];
+    }
+
+    public string BigDoubleDecimalRound(BigDouble val, int decimalCount)
     {
         double returnDouble = val.ToDouble();
         returnDouble *= Math.Pow(10, decimalCount);
@@ -300,7 +360,6 @@ public class Vars : MonoBehaviour, IDataPersistence
         this.totalOmegaClickTracker = data.totalOmegaClickTracker;
 
         this.totalHps = data.totalHPS;
-        this.duelWins = data.duelWins;
 
         this.comboRecord = data.comboRecord;
         this.abilitiesUsed = data.abilitiesUsed;
@@ -335,8 +394,6 @@ public class Vars : MonoBehaviour, IDataPersistence
         data.omegaClickTracker = this.omegaClickTracker;
         data.totalOmegaClickTracker = this.omegaClickTracker;
         data.totalHPS = this.totalHps;
-
-        data.duelWins = this.duelWins;
 
         data.comboRecord = this.comboRecord;
         data.abilitiesUsed = this.abilitiesUsed;

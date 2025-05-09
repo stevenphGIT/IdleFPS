@@ -320,7 +320,7 @@ public class InputHandler : MonoBehaviour
                 if (AbilityBonuses.Instance.foolery)
                     HitSound.Instance.source.PlayOneShot(HitSound.Instance.funnyTargets[UnityEngine.Random.Range(0, HitSound.Instance.funnyTargets.Length)], 1f);
                 else
-                    HitSound.Instance.source.PlayOneShot(HitSound.Instance.standardHit, 1f);
+                    HitSound.Instance.source.PlayOneShot(HitSound.Instance.targetHits[0], 1f);
                 BoardHandler.Instance.BoardClick();
             }
             if (BoardHandler.Instance.comboCount > 4)

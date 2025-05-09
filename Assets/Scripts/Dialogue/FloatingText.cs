@@ -12,6 +12,7 @@ public class FloatingText : MonoBehaviour
     public GameObject hitFloatText, canvas, frontCanvas;
 
     public GameObject textSpawn;
+    public GameObject targetText;
     void Awake()
     {
         if (Instance == null)
@@ -44,6 +45,13 @@ public class FloatingText : MonoBehaviour
     {
         GameObject popText = Instantiate(hitFloatText, position, Quaternion.identity, frontCanvas.transform);
         popText.GetComponentInChildren<TMP_Text>().text = words;
+        popText.GetComponentInChildren<TMP_Text>().color = textColor;
+    }
+
+    public void TargetText(BigDouble val, Color32 textColor, Vector3 position)
+    {
+        GameObject popText = Instantiate(targetText, position, Quaternion.identity, frontCanvas.transform);
+        popText.GetComponentInChildren<TMP_Text>().text = "+" + Vars.Instance.TargetAbbr(val);
         popText.GetComponentInChildren<TMP_Text>().color = textColor;
     }
 }

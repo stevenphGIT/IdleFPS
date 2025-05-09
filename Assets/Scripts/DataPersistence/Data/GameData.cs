@@ -55,7 +55,6 @@ public class GameData
     public int tutorialStep;
     public bool inPrestigeShop;
     public List<int> upgradeStatus;
-    public int duelWins;
     public int comboRecord;
     //Crosshair
     public float redV, blueV, greenV;
@@ -128,7 +127,6 @@ public class GameData
         //Other
         this.tutorialStep = 0;
         this.upgradeStatus = new List<int>(new int[75]);
-        this.duelWins = 0;
         this.comboRecord = 0;
 
         //Prestige

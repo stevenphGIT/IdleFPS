@@ -249,7 +249,6 @@ public class Gun : MonoBehaviour, IDataPersistence
                     targetPowers[id] += 10;
                 else if (Vars.Instance.buyMultiplier == 100)
                     targetPowers[id] += 100;
-                Vars.Instance.FindHPS();
             }
         }
         else if (Vars.Instance.hits >= prices[id])
@@ -489,6 +488,8 @@ public class Gun : MonoBehaviour, IDataPersistence
     }
     public void SetShow(int i)
     {
+        CheckUnlocked();
+        Vars.Instance.SetHPS();
         Textbox.Instance.SetTitleText(gunNames[i]);
         Textbox.Instance.SetTitleColor(Color.white);
         

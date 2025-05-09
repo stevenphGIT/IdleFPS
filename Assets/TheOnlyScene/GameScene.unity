@@ -5532,11 +5532,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d99e591b027a1fe45bf44f7fd0d39603, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  standardHit: {fileID: 8300000, guid: b3238bc30ac29d74d9adabcc483e7833, type: 3}
-  silverHit: {fileID: 8300000, guid: 163a46f31f99b694da70c1d0972dcca4, type: 3}
-  goldHit: {fileID: 8300000, guid: e09510c3b063263408c7ae69ac347d5d, type: 3}
-  platHit: {fileID: 8300000, guid: f43e48163afc3784380ce4afa75a145c, type: 3}
-  omegaHit: {fileID: 8300000, guid: 57ae5d3e95224d549a8c6ccdacd1158d, type: 3}
+  targetHits:
+  - {fileID: 8300000, guid: b3238bc30ac29d74d9adabcc483e7833, type: 3}
+  - {fileID: 8300000, guid: 163a46f31f99b694da70c1d0972dcca4, type: 3}
+  - {fileID: 8300000, guid: e09510c3b063263408c7ae69ac347d5d, type: 3}
+  - {fileID: 8300000, guid: f43e48163afc3784380ce4afa75a145c, type: 3}
+  - {fileID: 8300000, guid: 57ae5d3e95224d549a8c6ccdacd1158d, type: 3}
   upgradeBuy: {fileID: 8300000, guid: 430f21c2cbb29384d8d3678b996b4f23, type: 3}
   closeMenu: {fileID: 8300000, guid: a53e8eb4d9d5d7048bf18d8e472f7d47, type: 3}
   openMenu: {fileID: 8300000, guid: 5a6a7c1b5ab29194d84a9f578fe83802, type: 3}
@@ -62405,6 +62406,7 @@ MonoBehaviour:
   canvas: {fileID: 1828462613}
   frontCanvas: {fileID: 287824617}
   textSpawn: {fileID: 1011261892}
+  targetText: {fileID: 5863851753909979765, guid: c673cc1328c052147b92d2e59681b03b, type: 3}
 --- !u!1 &1724497124
 GameObject:
   m_ObjectHideFlags: 0
@@ -66364,6 +66366,12 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  targetColors:
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 0.6698113, g: 0.6698113, b: 0.6698113, a: 1}
+  - {r: 1, g: 0.909544, b: 0, a: 1}
+  - {r: 0, g: 1, b: 0.786726, a: 1}
+  - {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &1818198390
 GameObject:
   m_ObjectHideFlags: 0

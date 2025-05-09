@@ -15,7 +15,7 @@ MonoBehaviour:
   id: nuc
   abilityIcon: {fileID: 0}
   abilityName: Nuclear Power
-  abilityDescription: 100x bonus hits from thorium
+  abilityDescription: 100x bonus hits from rads
   abilityCooldown: 14400
   abilityDuration: 30
   rarity: 4

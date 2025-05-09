@@ -61,6 +61,23 @@ public class PackHandler : MonoBehaviour
     }
     public void OpenPack(int r)
     {
+        int tokenRequirement = 0;
+        if (r == 0)
+            tokenRequirement = 1;
+        if (r == 1)
+            tokenRequirement = 8;
+        if (r == 2)
+            tokenRequirement = 50;
+        if (Vars.Instance.tokens < tokenRequirement)
+        {
+            HitSound.Instance.source.PlayOneShot(HitSound.Instance.cantUse);
+            FloatingText.Instance.PopText("Not enough <sprite index=2><color=#FF7300>TOKENS</color>!", Color.red, 1);
+            return;
+        }
+        else
+        {
+            Vars.Instance.tokens -= tokenRequirement;
+        }
         for (int i = 0; i < 3; i++)
         {
             int randNum = Random.Range(0, 100);

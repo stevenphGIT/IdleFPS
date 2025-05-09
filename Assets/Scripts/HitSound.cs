@@ -6,11 +6,7 @@ public class HitSound : MonoBehaviour
 {
     public static HitSound Instance;
 
-    public AudioClip standardHit;
-    public AudioClip silverHit;
-    public AudioClip goldHit;
-    public AudioClip platHit;
-    public AudioClip omegaHit;
+    public AudioClip[] targetHits;
     public AudioClip upgradeBuy;
     public AudioClip closeMenu;
     public AudioClip openMenu;
