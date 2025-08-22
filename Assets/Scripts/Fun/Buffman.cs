@@ -66,7 +66,6 @@ public class Buffman : Boss
         StartCoroutine(DeathCutscene());
         ShakeForSeconds(1f);
     }
-
     public IEnumerator DeathCutscene()
     {
         CutsceneHandler.Instance.inCutscene = true;
@@ -91,6 +90,11 @@ public class Buffman : Boss
         boss.SetActive(false);
         deadman.SetActive(true);
         yield return new WaitForSeconds(1f);
+        foreach (GameObject obj in activeShields)
+        {
+            Destroy(obj);
+        }
+        activeShields.Clear();
         BossHandler.Instance.Reset();
         CutsceneHandler.Instance.ShowShop();
         CutsceneHandler.Instance.inCutscene = false;

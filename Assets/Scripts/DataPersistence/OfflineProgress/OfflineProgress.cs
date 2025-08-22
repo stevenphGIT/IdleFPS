@@ -35,7 +35,7 @@ public class OfflineProgress : MonoBehaviour, IDataPersistence
                 Abilities.Instance.abDoneTime[i] -= differenceTime;
             }
         }
-        if (BigDouble.Round(offlineProd) >= 0)
+        if (BigDouble.Round(offlineProd) > 0)
         {
             Vars.Instance.hits += offlineProd;
             Vars.Instance.totalHitCount += offlineProd;

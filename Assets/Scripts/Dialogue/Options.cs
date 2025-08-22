@@ -119,9 +119,9 @@ public class Options : MonoBehaviour, IDataPersistence
 
         if (mixer != null)
         {
-            mixer.SetFloat("Master", Mathf.Log(master.sliderValue) * 20f);
-            mixer.SetFloat("Music", Mathf.Log(music.sliderValue) * 20f);
-            mixer.SetFloat("Effects", Mathf.Log(effects.sliderValue) * 20f);
+            mixer.SetFloat("Master", Mathf.Max(-100, Mathf.Log(master.sliderValue)) * 20f);
+            mixer.SetFloat("Music", Mathf.Max(-100, Mathf.Log(music.sliderValue)) * 20f);
+            mixer.SetFloat("Effects", Mathf.Max(-100, Mathf.Log(effects.sliderValue)) * 20f);
         }
     }
 

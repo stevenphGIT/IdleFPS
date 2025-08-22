@@ -12,6 +12,8 @@ public class Crosshair : MonoBehaviour
     float mouseX;
     float mouseY;
 
+    public Collider2D boardCollider;
+
     private void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -35,22 +37,36 @@ public class Crosshair : MonoBehaviour
         mouseX += mouseMovementX;
         mouseY += mouseMovementY;
 
-        Vector3 adjustMouse = Camera.main.ScreenToViewportPoint(new(mouseX, mouseY));
+        Vector3 rawScreenPos = new(mouseX, mouseY, Camera.main.nearClipPlane);
+        Vector3 worldPos = Camera.main.ScreenToWorldPoint(rawScreenPos);
 
-        adjustMouse.x = Mathf.Clamp01(adjustMouse.x);
-        adjustMouse.y = Mathf.Clamp01(adjustMouse.y);
+        Vector3 bottomLeft = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, Camera.main.nearClipPlane));
+        Vector3 topRight = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, Camera.main.nearClipPlane));
+        Bounds cameraBounds = new Bounds();
+        cameraBounds.SetMinMax(bottomLeft, topRight);
 
-        Vector3 adjustMouseResult = Camera.main.ViewportToScreenPoint(adjustMouse);
+        Bounds finalBounds = cameraBounds;
 
-        mouseX = adjustMouseResult.x;
-        mouseY = adjustMouseResult.y;
+        if (BossHandler.Instance.activeBoss && BossHandler.Instance.activeBoss.attacking)
+        {
+            Bounds boardBounds = boardCollider.bounds;
+            Vector3 min = Vector3.Max(cameraBounds.min, boardBounds.min);
+            Vector3 max = Vector3.Min(cameraBounds.max, boardBounds.max);
+            finalBounds.SetMinMax(min, max);
+        }
 
-        Vector3 mousePos = new(mouseX, mouseY, this.transform.localPosition.z);
-        mousePos.z=Camera.main.nearClipPlane;
-        crosshairPos = mousePos;
-        Vector3 pos = Camera.main.ScreenToViewportPoint(mousePos);
-        pos.x = Mathf.Clamp01(pos.x);
-        pos.y = Mathf.Clamp01(pos.y);
-        transform.position = Camera.main.ViewportToWorldPoint(pos);
+        Vector3 clampedWorldPos = new Vector3(
+            Mathf.Clamp(worldPos.x, finalBounds.min.x, finalBounds.max.x),
+            Mathf.Clamp(worldPos.y, finalBounds.min.y, finalBounds.max.y),
+            worldPos.z
+        );
+
+        transform.position = clampedWorldPos;
+
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(clampedWorldPos);
+        crosshairPos = new Vector3(screenPos.x, screenPos.y, Camera.main.nearClipPlane);
+
+        mouseX = screenPos.x;
+        mouseY = screenPos.y;
     }
 }
